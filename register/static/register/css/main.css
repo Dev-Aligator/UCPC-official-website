@@ -1,0 +1,44 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+
+    background-color: #130820;
+    color: white;
+}
+
+nav > .collapse > ul > li > a {
+    font-size: 25px;
+    color: white;
+    /* margin-left: 60px;
+    margin-right: 60px; */
+}
+
+nav {
+    background-color: #130820;
+}
+
+.navbar .btn {
+    background-color: #4cf2d2;
+    color: #130820;
+}
+
+.navbar .btn:hover {
+    color: #130820;
+    background-color: #fff;
+}
+
+.navbar-dark .navbar-collapse .navbar-nav .nav-item .nav-link {
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+}

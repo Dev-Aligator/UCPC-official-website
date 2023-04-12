@@ -1,0 +1,71 @@
+
+table, th, td {
+    border: 1px solid #fff;
+}
+
+th, td {
+    padding: 8px;
+}
+
+th, td {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+.errorlist {
+    list-style-type: none;
+}
+
+.b-top {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#messages {
+    margin-left: 110px;
+}
+
+hr{
+    height: 1px;
+    background-color: rgba(255,255,255,.2);
+    border: none;
+}
+
+.team, .member1, .cmnd1, .phone1, .member2, .cmnd2, .phone2, .member3, .cmnd3, .phone3, .email, .password, .rpassword, .mssv1, .mssv2, .mssv3 {
+    position: relative;
+}
+
+#registration_form i {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.valid_input {
+    border: 2px solid #2ecc71 !important;
+}
+
+.invalid_input {
+    border: 2px solid #e74c3c !important;
+}
+
+.valid_icon {
+    color: #2ecc71 !important;
+    visibility: visible !important;
+}
+
+.invalid_icon {
+    color: #e74c3c !important;
+    visibility: visible !important;
+}
+
+.login_email {
+    font-size: 20px;
+}
+
+.login_pass {
+    font-size: 20px;
+}

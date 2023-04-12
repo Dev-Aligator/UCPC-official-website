@@ -1,0 +1,99 @@
+{% extends 'register/navigations.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin-top: 15px;">
+	<h1>Hồ sơ</h1>
+</div>
+
+{% for message in messages %}
+<div class="container">
+	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
+</div>
+{% endfor %}
+
+<div class="container">
+	{% for item in data %}
+	<span style="font-weight: 600;">Tên đội: </span>
+	{{ item.team }}
+	<br>
+	<span style="font-weight: 600;">Email: </span>
+	{{ item.email }}
+	<br>
+	<span style="font-weight: 600;">Lệ phí thi: </span>
+	{% if item.paid == True %}
+		<span style="color: #4cf2d2;">Đã thanh toán</span>
+	{% else %}
+		<span style="color: #fcf951ff;">Chưa thanh toán (Cập nhật sau 24h)</span>
+	{% endif %}
+	<br>
+	{% endfor %}
+
+</div>
+<br>
+
+{% if data %}
+<div class="container">
+<table>
+	<tbody>
+		{% for item in data %}
+		<tr>
+			<th>Họ và Tên</th>
+			<th>MSSV</th>
+			<th>CMND/CCCD</th>
+			<th>Số điện thoại</th>
+			<th>Trường</th>
+		</tr>
+		<tr>
+			<td style="text-align: left;">{{ item.member1 }} (trưởng)</td>
+			<td>{{ item.mssv1 }}</td>
+			<td>{{ item.cmnd1 }}</td>
+			<td>{{ item.phone1 }}</td>
+			<td>{{ item.school1 }}</td>
+		</tr>
+		<tr>
+			<td style="text-align: left;">{{ item.member2 }}</td>
+			<td>{{ item.mssv2 }}</td>
+			<td>{{ item.cmnd2 }}</td>
+			<td>{{ item.phone2 }}</td>
+			<td>{{ item.school2 }}</td>
+		</tr>
+		<tr>
+			<td style="text-align: left;">{{ item.member3 }}</td>
+			<td>{{ item.mssv3 }}</td>
+			<td>{{ item.cmnd3 }}</td>
+			<td>{{ item.phone3 }}</td>
+			<td>{{ item.school3 }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<p style="margin-top: 8px;">ℹ️ Mọi thông tin thắc mắc hoặc thay đổi vui lòng liên hệ Ban Tổ Chức tại mail: ucpc@uit.edu.vn</p>
+</div>
+
+<hr>
+<div class="container">
+	<div class="row" style="margin-bottom: 40px;">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<h4>Thanh Toán</h4>
+			<p><b>MOMO:</b> 0703482103 - Huỳnh Thị Mỹ Duyên</p>
+			<p><b>STK:</b> MB BANK - 0703482103 - Huỳnh Thị Mỹ Duyên </p>
+			<p><b>Lệ Phí:</b> 90.000 VNĐ/Đội</p>
+			<p><b>Nội dung chuyển khoản:</b> [Tên đội] - [Tên đội trưởng] - UCPC</p>
+			<p><b>Ví dụ:</b> TEAM1 Nguyễn Văn A UCPC</p>
+		</div>
+		<div id="trans_infor" class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="display: flex; flex-direction: row; justify-content: end;">
+			<div style="margin-right: 40px;">
+				<img src="{% static 'register/images/MOMO/momo.png' %}" style="width:150px	; margin-top: 10px; width: 100px;">
+				<p style="margin-top: 10px; text-align: center;"><b>MOMO</b></p>
+			</div>
+			<div>
+				<img src="{% static 'register/images/MOMO/bank.png' %}" style="width:150px; margin-top: 10px; width: 100px;">
+				<p style="margin-top: 10px; text-align: center;"><b>MB BANK</b></p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% endblock content %}
