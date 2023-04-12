@@ -12,13 +12,13 @@ MSSVRegex = RegexValidator(r'^[a-zA-Z0-9]+$')
 # )
 
 # Create your models here.
-# class School(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     school = models.CharField(max_length=50, null=False, blank=False)
-#     logo_path = models.CharField(max_length=100)
+class School(models.Model):
+    id = models.AutoField(primary_key=True)
+    school = models.CharField(max_length=50, null=False, blank=False)
+    logo_path = models.CharField(max_length=100)
     
-#     def __str__(self):
-#         return self.school
+    def __str__(self):
+        return self.school
 
 class Team(models.Model):
     id = models.AutoField(primary_key=True)
