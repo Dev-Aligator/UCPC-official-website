@@ -7,3 +7,4 @@ numpy==1.24.2
 oauth2client==4.1.3
 argon2-cffi==21.3.0
 python-dotenv
+django-allauth==0.54.0
