@@ -19,11 +19,11 @@ from argon2 import PasswordHasher
 ph = PasswordHasher()
 
 try:
-    scope =["https://spreadsheets.google.com/feeds",
+    scope =[
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-1eb72502b976.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-9acf2432120a.json', scope)
 
     _name = "UCPC Team List"
     client = gspread.authorize(creds)
