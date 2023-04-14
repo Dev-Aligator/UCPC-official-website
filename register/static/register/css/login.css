@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+:root{--theme-color:#003782;}
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+    margin-bottom: unset;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color:unset;
+    background-color: unset;
+    background-image: url('../images/elements2023/UCPC@4x.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 35%;
+}
+
+body::after{
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-color: #130820;
+    width: 60%;
+    height: 100vh;
+    clip-path: polygon(0 100%, 0 0 , 100% 0 , 70% 100%);
+    z-index: -1;
+    background-image: url('../images/elements2023/block2@4x.png'), url('../images/elements2023/Stepuptoyourgame@4x.png');
+    background-repeat: no-repeat;
+    background-size: 35% 35%;
+    background-position: left top, left bottom;
+}
+
+nav{
+   height:100px; 
+   border: black;
+    
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+}
+
+.login-card{
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 50px -30px black;
+    width: 1200px;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+    
+}
+
+.login-card a{
+    text-decoration: var(--theme-color);
+    color: var(--theme-color);
+}
+
+.login-card .column{
+    padding: 4rem;
+
+}
+
+.login-card .column:last-child{
+    background: url('../images/elements2023/bg_mail3.png') center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.login-card .column:last-child::after{
+    content: "";
+    position: absolute;
+    background: linear-gradient(90deg, white, #ffffff82);
+    inset: 0;
+}
+
+.login-card .column:last-child *{
+    z-index: 1;
+}
+
+.login-card .column:last-child a{
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: 2px solid var(--theme-color);
+    color: black;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .3s;
+    font-weight: 600;
+
+}
+
+.login-card .column:last-child a:hover{
+    background-color: var(--theme-color);
+    color: white;
+
+}
+.login-card h1{
+    margin-bottom:  15px;
+}
+
+.login-card .form-element{
+    width: 100%;
+    border: none;
+    background-color: #f1f1f1;
+    padding: 20px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition:box-shadow .2s;
+}
+
+.login-card .form-element:focus{
+    outline: none;
+    box-shadow: 0 0 0 2px var(--theme-color);
+}
+
+.login-card input[type=checkbox] {
+    accent-color: var(--theme-color);
+    width: 16px;
+    height: 16px;
+}
+
+.login-card form{
+    margin-top: 3rem;
+}
+
+.login-card form >*{
+    margin-top: 1rem;
+}
+
+.login-card form button{
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .2s;
+}
+
+.login-card form button:active{
+    scale: .95;
+    background-color: darken(var(--theme-color), 10%);
+
+}
+
+.login-card form .form-checkbox-item{
+    gap: 2rem;
+    margin-left: 5px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-buttons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 22px;
+    color: white;
+    background-color: green;
+    transition: scale .2s;
+}
+
+
+.social-buttons a .facebook{
+    background-color: #3b5998;
+}
+
+.social-buttons a:hover{
+    scale: .95;
+}
+
+
+/* Responsive */
+
+@media (max-width: 992px){
+    .login-card {
+        display: block;
+        width: 500px;
+        text-align: center;
+    }
+    .login-card .column:last-child{
+        display: none;
+    }
+    .flex{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .social-buttons{
+        justify-content: center;
+    }
+}

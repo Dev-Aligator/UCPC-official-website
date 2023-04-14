@@ -316,10 +316,9 @@ function validate (e) {
 }
 
 function showLoginPassword() {
-    var checkBox = document.getElementById("checkbox_login");
-    var pwd = document.getElementById("id_password");
+    var pwd = document.getElementById("password-form");
 
-    if (checkBox.checked == true) {
+    if (pwd.type == "password") {
         pwd.type = "text";
     } else {
         pwd.type = "password";

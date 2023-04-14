@@ -23,12 +23,13 @@ try:
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-1eb72502b976.json', scope)
 
-    _name = "List_of_teams"
+    _name = "UCPC Team List"
     client = gspread.authorize(creds)
     spreadsheet = client.open(_name)
     wks = spreadsheet.worksheet("List_teams")
+    wks.update_cell(1,1, "Updating data using gspread")
 except:
     pass
 
@@ -40,7 +41,7 @@ def home(request):
 class register(View):
     def get(self, request):
         now = datetime.datetime.now()
-        deadline = datetime.datetime(2022, 5, 25)
+        deadline = datetime.datetime(2023, 5, 25)
         time_remaining = deadline - now
         if time_remaining.days < 0:
             context = {'tf': teamForm, 'isTimeOver': True}
