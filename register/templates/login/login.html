@@ -12,11 +12,7 @@
 	<!-- <h1 style="font-weight: bold; margin-bottom: 40px;;">Đăng nhập</h1> -->
 <!-- </div> -->
 
-{% for message in messages %}
-<div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
+
 <div class="form-container">
 <div class="login-card">
 	<div class="column">
@@ -29,6 +25,11 @@
 			<div class="form-item">
 				<input type="password" class="form-element" id="password-form" placeholder="Password" name="password">
 			</div>
+			{% for message in messages %}
+			<div class="container">
+				<p id="messages" style="margin: 0 0 15px 0; color:#d8303e">{{message}}</p>
+			</div>
+			{% endfor %}
 			<div class="form-checkbox-item">
 				<input type="checkbox" id="checkbox_login" onclick="showLoginPassword()">
 				<label for="checkbox_login">Show password</label>
@@ -43,7 +44,7 @@
 					<i class="bi bi-facebook"></i>
 				</a> -->
 				<a href="#" class="google">
-					<i class="bi bi-google"></i>
+					<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
 				</a>
 			</div>
 		</form>
