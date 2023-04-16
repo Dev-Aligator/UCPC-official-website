@@ -9,6 +9,8 @@ NumberRegex = RegexValidator(r'^([0-9]{10}|[0-9]{11})$')
 CMNDandCCCD = RegexValidator(r'^([0-9]{9}|[0-9]{12})$')
 MSSVRegex = RegexValidator(r'^[a-zA-Z0-9]+$')
 PhoneRegex = RegexValidator(r'(84|0[3|5|7|8|9])+([0-9]{8})\b')
+PwdRegex = RegexValidator(r'^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$')
+
 # NameRegex = RegexValidator(
 #     r'^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]{1,}\s{0,}){2,7}$'
 # )
@@ -58,9 +60,9 @@ class Team(models.Model):
     ]
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     TeamName = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[TeamRegex])
-    Teammate1ID = models.UUIDField(null=False, blank=False, unique=True, editable=True)
-    Teammate2ID = models.UUIDField(null=False, blank=False, unique=True, editable=True)
-    Teammate3ID = models.UUIDField(null=False, blank=False, unique=True, editable=True)
+    Teammate1Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
+    Teammate2Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
+    Teammate3Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
     FeePayment = models.CharField(max_length=10, null=False, blank=False, choices=PAYMENT_STATUS_CHOICES, default=PAYMENT_STATUS_CHOICES[0][0])
     Rank = models.IntegerField(null=False, blank=False, unique=True, validators=[NumberRegex])
 
@@ -74,9 +76,10 @@ class User(models.Model):
     ]
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     Fullname = models.CharField(max_length=30, null=False, blank=False, validators=[NameRegex])
+    Password = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[PwdRegex])
     Age = models.IntegerField(null=False, blank=False, validators=[NumberRegex])
     Occupation = models.CharField(max_length=10, null=False, blank=False, choices=OCCUPATION_CHOICES, default=OCCUPATION_CHOICES[0][0])
-    School = models.CharField(max_length=10, null=False, blank=False, choices=SCHOOL_CHOICES, default=SCHOOL_CHOICES[0][0])
+    School = models.CharField(max_length=10, null=False, blank=False, choices=SCHOOL_CHOICES)
     MSSV = models.CharField(max_length=30, null=True, blank=True, default='', unique=True, validators=[MSSVRegex])
     CMND = models.CharField(max_length=12, null=False, blank=False, unique=True, validators=[CMNDandCCCD])
     Phone = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[PhoneRegex])
