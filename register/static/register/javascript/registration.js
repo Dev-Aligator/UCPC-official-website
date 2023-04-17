@@ -347,6 +347,10 @@ function showRPassword() {
     }
 }
 
+
+
+
+
 // function showInpuBox(selectElement, other_popUp) {
 //     selectElement.addEventListener('change', (event) => {
 //         if (event.target.value == 6) {
