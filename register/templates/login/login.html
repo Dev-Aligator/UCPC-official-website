@@ -25,11 +25,13 @@
 			<div class="form-item">
 				<input type="password" class="form-element" id="password-form" placeholder="Password" name="password">
 			</div>
-			{% for message in messages %}
-			<div class="container">
-				<p id="messages" style="margin: 0 0 15px 0; color:#d8303e">{{message}}</p>
-			</div>
-			{% endfor %}
+			{% if messages %}
+    				<ul class="messages">
+        			{% for message in messages %}
+            			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       				{% endfor %}
+    				</ul>
+			{% endif %}
 			<div class="form-checkbox-item">
 				<input type="checkbox" id="checkbox_login" onclick="showLoginPassword()">
 				<label for="checkbox_login">Show password</label>
