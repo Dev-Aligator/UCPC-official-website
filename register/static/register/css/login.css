@@ -216,3 +216,12 @@ nav{
         justify-content: center;
     }
 }
+
+.messages .error {
+    color: #f44336; /* red */
+}
+
+/* Style the success messages */
+.messages .success {
+    color: #4CAF50; /* green */
+}
