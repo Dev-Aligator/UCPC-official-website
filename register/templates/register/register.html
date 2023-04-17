@@ -1,6 +1,10 @@
 {% extends 'register/navigations.html' %}
 {% load static %}
 
+{% block login-register %}
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
+{% endblock %}
+
 {% block content %}
 
 {% if isTimeOver %}
@@ -9,20 +13,69 @@
 </div>
 			
 {% else %}
-<div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold; margin-bottom: 40px;">Đăng ký</h1>
-</div>
 
 
-{% for message in messages %}
-<div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
 
-<div class="form-group">
+
+<div class="form-container">
+	<div class="register-card">
+		<div class="column">
+			<h1>Sign up</h1>
+			<form method="POST">
+				{% csrf_token %}
+				<div class="form-item">
+					<!-- <input type="text" class="form-element" placeholder="Email address" name="email"> -->
+					<b style="font-size: 20px;"> {{ uf.email.label }}</b><br>
+					{{ uf.email }}
+				</div>
+				<div class="form-item">
+					<!-- <input type="password" class="form-element" id="password-form" placeholder="Password" name="password"> -->
+					<b style="font-size: 20px;">{{ uf.password1.label }}</b><br>
+					{{ uf.password1 }}
+				</div>
+				<div class="form-item">
+					<!-- <input type="password" class="form-element" id="password-form" placeholder="Re-enter Password" name="rpassword"> -->
+					<b style="font-size: 20px;">{{ uf.password2.label }}</b><br>
+					{{ uf.password2 }}
+				</div>
+				{% if messages %}
+    				<ul class="messages">
+        			{% for message in messages %}
+            			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       				{% endfor %}
+    				</ul>
+				{% endif %}
+
+				<div class="form-checkbox-item">
+					<input type="checkbox" id="checkbox_login" onclick="showLoginPassword()">
+					<label for="checkbox_login">Show password</label>
+					
+				</div>
+				<div class="flex">
+					<button type="submit" class="btn btn-primary">Create Account</button>
+				</div>
+				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
+				<div class="social-buttons">
+					<a href="#" class="google">
+						<img width=35 height="35" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
+					</a>
+					<a href="#" class="facebook">
+						<img width=35 height=35 src="https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg" alt="">
+					</a>
+				</div>
+			</form>
+		</div>
+		<div class="column">
+			<h2>Welcome to UCPC</h2>
+			<p>If you don't have an account, would you like to register right now</p>
+			<a href="{% url 'register:register' %}">Sign Up</a>
+		</div>
+	</div>
+	</div>
+	
+	
+<!-- <div class="form-group">
 	<div class="container">
-		<!-- <form id="registration_form" action="{% url 'register:register' %}" method="POST"> -->
 		<form id="registration_form" method="POST">
 			{% csrf_token %}
 			
@@ -216,6 +269,6 @@
 			<button disabled type="submit" id="submit_btn" class="btn btn-primary" style="margin-top: 10px; background-color: #4CF2D2; border-color: #4CF2D2; color: black;">Đăng ký</button>
 		</form>
 	</div>
-</div>
+</div> -->
 {% endif %}
 {% endblock content %}
