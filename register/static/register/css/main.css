@@ -6,6 +6,10 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto Serif', serif;
 }
 
 * {
