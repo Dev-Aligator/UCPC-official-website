@@ -1,0 +1,106 @@
+#NavbarSupportedContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Navbar {
+    background-color: var(--primary3-color);
+    max-height: 38px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.Navbar::after {
+    content: "";
+    position: absolute;
+    border-top: 18px solid currentColor;
+    border-left: 18px solid transparent;
+    bottom: -16px;
+    left: calc(100% - 50% - 46px);
+    color: var(--primary3-color);
+}
+
+.Navbar::before {
+    content: "";
+    position: absolute;
+    border-bottom: 18px solid transparent;
+    border-left: 18px solid currentColor;
+    bottom: -16px;
+    right: calc(100% - 50% - 46px);
+    color: var(--primary3-color);
+}
+
+.Navbar-Nav {
+    width: 45%;
+    display: flex;
+}
+
+.Nav-item {
+    list-style: none;
+    padding: 0 12px;
+    font-size: 12px;
+    font-family: 'Inter';
+    font-weight: 700;
+    line-height: 38px;
+}
+
+.Nav-item:first-child {
+    padding-left: 0;
+}
+
+.Nav-item:last-child {
+    padding-right: 0;
+}
+
+.Nav-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.Nav-link:hover {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+}
+
+.Navbar-brand {
+    padding: 0;
+    margin: 0;
+    height: 54px;
+    position: relative;
+    z-index: 10;
+}
+
+.Navbar-brand::after {
+    content: "";
+    position: absolute;
+    width: 58px;
+    height: 18px;
+    bottom: 0;
+    left: calc(100% - 50% - 29px);
+    background-color: var(--primary3-color);
+}
+
+.Nav-btn {
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Inter';
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.form-login,
+.form-register {
+    display: flex;
+    justify-content: right;
+    width: 45%;
+}
+
+.Nav-btn:hover {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+}
+
+.carousel {
+    top: 38px;
+}

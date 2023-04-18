@@ -799,3 +799,13 @@ text-decoration: none;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+#navbarSupportedContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-login,
+.form-register {
+  display: flex;
+}
