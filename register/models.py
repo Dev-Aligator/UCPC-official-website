@@ -1,15 +1,7 @@
 from django.db import models
-from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
+from validator import Validator
+from choices import Choices
 import uuid
-
-TeamRegex = RegexValidator(r'(\b\S*[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z]+\S*\b){1,}')
-NameRegex = RegexValidator(r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s\W|_]+$')
-NumberRegex = RegexValidator(r'^([0-9]{10}|[0-9]{11})$')
-CMNDandCCCD = RegexValidator(r'^([0-9]{9}|[0-9]{12})$')
-MSSVRegex = RegexValidator(r'^[a-zA-Z0-9]+$')
-PhoneRegex = RegexValidator(r'(84|0[3|5|7|8|9])+([0-9]{8})\b')
-PwdRegex = RegexValidator(r'^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$')
 
 # NameRegex = RegexValidator(
 #     r'^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]{1,}\s{0,}){2,7}$'
@@ -53,43 +45,51 @@ PwdRegex = RegexValidator(r'^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$')
 #         return self.team
 
 class Team(models.Model):
-    PAYMENT_STATUS_CHOICES = [
-        ('PEND', 'Pending'),
-        ('CMPL', 'Completed'),
-        ('FAIL', 'Failed')
-    ]
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    TeamName = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[TeamRegex])
-    Teammate1Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
-    Teammate2Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
-    Teammate3Email = models.EmailField(null=False, blank=False, unique=True, editable=True)
-    FeePayment = models.CharField(max_length=10, null=False, blank=False, choices=PAYMENT_STATUS_CHOICES, default=PAYMENT_STATUS_CHOICES[0][0])
-    Rank = models.IntegerField(null=False, blank=False, unique=True, validators=[NumberRegex])
+    TeamName = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[Validator.TeamRegex])
+    Email = models.EmailField(max_length=30, null=False, blank=False, unique=True)
+    FeePayment = models.CharField(max_length=10, null=False, blank=False, choices=Choices.PAYMENT_STATUS_CHOICES, default=Choices.PAYMENT_STATUS_CHOICES[0][0])
+    Rank = models.IntegerField(null=False, blank=False, unique=True, default=-1)
 
+    def __str__(self):
+        return self.TeamName
     
 class User(models.Model):
-    SCHOOL_CHOICES = [
-    ]
-    OCCUPATION_CHOICES = [
-        ('ST', 'Student'),
-        ('PP', 'Pupil')
-    ]
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    Fullname = models.CharField(max_length=30, null=False, blank=False, validators=[NameRegex])
-    Password = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[PwdRegex])
-    Age = models.IntegerField(null=False, blank=False, validators=[NumberRegex])
-    Occupation = models.CharField(max_length=10, null=False, blank=False, choices=OCCUPATION_CHOICES, default=OCCUPATION_CHOICES[0][0])
-    School = models.CharField(max_length=10, null=False, blank=False, choices=SCHOOL_CHOICES)
-    MSSV = models.CharField(max_length=30, null=True, blank=True, default='', unique=True, validators=[MSSVRegex])
-    CMND = models.CharField(max_length=12, null=False, blank=False, unique=True, validators=[CMNDandCCCD])
-    Phone = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[PhoneRegex])
-    Email = models.EmailField(max_length=30, null=False, blank=False, unique=True)
-    Admin = models.BooleanField(null=False, blank=False, default=False)
     Team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    Fullname = models.CharField(max_length=30, null=False, blank=False, validators=[Validator.NameRegex])
+    MSSV_CMND = models.CharField(max_length=12, null=False, blank=False, unique=True, validators=[Validator.MSSV_CMNDRegex])
+    Phone = models.CharField(max_length=11, null=False, blank=False, unique=True, validators=[Validator.PhoneRegex])
+    School = models.CharField(max_length=10, null=False, blank=False, choices=Choices.SCHOOL_CHOICES)
+    Admin = models.BooleanField(null=False, blank=False, default=False)
+    Leader = models.BooleanField(null=False, blank=False, default=False)
+    Occupation = models.CharField(max_length=10, null=False, blank=False, choices=Choices.OCCUPATION_CHOICES, default=Choices.OCCUPATION_CHOICES[0][0])
+    
+    def __str__(self):
+        return self.Fullname
     
 class Post(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     Date = models.DateField(max_length=20, null=False, blank=False)
+    Title = models.CharField(max_length=50, null=False, blank=False, unique=True)
     Author = models.CharField(max_length=30, null=False, blank=False, default='Đoàn-Hội Khoa Học Máy Tính UIT')
     Thumbnail = models.URLField(null=False, blank=False, default='https://www.facebook.com/DoanHoiKHMT')
     Post = models.URLField(null=False, blank=False, default='https://www.facebook.com/DoanHoiKHMT')
+
+    def __str__(self):
+        return self.Title
+    
+class Website(models.Model):
+    ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    Title = models.CharField(max_length=30, null=False, blank=False)
+    Year = models.IntegerField(max_length=4, null=False, blank=False, validators=[Validator.YearRegex])
+    Deadline = models.DateTimeField(null=False, blank=False)
+    Law = models.JSONField(null=False, blank=False)
+    Award = models.JSONField(null=False, blank=False)
+    Timeline = models.JSONField(null=False, blank=False)
+    Organization = models.JSONField(null=False, blank=False)
+    Sponsor = models.JSONField(null=False, blank=False)
+    Social = models.JSONField(null=False, blank=False)
+    
+    def __str__(self):
+        return self.Title

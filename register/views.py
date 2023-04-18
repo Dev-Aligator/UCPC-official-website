@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import teamForm, loginForm
+from .forms import TeamForm, LoginForm, UserFormSet
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from .models import Team
+from .models import Team, User as UserModel, Website
 from django.contrib.auth.decorators import login_required
 
 import datetime
@@ -41,52 +41,64 @@ def home(request):
 class register(View):
     def get(self, request):
         now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25)
+        deadline = Website.Deadline
         time_remaining = deadline - now
         if time_remaining.days < 0:
-            context = {'tf': teamForm, 'isTimeOver': True}
+            context = {'tf': TeamForm, 'isTimeOver': True}
         else:
-            context = {'tf': teamForm, 'isTimeOver': False}
+            context = {'tf': TeamForm, 'isTimeOver': False}
 
         return render(request, 'register/register.html', context)
     
     def post(self, request):
         if request.method == 'POST':
-            tf = teamForm(request.POST)
+            tf = TeamForm(request.POST)
             if tf.is_valid():
                 tf.save()
 
-                Username = request.POST['team']
-                Email = request.POST['email']
-                Password = request.POST['password']
-                user = User.objects.create_user(Email, Email, Password)
+                Username = request.POST['Team']
+                Email = request.POST['Email']
+                Password = request.POST['Password']
+                user = User.objects.create_user(Username, Email, Password)
                 user.save()
 
-                data = np.array([[request.POST['team'],
-                                  request.POST['email'],
-                                  ph.hash(request.POST['password']), 
-                                  request.POST['member1'],
-                                  request.POST['mssv1'],
-                                  request.POST['cmnd1'],
-                                  request.POST['phone1'],
-                                  request.POST['school1'],
-                                  request.POST['member2'],
-                                  request.POST['mssv2'],
-                                  request.POST['cmnd2'],
-                                  request.POST['phone2'],
-                                  request.POST['school2'],
-                                  request.POST['member3'],
-                                  request.POST['mssv3'],
-                                  request.POST['cmnd3'],
-                                  request.POST['phone3'],
-                                  request.POST['school3']]])
+                data = np.array([[request.POST['Team'],
+                                  request.POST['Email'],
+                                  ph.hash(request.POST['Password']), 
+                                  request.POST['Teammate1'],
+                                  request.POST['Age1'],
+                                  request.POST['CMND1'],
+                                  request.POST['Phone1'],
+                                  request.POST['Occupation1'],
+                                  request.POST['School1'],
+                                  request.POST['MSSV1'],
+                                  request.POST['Teammate2'],
+                                  request.POST['Age2'],
+                                  request.POST['CMND2'],
+                                  request.POST['Phone2'],
+                                  request.POST['Occupation2'],
+                                  request.POST['School2'],
+                                  request.POST['MSSV2'],
+                                  request.POST['Teammate3'],
+                                  request.POST['Age3'],
+                                  request.POST['CMND3'],
+                                  request.POST['Phone3'],
+                                  request.POST['Occupation3'],
+                                  request.POST['School3'],
+                                  request.POST['MSSV3'],
+                                  request.POST['Teacher'],
+                                  request.POST['CMNDTC'],
+                                  request.POST['PhoneTC'],
+                                  request.POST['OccupationTC'],
+                                  request.POST['SchoolTC'],
+                                ]])
                 try:
                     idx = f'B{str(len(wks.get_all_values()) + 1)}'
                     wks.update(idx, data.tolist())
                 except:
                     pass
 
-                Team = tf.cleaned_data.get('team')
+                Team = tf.cleaned_data.get('TeamName')
                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
@@ -97,7 +109,7 @@ class register(View):
 
 class login(View):
     def get(self, request):
-        ctx = {'lf': loginForm}
+        ctx = {'lf': LoginForm}
         return render(request, 'login/login.html', ctx)
     def post(self, request):
         if request.method == 'POST':
