@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TeamForm, LoginForm, UserFormSet
+from .forms import TeamForm, LoginForm, TeammateFormSet
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from .models import Team, User as UserModel, Website
+from .models import Team, Teammate, Website
 from django.contrib.auth.decorators import login_required
 
 import datetime
@@ -39,64 +39,72 @@ def home(request):
     return render(request, 'register/home.html', context)
 
 class register(View):
-    def get(self, request):
+    def get(self, request): 
         now = datetime.datetime.now()
-        deadline = Website.Deadline
-        time_remaining = deadline - now
-        if time_remaining.days < 0:
-            context = {'tf': TeamForm, 'isTimeOver': True}
+        deadline = datetime.datetime(2023, 5, 25, 0, 0, 0, 0)
+        time_remaining = deadline.day - now.day
+        if time_remaining > 0:
+            context = {
+                'tf': TeamForm, 
+                'tmf': TeammateFormSet,
+                'isTimeOver': False
+            }
         else:
-            context = {'tf': TeamForm, 'isTimeOver': False}
-
+            context = {
+                'tf': TeamForm, 
+                'tmf': TeammateFormSet,
+                'isTimeOver': True
+            }
         return render(request, 'register/register.html', context)
     
     def post(self, request):
         if request.method == 'POST':
             tf = TeamForm(request.POST)
-            if tf.is_valid():
+            tmf = TeammateFormSet(request.POST)
+            if all(tf.is_valid(), tmf.is_valid()):
                 tf.save()
 
-                Username = request.POST['Team']
-                Email = request.POST['Email']
-                Password = request.POST['Password']
-                user = User.objects.create_user(Username, Email, Password)
-                user.save()
+                # Username = request.POST['TeamName']
+                # Email = request.POST['Email']
+                # Password = request.POST['Password']
+                # user = User.objects.create_user(Username, Email, Password)
+                # user.save()
 
-                data = np.array([[request.POST['Team'],
-                                  request.POST['Email'],
-                                  ph.hash(request.POST['Password']), 
-                                  request.POST['Teammate1'],
-                                  request.POST['Age1'],
-                                  request.POST['CMND1'],
-                                  request.POST['Phone1'],
-                                  request.POST['Occupation1'],
-                                  request.POST['School1'],
-                                  request.POST['MSSV1'],
-                                  request.POST['Teammate2'],
-                                  request.POST['Age2'],
-                                  request.POST['CMND2'],
-                                  request.POST['Phone2'],
-                                  request.POST['Occupation2'],
-                                  request.POST['School2'],
-                                  request.POST['MSSV2'],
-                                  request.POST['Teammate3'],
-                                  request.POST['Age3'],
-                                  request.POST['CMND3'],
-                                  request.POST['Phone3'],
-                                  request.POST['Occupation3'],
-                                  request.POST['School3'],
-                                  request.POST['MSSV3'],
-                                  request.POST['Teacher'],
-                                  request.POST['CMNDTC'],
-                                  request.POST['PhoneTC'],
-                                  request.POST['OccupationTC'],
-                                  request.POST['SchoolTC'],
-                                ]])
-                try:
-                    idx = f'B{str(len(wks.get_all_values()) + 1)}'
-                    wks.update(idx, data.tolist())
-                except:
-                    pass
+                # data = np.array([[request.POST['Team'],
+                #                   request.POST['Email'],
+                #                   ph.hash(request.POST['Password']), 
+                #                   request.POST['Teammate1'],
+                #                   request.POST['Age1'],
+                #                   request.POST['CMND1'],
+                #                   request.POST['Phone1'],
+                #                   request.POST['Occupation1'],
+                #                   request.POST['School1'],
+                #                   request.POST['MSSV1'],
+                #                   request.POST['Teammate2'],
+                #                   request.POST['Age2'],
+                #                   request.POST['CMND2'],
+                #                   request.POST['Phone2'],
+                #                   request.POST['Occupation2'],
+                #                   request.POST['School2'],
+                #                   request.POST['MSSV2'],
+                #                   request.POST['Teammate3'],
+                #                   request.POST['Age3'],
+                #                   request.POST['CMND3'],
+                #                   request.POST['Phone3'],
+                #                   request.POST['Occupation3'],
+                #                   request.POST['School3'],
+                #                   request.POST['MSSV3'],
+                #                   request.POST['Teacher'],
+                #                   request.POST['CMNDTC'],
+                #                   request.POST['PhoneTC'],
+                #                   request.POST['OccupationTC'],
+                #                   request.POST['SchoolTC'],
+                #                 ]])
+                # try:
+                #     idx = f'B{str(len(wks.get_all_values()) + 1)}'
+                #     wks.update(idx, data.tolist())
+                # except:
+                #     pass
 
                 Team = tf.cleaned_data.get('TeamName')
                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
@@ -163,8 +171,45 @@ def profile(request):
 def logout(request):
     auth_logout(request)
     return redirect('register:home')
+    
 
 
-
-
-
+# class TeamRegister(CreateView):
+#     model = Team
+#     fields = ['TeamName', 'Email']
+    
+#     def get_context_data(self, **kwargs):
+#         data = super().get_context_data(**kwargs)
+#         if self.request.POST:
+#             data['Teammate1'] = UserFormSet(self.request.POST)
+#             data['Teammate2'] = UserFormSet(self.request.POST)
+#             data['Teammate3'] = UserFormSet(self.request.POST)
+#             data['Teacher'] = UserFormSet(self.request.POST)
+#         else:
+#             data['Teammate1'] = UserFormSet()
+#             data['Teammate2'] = UserFormSet()
+#             data['Teammate3'] = UserFormSet()
+#             data['Teacher'] = UserFormSet()
+            
+#         now = datetime.datetime.now()
+#         deadline = Website.Deadline
+#         time_remaining = deadline - now
+#         data['Overtime'] = True if time_remaining > 0 else False
+        
+#         return data
+    
+#     def form_valid(self, form):
+#         context = self.get_context_data()
+#         children_context = {
+#             'teammate1': context['Teammate1'], 
+#             'teammate2': context['Teammate2'],
+#             'teammate3': context['Teammate3'],
+#             'teacher': context['Teacher']
+#         }
+#         self.object = form.save()
+#         if(all(child_context.is_valid() for child_context in children_context.values())):
+#             for child_context in children_context.values():
+#                 child_context.instance = self.object
+#                 child_context.save()
+#         return super().form_valid(form)
+        
