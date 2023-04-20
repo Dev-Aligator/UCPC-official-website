@@ -3,13 +3,87 @@
 
 {% block main %}
 
+<!-- Navbar -->
+<nav class="Navbar">
+    <div class="container">
+        <!-- <button class="Navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSupportedContent"
+            aria-controls="NavbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="Navbar-toggler-icon"></span>
+        </button> -->
+
+        <div class="Navbar-toggler">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div id="NavbarSupportedContent">
+            <ul class="Navbar-Nav">
+                <li class="Nav-item">
+                    <a class="Nav-link" href="#countdown">UCPC</a>
+                </li>
+                <li class="Nav-item">
+                    <a class="Nav-link" href="#ucpc">Thể Lệ</a>
+                </li>
+                <li class="Nav-item">
+                    <a class="Nav-link" href="#rules">Giải Thưởng</a>
+                </li>
+                <li class="Nav-item">
+                    <a class="Nav-link" href="#reward">Lịch Trình</a>
+                </li>
+                <li class="Nav-item">
+                    <a class="Nav-link" href="#footer">Liên Hệ</a>
+                </li>
+            </ul>
+
+            <a class="Navbar-brand" href="{% url 'register:home' %}">
+                <img class="Navbar-brand" id="Layer_1" width="50px" height="50px"
+                    src="{% static 'register/images/introduction/white_logo.svg' %}">
+                <!-- <svg style ="width:123px; height:123px;" class="Navbar-brand" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302.13 302.13"><defs><style>.cls-1{fill:#fff;}</style></defs><title>white_logo</title><polygon class="cls-1" points="162.15 114.73 150.47 103.05 138.78 114.73 127.1 103.05 138.78 91.36 150.47 79.67 162.15 91.36 173.84 103.05 162.15 114.73"/><polygon class="cls-1" points="199.44 144.98 184.5 130.05 169.57 144.98 154.64 130.05 169.57 115.12 184.5 100.19 199.44 115.12 214.37 130.05 199.44 144.98"/><polygon class="cls-1" points="132.26 144.98 117.33 130.05 102.4 144.98 87.47 130.05 102.4 115.12 117.33 100.19 132.26 115.12 147.19 130.05 132.26 144.98"/><polygon class="cls-1" points="52.06 31.33 52.06 49.33 52.06 193.33 52.06 211.33 70.06 211.33 97.06 211.33 97.06 193.33 70.06 193.33 70.06 49.33 97.06 49.33 97.06 31.33 70.06 31.33 52.06 31.33"/><polygon class="cls-1" points="232.06 31.33 205.06 31.33 205.06 49.33 232.06 49.33 232.06 193.33 205.06 193.33 205.06 211.33 232.06 211.33 250.06 211.33 250.06 193.33 250.06 49.33 250.06 31.33 232.06 31.33"/><rect class="cls-1" x="115.06" y="193.33" width="72" height="18"/><path class="cls-1" d="M98.55,230.14H106v29H98.55v-3.25c-1.8,2.73-4.7,4.07-8.65,4.07a10.5,10.5,0,0,1-7.9-3.2c-2-2.15-3.08-5.05-3.08-8.83V230.14h7.49V247c0,3.9,2.27,6,5.75,6,3.89,0,6.39-2.38,6.39-7.21Z"/><path class="cls-1" d="M113.77,258.49a4.93,4.93,0,1,1,7,0A4.94,4.94,0,0,1,113.77,258.49Z"/><path class="cls-1" d="M131.31,255.58a15.33,15.33,0,0,1,11-26.25,14.45,14.45,0,0,1,13,7.49l-6.45,3.78a7.16,7.16,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.89,7.89,0,0,0,2.21,5.69,7.53,7.53,0,0,0,5.57,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/><path class="cls-1" d="M186.5,233.8a16.28,16.28,0,0,1,0,21.78,13.09,13.09,0,0,1-10,4.42c-4.06,0-7.2-1.4-9.41-4.24v15H159.6V230.14h7.49v3.43c2.21-2.85,5.35-4.24,9.41-4.24A13.17,13.17,0,0,1,186.5,233.8Zm-11.39,19a7.79,7.79,0,0,0,5.75-2.26,8,8,0,0,0,2.33-5.93,7.81,7.81,0,0,0-2.33-5.87,8.29,8.29,0,0,0-11.5,0,8,8,0,0,0-2.27,5.87,8.22,8.22,0,0,0,2.27,5.93A7.79,7.79,0,0,0,175.11,252.85Z"/><path class="cls-1" d="M198.81,255.58a15.33,15.33,0,0,1,11-26.25,14.46,14.46,0,0,1,13,7.49l-6.45,3.78a7.17,7.17,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.93,7.93,0,0,0,2.2,5.69,7.57,7.57,0,0,0,5.58,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/></svg> -->
+            </a>
+
+            {% if request.user.is_authenticated %}
+            <div class="form-login">
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'register:profile' %}" class="Nav-btn"
+                        style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Hồ
+                        sơ</a>
+                </div>
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'register:logout' %}" class="Nav-btn"
+                        style="width:105px; border: none !important; border-radius: 0 !important;">Đăng xuất</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="form-register">
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'register:login' %}" class="Nav-btn"
+                        style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Đăng
+                        nhập</a>
+                </div>
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'register:register' %}" class="Nav-btn"
+                        style="width:105px; border: none !important; border-radius: 0 !important;">Đăng ký</a>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success" type="submit"
+                    style="font-size: 18px; width: 90px; margin-right: 2px;">Login</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                    style="font-size: 18px; width: 90px; margin-left: 2px;">Register</button>
+            </form> -->
+        </div>
+    </div>
+</nav>
+<!-- Navbar -->
+
 <!-- Slider giới thiệu -->
 <div id="introduction_slider" style="height: auto; " class="carousel slide" data-ride="carousel" data-interval="10000">
     <ol class="carousel-indicators">
         <li data-target="#introduction_slider" data-slide-to="0" class="active"></li>
         <li data-target="#introduction_slider" data-slide-to="1"></li>
         <li data-target="#introduction_slider" data-slide-to="2"></li>
-      </ol>
+    </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img width="100%" src="{% static 'register/images/introduction/background.png' %}">
@@ -41,66 +115,6 @@
 <!-- Slider giới thiệu -->
 
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'register:home' %}">
-            <img class="navbar-brand" id="Layer_1" width="123px" height="123px" src="{% static 'register/images/introduction/white_logo.svg' %}">
-            <!-- <svg style ="width:123px; height:123px;" class="navbar-brand" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302.13 302.13"><defs><style>.cls-1{fill:#fff;}</style></defs><title>white_logo</title><polygon class="cls-1" points="162.15 114.73 150.47 103.05 138.78 114.73 127.1 103.05 138.78 91.36 150.47 79.67 162.15 91.36 173.84 103.05 162.15 114.73"/><polygon class="cls-1" points="199.44 144.98 184.5 130.05 169.57 144.98 154.64 130.05 169.57 115.12 184.5 100.19 199.44 115.12 214.37 130.05 199.44 144.98"/><polygon class="cls-1" points="132.26 144.98 117.33 130.05 102.4 144.98 87.47 130.05 102.4 115.12 117.33 100.19 132.26 115.12 147.19 130.05 132.26 144.98"/><polygon class="cls-1" points="52.06 31.33 52.06 49.33 52.06 193.33 52.06 211.33 70.06 211.33 97.06 211.33 97.06 193.33 70.06 193.33 70.06 49.33 97.06 49.33 97.06 31.33 70.06 31.33 52.06 31.33"/><polygon class="cls-1" points="232.06 31.33 205.06 31.33 205.06 49.33 232.06 49.33 232.06 193.33 205.06 193.33 205.06 211.33 232.06 211.33 250.06 211.33 250.06 193.33 250.06 49.33 250.06 31.33 232.06 31.33"/><rect class="cls-1" x="115.06" y="193.33" width="72" height="18"/><path class="cls-1" d="M98.55,230.14H106v29H98.55v-3.25c-1.8,2.73-4.7,4.07-8.65,4.07a10.5,10.5,0,0,1-7.9-3.2c-2-2.15-3.08-5.05-3.08-8.83V230.14h7.49V247c0,3.9,2.27,6,5.75,6,3.89,0,6.39-2.38,6.39-7.21Z"/><path class="cls-1" d="M113.77,258.49a4.93,4.93,0,1,1,7,0A4.94,4.94,0,0,1,113.77,258.49Z"/><path class="cls-1" d="M131.31,255.58a15.33,15.33,0,0,1,11-26.25,14.45,14.45,0,0,1,13,7.49l-6.45,3.78a7.16,7.16,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.89,7.89,0,0,0,2.21,5.69,7.53,7.53,0,0,0,5.57,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/><path class="cls-1" d="M186.5,233.8a16.28,16.28,0,0,1,0,21.78,13.09,13.09,0,0,1-10,4.42c-4.06,0-7.2-1.4-9.41-4.24v15H159.6V230.14h7.49v3.43c2.21-2.85,5.35-4.24,9.41-4.24A13.17,13.17,0,0,1,186.5,233.8Zm-11.39,19a7.79,7.79,0,0,0,5.75-2.26,8,8,0,0,0,2.33-5.93,7.81,7.81,0,0,0-2.33-5.87,8.29,8.29,0,0,0-11.5,0,8,8,0,0,0-2.27,5.87,8.22,8.22,0,0,0,2.27,5.93A7.79,7.79,0,0,0,175.11,252.85Z"/><path class="cls-1" d="M198.81,255.58a15.33,15.33,0,0,1,11-26.25,14.46,14.46,0,0,1,13,7.49l-6.45,3.78a7.17,7.17,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.93,7.93,0,0,0,2.2,5.69,7.57,7.57,0,0,0,5.58,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/></svg> -->
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#countdown">UCPC</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#ucpc">Thể Lệ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#rules">Giải Thưởng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#reward">Lịch Trình</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#footer">Liên Hệ</a>
-                </li>
-            </ul>
-
-
-            {% if request.user.is_authenticated %}
-            <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:profile' %}" class="btn" style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Hồ sơ</a>
-            </div>
-            <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:logout' %}" class="btn" style ="width:105px; border: none !important; border-radius: 0 !important;">Đăng xuất</a>
-            </div>
-            {% else %}
-            <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:login' %}" class="btn" style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Đăng nhập</a>
-            </div>
-            <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:register' %}" class="btn" style ="width:105px; border: none !important; border-radius: 0 !important;">Đăng ký</a>
-            </div>
-            {% endif %}
-
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success" type="submit"
-                    style="font-size: 18px; width: 90px; margin-right: 2px;">Login</button>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    style="font-size: 18px; width: 90px; margin-left: 2px;">Register</button>
-            </form> -->
-        </div>
-    </div>
-</nav>
-
-
-<!-- Navbar -->
 
 
 <!-- Thời Gian Đăng Ký -->
@@ -113,14 +127,14 @@
             let now = new Date().getTime()
             let distance = countDown - now
             document.querySelector("#days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)),
-            document.querySelector("#hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            document.querySelector("#minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-            document.querySelector("#seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+                document.querySelector("#hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                document.querySelector("#minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                document.querySelector("#seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
             if (distance < 0) {
                 document.querySelector("#days").innerHTML = 00,
-                document.querySelector("#hours").innerHTML = 00,
-                document.querySelector("#minutes").innerHTML = 00,
-                document.querySelector("#seconds").innerHTML = 00;
+                    document.querySelector("#hours").innerHTML = 00,
+                    document.querySelector("#minutes").innerHTML = 00,
+                    document.querySelector("#seconds").innerHTML = 00;
             }
         }, 0)
     })
@@ -177,10 +191,19 @@
     <div class="container">
         <h1 style="font-weight: bold;">UCPC</h1>
         <p style="text-align: justify; margin-bottom: 10px;">
-            Trong tháng 05/2022 này, <b>Liên chi Hội khoa Khoa học Máy tính (LCH KHMT)</b> đã quyết định mang <b>UIT ACM (Cuộc thi lập trình thuật toán danh giá nhất của UIT)</b> trở lại với một cái tên cũng như diện mạo hoàn toàn mới đó là <b>UIT COLLEGIATE PROGRAMMING CONTEST (UCPC)</b>, cuộc thi sẽ kế thừa hoàn toàn những giá trị truyền thống của 11 mùa <b>UIT ACM</b> trước đây. Bước đổi mới này nhằm khẳng định lại vai trò, vị trí cũng như xác định phương hướng phát triển cho <b>Cuộc thi lập trình thuật toán danh giá nhất của UIT</b>.
+            Trong tháng 05/2022 này, <b>Liên chi Hội khoa Khoa học Máy tính (LCH KHMT)</b> đã quyết định mang <b>UIT ACM
+                (Cuộc thi lập trình thuật toán danh giá nhất của UIT)</b> trở lại với một cái tên cũng như diện mạo hoàn
+            toàn mới đó là <b>UIT COLLEGIATE PROGRAMMING CONTEST (UCPC)</b>, cuộc thi sẽ kế thừa hoàn toàn những giá trị
+            truyền thống của 11 mùa <b>UIT ACM</b> trước đây. Bước đổi mới này nhằm khẳng định lại vai trò, vị trí cũng
+            như xác định phương hướng phát triển cho <b>Cuộc thi lập trình thuật toán danh giá nhất của UIT</b>.
         </p>
         <p style="text-align: justify; margin-bottom: 10px;">
-            <b>UCPC</b> được tổ chức dựa trên format của <b>Cuộc thi lập trình thi đấu nổi tiếng thế giới ICPC</b>, với mục đích khuyến khích, đẩy mạnh phong trào học thuật, cũng như tạo ra sân chơi giữa sinh viên trường <b>Đại học Công nghệ Thông tin (ĐH CNTT)</b> nói riêng và sinh viên các trường đại học, học sinh THPT có đam mê về lập trình thuật toán nói chung. Đây cũng là cơ hội để các bạn tiếp cận, nâng cao khả năng của mình trong lĩnh vực lập trình thi đấu, giúp các bạn có thể có những trải nghiệm trong môi trường lập trình thi đấu quốc tế. Đồng thời còn là dịp cho các doanh nghiệp tiếp cận và ươm mầm nhân lực chất lượng cao.
+            <b>UCPC</b> được tổ chức dựa trên format của <b>Cuộc thi lập trình thi đấu nổi tiếng thế giới ICPC</b>, với
+            mục đích khuyến khích, đẩy mạnh phong trào học thuật, cũng như tạo ra sân chơi giữa sinh viên trường <b>Đại
+                học Công nghệ Thông tin (ĐH CNTT)</b> nói riêng và sinh viên các trường đại học, học sinh THPT có đam mê
+            về lập trình thuật toán nói chung. Đây cũng là cơ hội để các bạn tiếp cận, nâng cao khả năng của mình trong
+            lĩnh vực lập trình thi đấu, giúp các bạn có thể có những trải nghiệm trong môi trường lập trình thi đấu quốc
+            tế. Đồng thời còn là dịp cho các doanh nghiệp tiếp cận và ươm mầm nhân lực chất lượng cao.
         </p>
     </div>
 </section>
@@ -195,9 +218,14 @@
                 <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Đối tượng:</p>
             </div>
             <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học khác, các bạn học sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh viên quốc tế.</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Thí sinh đăng ký theo đội (mỗi đội gồm 3 thành viên).</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Độ tuổi: 15 – 23 tuổi (tính đến ngày diễn ra cuộc thi).</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Tất cả sinh viên
+                    trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học khác, các bạn học
+                    sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh viên quốc
+                    tế.</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Thí sinh đăng ký
+                    theo đội (mỗi đội gồm 3 thành viên).</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Độ tuổi: 15 – 23
+                    tuổi (tính đến ngày diễn ra cuộc thi).</p>
             </div>
         </div>
         <div class="registration_format row" style=" color: white; text-align: justify; margin-bottom: 20px;">
@@ -205,8 +233,15 @@
                 <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Hình thức đăng ký:</p>
             </div>
             <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các sinh viên đăng ký thông tin tham dự thông qua <a target="_blank" style ="color:#4CF2D2;" href="https://ucpc.uit.edu.vn/register/"><b>trang web cuộc thi</b></a>, đối với học sinh THPT yêu cầu có HLV và đăng ký qua <a target="_blank" style ="color:#4CF2D2;" href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các đội sau khi đăng ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên quan tới tài khoản đăng ký dự thi vui lòng gửi mail về <a target="_blank" style ="color:#4CF2D2;" href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các sinh viên đăng
+                    ký thông tin tham dự thông qua <a target="_blank" style="color:#4CF2D2;"
+                        href="https://ucpc.uit.edu.vn/register/"><b>trang web cuộc thi</b></a>, đối với học sinh THPT
+                    yêu cầu có HLV và đăng ký qua <a target="_blank" style="color:#4CF2D2;"
+                        href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các đội sau khi đăng
+                    ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên quan tới tài khoản
+                    đăng ký dự thi vui lòng gửi mail về <a target="_blank" style="color:#4CF2D2;"
+                        href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
             </div>
         </div>
         <div class="regulation row" style=" color: white; text-align: justify;">
@@ -214,7 +249,10 @@
                 <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Quy định cuộc thi:</p>
             </div>
             <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Để xem toàn bộ quy định cuộc thi, vui lòng truy cập <a style ="color:#4CF2D2; font-size: 20px;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>TẠI ĐÂY</b></a>.</p>
+                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Để xem toàn bộ quy
+                    định cuộc thi, vui lòng truy cập <a style="color:#4CF2D2; font-size: 20px;" target="_blank"
+                        href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>TẠI
+                            ĐÂY</b></a>.</p>
             </div>
         </div>
     </div>
@@ -230,7 +268,56 @@
             <h5 style="margin-top: 10px;"></h5>
             <!-- <p style="margin-top: 30px; ">2.000.000 VND</p> -->
             <!-- <img src="{%static 'register/images/reward/giai-02.png'%}" alt=""> -->
-            <svg id="total-reward" data-name="total-reward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488.71 76.8"><defs><style>.cls-1,.cls-2{fill:none;stroke:#fff;stroke-miterlimit:10;}.cls-1{stroke-width:6.23px;}.cls-2{stroke-width:6.34px;}.cls-3{fill:#fff;}</style></defs><title>prize</title><polyline class="cls-1" points="27.39 73 3.12 73 3.12 3.8 27.39 3.8"/><polyline class="cls-2" points="460.82 73.63 485.54 73.63 485.54 3.17 460.82 3.17"/><path class="cls-3" d="M92.82,60.23a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,92.82,60.23Z"/><path class="cls-3" d="M108.59,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.32,8.93,4.32,15.24s-1.45,11.43-4.28,15.3A15.21,15.21,0,0,1,111,58.4,15.88,15.88,0,0,1,108.63,56ZM120.48,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.21-4.64,8.21-13.19S125.85,27.4,120.48,27.4Z"/><path class="cls-3" d="M145,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54h0a14.54,14.54,0,0,1,2.54,2.54c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a15.22,15.22,0,0,1-21.39,2.4h0A15,15,0,0,1,145,56ZM156.85,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.26-4.67,8.26-13.22S162.22,27.4,156.85,27.4Z"/><path class="cls-3" d="M181.33,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a14,14,0,0,1,11.89-5.78,13.88,13.88,0,0,1,11.9,5.78c2.83,3.81,4.27,8.89,4.27,15.24S208,52.14,205.12,56a14,14,0,0,1-11.9,5.72A14.16,14.16,0,0,1,181.33,56ZM193.22,27.4c-5.36,0-8.19,4.68-8.19,13.28s2.83,13.22,8.19,13.22,8.26-4.67,8.26-13.22S198.59,27.4,193.22,27.4Z"/><path class="cls-3" d="M214,60.23a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,214,60.23Z"/><path class="cls-3" d="M229.69,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54,14.89,14.89,0,0,1,2.54,2.54c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a15.23,15.23,0,0,1-21.41,2.38A14.88,14.88,0,0,1,229.69,56ZM241.61,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.25-4.67,8.25-13.22S247,27.4,241.61,27.4Z"/><path class="cls-3" d="M266.08,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54,14.89,14.89,0,0,1,2.54,2.54c2.83,3.81,4.28,8.89,4.28,15.24S292.7,52.14,289.87,56a15.23,15.23,0,0,1-21.41,2.38A14.88,14.88,0,0,1,266.08,56ZM278,27.4c-5.37,0-8.2,4.68-8.2,13.28S272.61,53.9,278,53.9s8.26-4.67,8.26-13.22S283.35,27.4,278,27.4Z"/><path class="cls-3" d="M302.46,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.28,8.89,4.28,15.24s-1.45,11.43-4.28,15.3a15.21,15.21,0,0,1-21.39,2.39A15.88,15.88,0,0,1,302.46,56ZM314.35,27.4c-5.37,0-8.2,4.68-8.2,13.28S309,53.9,314.35,53.9s8.26-4.67,8.26-13.22S319.69,27.4,314.35,27.4Z"/><path class="cls-3" d="M360.69,60.92,347.14,20.5h8.66l9.89,31.07L375.5,20.5h8.72L370.58,60.92Z"/><path class="cls-3" d="M411.46,20.5h8V60.92H413.4L396,36.21V60.92h-8V20.5h6.06l17.32,24.66Z"/><path class="cls-3" d="M445,20.5a18.39,18.39,0,0,1,13.86,5.83,19.85,19.85,0,0,1,5.6,14.38,19.85,19.85,0,0,1-5.6,14.38A18.39,18.39,0,0,1,445,60.92H429V44.58h-3.4V37.94H429V20.5Zm0,32.8a11.22,11.22,0,0,0,8.55-3.47,12.81,12.81,0,0,0,3.29-9.12,12.55,12.55,0,0,0-3.29-9.06A11.06,11.06,0,0,0,445,28.12h-8.08v9.82h8.2v6.64h-8.2V53.3Z"/><path class="cls-3" d="M60.61,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24A14,14,0,0,1,72.5,19.69a13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.3,8.93,4.3,15.24S87.24,52.14,84.41,56a14,14,0,0,1-11.89,5.72A14.07,14.07,0,0,1,60.61,56ZM72.5,27.4c-5.37,0-8.2,4.68-8.2,13.28S67.13,53.9,72.5,53.9s8.19-4.64,8.19-13.19S77.87,27.4,72.5,27.4Z"/><path class="cls-3" d="M51.71,50.12c0,7-5.81,11.62-13.66,11.62-7.2,0-12.47-3.71-14.51-8.75l6-2.63c1.25,3,3.89,4.91,8,4.91,3.89,0,7.07-2.4,7.07-6.11,0-3.24-2.58-6.17-7.73-6.17H33.79V37.11h3.78c4.31,0,6-2.57,6-5.45,0-3.29-2.76-5.57-6.17-5.57a7.39,7.39,0,0,0-6.77,3.59l-5.58-3c2-4.08,6.53-7,12.53-7,7.19,0,13,3.95,13,10.9a10.33,10.33,0,0,1-5.51,9.29v.06A10.75,10.75,0,0,1,51.71,50.12Z"/></svg>
+            <svg id="total-reward" data-name="total-reward" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 488.71 76.8">
+                <defs>
+                    <style>
+                        .cls-1,
+                        .cls-2 {
+                            fill: none;
+                            stroke: #fff;
+                            stroke-miterlimit: 10;
+                        }
+
+                        .cls-1 {
+                            stroke-width: 6.23px;
+                        }
+
+                        .cls-2 {
+                            stroke-width: 6.34px;
+                        }
+
+                        .cls-3 {
+                            fill: #fff;
+                        }
+                    </style>
+                </defs>
+                <title>prize</title>
+                <polyline class="cls-1" points="27.39 73 3.12 73 3.12 3.8 27.39 3.8" />
+                <polyline class="cls-2" points="460.82 73.63 485.54 73.63 485.54 3.17 460.82 3.17" />
+                <path class="cls-3" d="M92.82,60.23a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,92.82,60.23Z" />
+                <path class="cls-3"
+                    d="M108.59,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.32,8.93,4.32,15.24s-1.45,11.43-4.28,15.3A15.21,15.21,0,0,1,111,58.4,15.88,15.88,0,0,1,108.63,56ZM120.48,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.21-4.64,8.21-13.19S125.85,27.4,120.48,27.4Z" />
+                <path class="cls-3"
+                    d="M145,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54h0a14.54,14.54,0,0,1,2.54,2.54c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a15.22,15.22,0,0,1-21.39,2.4h0A15,15,0,0,1,145,56ZM156.85,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.26-4.67,8.26-13.22S162.22,27.4,156.85,27.4Z" />
+                <path class="cls-3"
+                    d="M181.33,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a14,14,0,0,1,11.89-5.78,13.88,13.88,0,0,1,11.9,5.78c2.83,3.81,4.27,8.89,4.27,15.24S208,52.14,205.12,56a14,14,0,0,1-11.9,5.72A14.16,14.16,0,0,1,181.33,56ZM193.22,27.4c-5.36,0-8.19,4.68-8.19,13.28s2.83,13.22,8.19,13.22,8.26-4.67,8.26-13.22S198.59,27.4,193.22,27.4Z" />
+                <path class="cls-3" d="M214,60.23a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,214,60.23Z" />
+                <path class="cls-3"
+                    d="M229.69,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54,14.89,14.89,0,0,1,2.54,2.54c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a15.23,15.23,0,0,1-21.41,2.38A14.88,14.88,0,0,1,229.69,56ZM241.61,27.4c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.25-4.67,8.25-13.22S247,27.4,241.61,27.4Z" />
+                <path class="cls-3"
+                    d="M266.08,56c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54,14.89,14.89,0,0,1,2.54,2.54c2.83,3.81,4.28,8.89,4.28,15.24S292.7,52.14,289.87,56a15.23,15.23,0,0,1-21.41,2.38A14.88,14.88,0,0,1,266.08,56ZM278,27.4c-5.37,0-8.2,4.68-8.2,13.28S272.61,53.9,278,53.9s8.26-4.67,8.26-13.22S283.35,27.4,278,27.4Z" />
+                <path class="cls-3"
+                    d="M302.46,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.28,8.89,4.28,15.24s-1.45,11.43-4.28,15.3a15.21,15.21,0,0,1-21.39,2.39A15.88,15.88,0,0,1,302.46,56ZM314.35,27.4c-5.37,0-8.2,4.68-8.2,13.28S309,53.9,314.35,53.9s8.26-4.67,8.26-13.22S319.69,27.4,314.35,27.4Z" />
+                <path class="cls-3" d="M360.69,60.92,347.14,20.5h8.66l9.89,31.07L375.5,20.5h8.72L370.58,60.92Z" />
+                <path class="cls-3" d="M411.46,20.5h8V60.92H413.4L396,36.21V60.92h-8V20.5h6.06l17.32,24.66Z" />
+                <path class="cls-3"
+                    d="M445,20.5a18.39,18.39,0,0,1,13.86,5.83,19.85,19.85,0,0,1,5.6,14.38,19.85,19.85,0,0,1-5.6,14.38A18.39,18.39,0,0,1,445,60.92H429V44.58h-3.4V37.94H429V20.5Zm0,32.8a11.22,11.22,0,0,0,8.55-3.47,12.81,12.81,0,0,0,3.29-9.12,12.55,12.55,0,0,0-3.29-9.06A11.06,11.06,0,0,0,445,28.12h-8.08v9.82h8.2v6.64h-8.2V53.3Z" />
+                <path class="cls-3"
+                    d="M60.61,56c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24A14,14,0,0,1,72.5,19.69a13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.3,8.93,4.3,15.24S87.24,52.14,84.41,56a14,14,0,0,1-11.89,5.72A14.07,14.07,0,0,1,60.61,56ZM72.5,27.4c-5.37,0-8.2,4.68-8.2,13.28S67.13,53.9,72.5,53.9s8.19-4.64,8.19-13.19S77.87,27.4,72.5,27.4Z" />
+                <path class="cls-3"
+                    d="M51.71,50.12c0,7-5.81,11.62-13.66,11.62-7.2,0-12.47-3.71-14.51-8.75l6-2.63c1.25,3,3.89,4.91,8,4.91,3.89,0,7.07-2.4,7.07-6.11,0-3.24-2.58-6.17-7.73-6.17H33.79V37.11h3.78c4.31,0,6-2.57,6-5.45,0-3.29-2.76-5.57-6.17-5.57a7.39,7.39,0,0,0-6.77,3.59l-5.58-3c2-4.08,6.53-7,12.53-7,7.19,0,13,3.95,13,10.9a10.33,10.33,0,0,1-5.51,9.29v.06A10.75,10.75,0,0,1,51.71,50.12Z" />
+            </svg>
             <!-- <svg id="total-reward" data-name="total-reward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488.71 76.8"><defs><style>.cls-rw1,.cls-rw2{fill:none;stroke:#fff;stroke-miterlimit:10;}.cls-rw1{stroke-width:6.23px;}.cls-rw2{stroke-width:6.34px;}.cls-rw3{fill:#fff;}</style></defs><title>prize</title><polyline class="cls-rw1" points="27.39 73 3.12 73 3.12 3.8 27.39 3.8"/><polyline class="cls-rw2" points="460.82 73.63 485.54 73.63 485.54 3.17 460.82 3.17"/><path class="cls-rw3" d="M99.13,71.83a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,99.13,71.83Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M114.9,67.61c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78C141.51,40.88,143,46,143,52.31s-1.45,11.43-4.28,15.3a15.22,15.22,0,0,1-23.78,0ZM126.79,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22S135,60.86,135,52.31,132.16,39,126.79,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M151.27,67.61c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,21.25-2.54,14.89,14.89,0,0,1,2.54,2.54c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3A15.22,15.22,0,0,1,153.66,70,14.94,14.94,0,0,1,151.27,67.61ZM163.16,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.26-4.67,8.26-13.22S168.53,39,163.16,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M187.64,67.61c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a14,14,0,0,1,11.89-5.78,13.88,13.88,0,0,1,11.9,5.78c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a14,14,0,0,1-11.9,5.72A14.16,14.16,0,0,1,187.64,67.61ZM199.53,39c-5.36,0-8.19,4.68-8.19,13.28s2.83,13.22,8.19,13.22,8.26-4.67,8.26-13.22S204.9,39,199.53,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M220.26,71.83a4.9,4.9,0,1,1,6.93,0A4.91,4.91,0,0,1,220.26,71.83Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M236,67.61c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,23.79,0c2.83,3.81,4.27,8.89,4.27,15.24s-1.44,11.43-4.27,15.3a15.23,15.23,0,0,1-23.79,0ZM247.92,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.25-4.67,8.25-13.22S253.29,39,247.92,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M272.39,67.61c-2.83-3.87-4.27-9-4.27-15.3s1.44-11.43,4.27-15.24a15.13,15.13,0,0,1,23.79,0c2.83,3.81,4.28,8.89,4.28,15.24s-1.45,11.43-4.28,15.3a15.23,15.23,0,0,1-23.79,0ZM284.29,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.26-4.67,8.26-13.22S289.66,39,284.29,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M308.77,67.61c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78,13.87,13.87,0,0,1,11.89,5.78c2.83,3.81,4.28,8.89,4.28,15.24s-1.45,11.43-4.28,15.3a15.22,15.22,0,0,1-23.78,0ZM320.66,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22,8.26-4.67,8.26-13.22S326,39,320.66,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M367,72.52,353.45,32.1h8.66L372,63.17l9.81-31.07h8.72L376.89,72.52Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M417.77,32.1h8V72.52h-6.06L402.35,47.81V72.52h-8V32.1h6.06l17.32,24.66Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M451.31,32.1a18.39,18.39,0,0,1,13.86,5.83,19.85,19.85,0,0,1,5.6,14.38,19.85,19.85,0,0,1-5.6,14.38,18.39,18.39,0,0,1-13.86,5.83H435.26V56.18h-3.4V49.54h3.4V32.1Zm0,32.8a11.22,11.22,0,0,0,8.55-3.47,12.81,12.81,0,0,0,3.29-9.12,12.55,12.55,0,0,0-3.29-9.06,11.06,11.06,0,0,0-8.55-3.53h-8.08v9.82h8.2v6.64h-8.2V64.9Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M66.92,67.61c-2.83-3.87-4.28-9-4.28-15.3s1.45-11.43,4.28-15.24a14,14,0,0,1,11.89-5.78A13.88,13.88,0,0,1,90.7,37.07C93.53,40.88,95,46,95,52.31s-1.45,11.43-4.28,15.3a14,14,0,0,1-11.89,5.72A14.09,14.09,0,0,1,66.92,67.61ZM78.81,39c-5.37,0-8.2,4.68-8.2,13.28s2.83,13.22,8.2,13.22S87,60.86,87,52.31,84.18,39,78.81,39Z" transform="translate(-6.31 -11.6)"/><path class="cls-rw3" d="M29.87,73.34V67.28L44,52.79c3.12-3.3,4.71-6.07,4.71-8.25a5.1,5.1,0,0,0-5.36-5.36c-3.12,0-5.42,1.59-6.89,4.83l-6.83-4a14.58,14.58,0,0,1,13.6-8.72,14,14,0,0,1,9.6,3.53,11.91,11.91,0,0,1,4,9.43c0,4.3-2.24,8.65-6.78,13.19L42,65.51H57.44v7.83Z" transform="translate(-6.31 -11.6)"/></svg> -->
         </div>
 
@@ -276,7 +363,8 @@
         <div class="content">
             <h2 style="font-weight: bold;">16/05 - 18/05: MINIGAME 2 - Nhanh như chớp</h2>
             <p>
-                Mini game sẽ được diễn ra tại trường Đại học Khoa học Tự nhiên, hãy tham gia để có cơ hội sở hữu những phần quà hấp dẫn.
+                Mini game sẽ được diễn ra tại trường Đại học Khoa học Tự nhiên, hãy tham gia để có cơ hội sở hữu những
+                phần quà hấp dẫn.
             </p>
         </div>
     </div>
@@ -286,7 +374,8 @@
         <div class="content">
             <h2 style="font-weight: bold;">19/05 - 21/05: MINIGAME 2 - Nhanh như chớp</h2>
             <p>
-                Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những phần quà hấp dẫn.
+                Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những phần quà
+                hấp dẫn.
             </p>
         </div>
     </div>
@@ -296,7 +385,8 @@
         <div class="content">
             <h2 style="font-weight: bold;">23/05 - 25/05: MINIGAME 2 - Nhanh như chớp</h2>
             <p>
-                Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội sở hữu những phần quà hấp dẫn.
+                Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội sở hữu những
+                phần quà hấp dẫn.
             </p>
         </div>
     </div>
@@ -325,7 +415,7 @@
 
 <!-- Giới thiệu ban tổ chức -->
 <div id="organizers" class="container-fluid">
-    <div class="container">   
+    <div class="container">
         <div class="row" style="padding-bottom: 30px;">
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-12">
@@ -336,26 +426,31 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5>ĐƠN VỊ TỔ CHỨC</h5>
-                <div class="unit_logo"> 
+                <div class="unit_logo">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="unit">
-                                <a target="_blank" href="http://www.uit.edu.vn/" rel="noopener noreferrer"><img class="UIT" src="{% static 'register/images/footer/UIT.png' %}"></a>
+                                <a target="_blank" href="http://www.uit.edu.vn/" rel="noopener noreferrer"><img
+                                        class="UIT" src="{% static 'register/images/footer/UIT.png' %}"></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="unit">
-                                <a href="http://facebook.com/tuoitre.uit" target="_blank" rel="noopener noreferrer"><img class="HSV" src="{% static 'register/images/footer/HSV.png' %}"></a>
+                                <a href="http://facebook.com/tuoitre.uit" target="_blank" rel="noopener noreferrer"><img
+                                        class="HSV" src="{% static 'register/images/footer/HSV.png' %}"></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="unit">
-                                <a href="http://cs.uit.edu.vn" target="_blank" rel="noopener noreferrer"><img class="CS" src="{% static 'register/images/footer/CS.png' %}"></a>
+                                <a href="http://cs.uit.edu.vn" target="_blank" rel="noopener noreferrer"><img class="CS"
+                                        src="{% static 'register/images/footer/CS.png' %}"></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="unit">
-                                <a href="http://www.facebook.com/uit.ucpc" target="_blank" rel="noopener noreferrer"><img class="UCPC" src="{% static 'register/images/footer/UCPC.png' %}"></a>
+                                <a href="http://www.facebook.com/uit.ucpc" target="_blank"
+                                    rel="noopener noreferrer"><img class="UCPC"
+                                        src="{% static 'register/images/footer/UCPC.png' %}"></a>
                             </div>
                         </div>
                     </div>
@@ -364,7 +459,7 @@
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                 <div>
-                    
+
                 </div>
             </div>
 
@@ -384,23 +479,32 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <div class="unit">
-                                    <a href="http://www.tma.vn" target="_blank" rel="noopener noreferrer"><img class="TMA" src="{% static 'register/images/sponsors/TMA.png' %}"></a>
+                                    <a href="http://www.tma.vn" target="_blank" rel="noopener noreferrer"><img
+                                            class="TMA" src="{% static 'register/images/sponsors/TMA.png' %}"></a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <div class="unit">
-                                    <a href="http://citynow.vn/" target="_blank" rel="noopener noreferrer"><img class="Citynow" src="{% static 'register/images/sponsors/Citynow.png' %}"></a>
+                                    <a href="http://citynow.vn/" target="_blank" rel="noopener noreferrer"><img
+                                            class="Citynow"
+                                            src="{% static 'register/images/sponsors/Citynow.png' %}"></a>
                                 </div>
                                 <div class="unit">
-                                    <a href="http://www.autonomous.ai/" target="_blank" rel="noopener noreferrer"><img class="Autonomous" src="{% static 'register/images/sponsors/Autonomous.png' %}"></a>
+                                    <a href="http://www.autonomous.ai/" target="_blank" rel="noopener noreferrer"><img
+                                            class="Autonomous"
+                                            src="{% static 'register/images/sponsors/Autonomous.png' %}"></a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <div class="unit">
-                                    <a href="https://www.mckinsey.com/vn/overview" target="_blank" rel="noopener noreferrer"><img class="McKinsey" src="{% static 'register/images/sponsors/McKinsey.png' %}"></a>
+                                    <a href="https://www.mckinsey.com/vn/overview" target="_blank"
+                                        rel="noopener noreferrer"><img class="McKinsey"
+                                            src="{% static 'register/images/sponsors/McKinsey.png' %}"></a>
                                 </div>
                                 <div class="unit">
-                                    <a href="https://gianty.com.vn/vi/company" target="_blank" rel="noopener noreferrer"><img class="Gianty" src="{% static 'register/images/sponsors/Gianty.png' %}"></a>
+                                    <a href="https://gianty.com.vn/vi/company" target="_blank"
+                                        rel="noopener noreferrer"><img class="Gianty"
+                                            src="{% static 'register/images/sponsors/Gianty.png' %}"></a>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +531,7 @@
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">
-   
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                     <h5>ĐƠN VỊ HỖ TRỢ</h5>
                     <div style="text-align: center; align-items: center;">
@@ -436,7 +540,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                     <h5 style="padding-left: 20px;">LIÊN HỆ</h5>
                     <div class="contact" style="margin-top: 46px;">
