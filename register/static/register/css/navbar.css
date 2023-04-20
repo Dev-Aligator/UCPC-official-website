@@ -11,6 +11,10 @@
     z-index: 100;
 }
 
+.Navbar-toggler {
+    display: none;
+}
+
 .Navbar::after {
     content: "";
     position: absolute;
@@ -39,7 +43,7 @@
 .Nav-item {
     list-style: none;
     padding: 0 12px;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'Inter';
     font-weight: 700;
     line-height: 38px;
@@ -83,7 +87,7 @@
 
 .Nav-btn {
     color: #fff;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'Inter';
     font-weight: 700;
     margin-bottom: 16px;
@@ -103,4 +107,79 @@
 
 .carousel {
     top: 38px;
+}
+
+@media (max-width: 768px) {
+    #NavbarSupportedContent {
+        display: block;
+    }
+
+    .Navbar {
+        max-height: 80px;
+        overflow: hidden;
+    }
+
+    .Navbar-toggler {
+        font-size: 42px;
+        display: flex;
+        justify-content: end;
+        margin-top: 20px;
+        padding-right: 20px;
+    }
+
+    .Navbar-Nav {
+        display: block;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .Navbar::after {
+        display: none;
+        color: transparent;
+    }
+
+    .Navbar::before {
+        display: none;
+        color: transparent;
+    }
+
+    .Navbar-brand::after {
+        display: none;
+        background-color: transparent;
+    }
+
+    .Navbar-brand {
+        height: 80px;
+        width: 80px;
+        position: absolute;
+        top: 0;
+    }
+
+    .Nav-item {
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .Nav-item:first-child {
+        padding-left: 12px;
+    }
+
+    .Nav-item:last-child {
+        border-bottom: 1px solid #06283D;
+    }
+
+    .Nav-btn {
+        padding-left: 12px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .form-login,
+    .form-register {
+        display: block;
+    }
+
+    .form-inline {
+        display: block;
+    }
 }
