@@ -51,7 +51,7 @@ class TeammateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TeammateForm, self).__init__(*args, **kwargs)
         self.fields['Fullname'].error_messages.update({
-            'invalid': '⚠️ Tên thành viên không hợp lệ!',
+            'invalid': '⚠️ Tên không hợp lệ!',
         })
         self.fields['MSSV_CMND'].error_messages.update({
             'invalid': '⚠️ Mã số sinh viên / Chứng minh nhân dân không hợp lệ! (MSSV hợp lệ có 8 chữ số / CMND hợp lệ có 9 hoặc 12 chữ số)',
@@ -64,11 +64,18 @@ class TeammateForm(forms.ModelForm):
         model = Teammate
         fields = ['Fullname', 'MSSV_CMND', 'Phone', 'School']
     
-TeammateFormSet = inlineformset_factory(
+HighSchoolFormSet = inlineformset_factory(
     parent_model=Team, 
     model=Teammate, 
     form=TeammateForm,
     extra=4
+)
+
+UniversityFormSet = inlineformset_factory (
+    parent_model=Team,
+    model=Teammate,
+    form=TeammateForm
+    extra=3
 )
 
 

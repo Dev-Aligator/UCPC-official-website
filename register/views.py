@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TeamForm, LoginForm, TeammateFormSet
+from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -40,30 +40,36 @@ def home(request):
 
 class register(View):
     def get(self, request): 
+        
         now = datetime.datetime.now()
         deadline = datetime.datetime(2023, 5, 25, 0, 0, 0, 0)
         time_remaining = deadline.day - now.day
+        
+        type = request.GET.get('type')
+        
         if time_remaining > 0:
             context = {
                 'tf': TeamForm, 
-                'tmf': TeammateFormSet,
+                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet ,
                 'isTimeOver': False
             }
         else:
             context = {
                 'tf': TeamForm, 
-                'tmf': TeammateFormSet,
+                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
                 'isTimeOver': True
             }
         return render(request, 'register/register.html', context)
     
     def post(self, request):
+        type = request.POST.get('type')
+        
         if request.method == 'POST':
             tf = TeamForm(request.POST)
-            tmf = TeammateFormSet(request.POST)
+            tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
             if all(tf.is_valid(), tmf.is_valid()):
                 tf.save()
-
+                tmf.save()
                 # Username = request.POST['TeamName']
                 # Email = request.POST['Email']
                 # Password = request.POST['Password']
@@ -110,7 +116,10 @@ class register(View):
                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
-                ctx = {"tf":tf}
+                ctx = {
+                    'tf':tf,
+                    'tmf': tmf
+                }
                 messages.error(request, '❌ Thông tin không hợp lệ!')
                 return render(request, 'register/register.html', ctx, status=422)
                 
@@ -171,45 +180,4 @@ def profile(request):
 def logout(request):
     auth_logout(request)
     return redirect('register:home')
-    
 
-
-# class TeamRegister(CreateView):
-#     model = Team
-#     fields = ['TeamName', 'Email']
-    
-#     def get_context_data(self, **kwargs):
-#         data = super().get_context_data(**kwargs)
-#         if self.request.POST:
-#             data['Teammate1'] = UserFormSet(self.request.POST)
-#             data['Teammate2'] = UserFormSet(self.request.POST)
-#             data['Teammate3'] = UserFormSet(self.request.POST)
-#             data['Teacher'] = UserFormSet(self.request.POST)
-#         else:
-#             data['Teammate1'] = UserFormSet()
-#             data['Teammate2'] = UserFormSet()
-#             data['Teammate3'] = UserFormSet()
-#             data['Teacher'] = UserFormSet()
-            
-#         now = datetime.datetime.now()
-#         deadline = Website.Deadline
-#         time_remaining = deadline - now
-#         data['Overtime'] = True if time_remaining > 0 else False
-        
-#         return data
-    
-#     def form_valid(self, form):
-#         context = self.get_context_data()
-#         children_context = {
-#             'teammate1': context['Teammate1'], 
-#             'teammate2': context['Teammate2'],
-#             'teammate3': context['Teammate3'],
-#             'teacher': context['Teacher']
-#         }
-#         self.object = form.save()
-#         if(all(child_context.is_valid() for child_context in children_context.values())):
-#             for child_context in children_context.values():
-#                 child_context.instance = self.object
-#                 child_context.save()
-#         return super().form_valid(form)
-        
