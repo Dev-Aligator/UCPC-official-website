@@ -74,7 +74,7 @@ HighSchoolFormSet = inlineformset_factory(
 UniversityFormSet = inlineformset_factory (
     parent_model=Team,
     model=Teammate,
-    form=TeammateForm
+    form=TeammateForm,
     extra=3
 )
 
