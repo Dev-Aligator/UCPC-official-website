@@ -9,6 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from .models import Team
 from django.contrib.auth.decorators import login_required
+from .models import UcpcUser
 
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -71,18 +72,8 @@ class register(View):
                 return redirect('register:login')
             else:
                 ctx = {"uf":uf}
-                # messages.error(request, '❌ Thông tin không hợp lệ!')
-                password1 = uf.data['password1']
-                password2 = uf.data['password2']
-                """ Not the best solution but it works"""
-                for error in uf.errors.as_data():
-                    if error == 'email':
-                        messages.error(request, '❌ Email is not valid!')
-                    if error == 'password2' and password1 == password2:
-                        messages.error(request, '❌ Selected password is not strong enough')
-                    elif error == 'password2' and password1 != password2:
-                        messages.error(request, '❌ The two password fields didn’t match.')
                 return render(request, 'register/register.html', ctx, status=422)
+        
 
 # class register(View):
 #     def get(self, request):

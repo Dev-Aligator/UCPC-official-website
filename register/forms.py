@@ -10,9 +10,9 @@ PasswordRegex = RegexValidator(r'^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~
 
 
 class userForm(UserCreationForm):
-    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element','placeholder': 'Ví dụ: abcd@efgh.com' }))
-    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[PasswordRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': 'Mật khẩu phải có ít nhất 6 chữ số, bao gồm chữ thường, chữ in hoa và chữ số'}))
-    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': 'Nhập lại mật khẩu'}))
+    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element','placeholder': '✉️ |  Email Address' }))
+    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[PasswordRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': '🔒 | Password'}))
+    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': '🔒 | Re-enter password'}))
     class Meta:
         model = get_user_model()
         fields = ['email']

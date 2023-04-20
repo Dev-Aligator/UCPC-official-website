@@ -192,13 +192,54 @@ nav{
 }
 
 
+.password-validation{
+    margin-left: 50px;
+    margin-top: 20px;
+    color :#D3D3D3;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-right: 10px;
+    background-color: #ccc;
+    border-radius: 20px;
+    vertical-align: middle;
+  }
+  
+  .switch:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+  }
+  
+  #terms-checkbox:checked + .switch {
+    background-color: #007bff;
+  }
+  
+  #terms-checkbox:checked + .switch:before {
+    transform: translateX(20px);
+  }
+
+  label {
+    display: inline-block;
+    margin-bottom: 0; /* add this line to remove the default margin of the label element */
+    vertical-align: middle; /* add this line to align the text vertically with the switch */
+  }
+
 /* Responsive */
 
 @media (max-width: 992px){
     .register-card {
         display: block;
         width: 500px;
-        text-align: center;
     }
     .register-card .column:last-child{
         display: none;
@@ -211,14 +252,18 @@ nav{
     .social-buttons{
         justify-content: center;
     }
+
+    p {
+        text-align: center;
+    }
 }
 
 /* Style the error messages */
-.messages .error {
+.error {
     color: #f44336; /* red */
 }
 
 /* Style the success messages */
-.messages .success {
+.success {
     color: #4CAF50; /* green */
 }
