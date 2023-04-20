@@ -21,16 +21,16 @@
                     <a class="Nav-link" href="#countdown">UCPC</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#ucpc">Thể Lệ</a>
+                    <a class="Nav-link" href="#rules">Thể Lệ</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#rules">Giải Thưởng</a>
+                    <a class="Nav-link" href="#reward">Giải Thưởng</a>
                 </li>
                 <li class="Nav-item">
                     <a class="Nav-link" href="#reward">Lịch Trình</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#footer">Liên Hệ</a>
+                    <a class="Nav-link" href="#organizers">Liên Hệ</a>
                 </li>
             </ul>
 
@@ -44,24 +44,24 @@
             <div class="form-login">
                 <div class="form-inline my-2 my-lg-0">
                     <a href="{% url 'register:profile' %}" class="Nav-btn"
-                        style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Hồ
+                        style="margin-right: 5px; border: none !important; border-radius: 0 !important;">Hồ
                         sơ</a>
                 </div>
                 <div class="form-inline my-2 my-lg-0">
                     <a href="{% url 'register:logout' %}" class="Nav-btn"
-                        style="width:105px; border: none !important; border-radius: 0 !important;">Đăng xuất</a>
+                        style="border: none !important; border-radius: 0 !important;">Đăng xuất</a>
                 </div>
             </div>
             {% else %}
             <div class="form-register">
                 <div class="form-inline my-2 my-lg-0">
                     <a href="{% url 'register:login' %}" class="Nav-btn"
-                        style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Đăng
+                        style="margin-right: 5px; border: none !important; border-radius: 0 !important;">Đăng
                         nhập</a>
                 </div>
                 <div class="form-inline my-2 my-lg-0">
                     <a href="{% url 'register:register' %}" class="Nav-btn"
-                        style="width:105px; border: none !important; border-radius: 0 !important;">Đăng ký</a>
+                        style="border: none !important; border-radius: 0 !important;">Đăng ký</a>
                 </div>
             </div>
             {% endif %}
