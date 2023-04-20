@@ -1,13 +1,6 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
-=======
-<<<<<<< HEAD
 from .forms import TeamForm, LoginForm, TeammateFormSet
-=======
-from .forms import TeamForm, LoginForm, UserFormSet
->>>>>>> bd5af43 (Modify Team and User model, add Post and Website model. Modify Team form with User inline formset)
->>>>>>> 5b95aa818be2019b7126a8d99adb29d163477daf
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -15,11 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-<<<<<<< HEAD
 from .models import Team, Teammate, Website
-=======
-from .models import Team, User as UserModel, Website
->>>>>>> bd5af43 (Modify Team and User model, add Post and Website model. Modify Team form with User inline formset)
 from django.contrib.auth.decorators import login_required
 
 import datetime
