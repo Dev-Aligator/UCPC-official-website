@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
+from .forms import userForm, LoginForm, HighSchoolFormSet, UniversityFormSet
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from register.models import Team, Teammate, Post, Website
+from register.models import Team, Teammate, Post, Website, UcpcUser
 from django.contrib.auth.decorators import login_required
 from .choices import Choices
 
@@ -41,83 +41,111 @@ def home(request):
     return render(request, 'register/home.html', context)
 
 
-
-
 class register(View):
-    def get(self, request): 
-        
+    def get(self, request):
         now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25, 0, 0, 0, 0)
-        time_remaining = deadline.day - now.day
-        
-        type = request.GET.get('type')
-        if time_remaining > 0:
-            context = {
-                'tf': TeamForm, 
-                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet ,
-                'isTimeOver': False
-            }
+        deadline = datetime.datetime(2023, 5, 25)
+        time_remaining = deadline - now
+        if time_remaining.days < 0:
+            context = {'uf': userForm, 'isTimeOver': True}
         else:
-            context = {
-                'tf': TeamForm, 
-                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
-                'isTimeOver': True
-            }
+            context = {'uf': userForm, 'isTimeOver': False}
+
         return render(request, 'register/register.html', context)
     
     def post(self, request):
-        type = request.POST.get('type')
         if request.method == 'POST':
-            tf = TeamForm(request.POST)
-            tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-            if(tf.is_valid() and tmf.is_valid()):
-                tf_data = tf.cleaned_data
-                sheet_data = [tf_data.get('TeamName'), tf_data.get('Email')]
-                try:
-                    new_team_object = Team(TeamName = tf_data.get('TeamName'), Email = tf_data.get('Email'))
-                    new_team_object.save()
-                    
-                    for index, tm in enumerate(tmf):
-                        tmf_data = tm.cleaned_data 
-                        new_teammate_object = Teammate(
-                            Team = new_team_object, 
-                            Fullname = tmf_data.get('Fullname'),
-                            MSSV_CMND = tmf_data.get('MSSV_CMND'),
-                            Phone = tmf_data.get('Phone'),
-                            School = tmf_data.get('School'),
-                            Leader = True if index == 0 else False,
-                            Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
-                        )
-                        new_teammate_object.save()
-                        
-                        sheet_data.append(
-                            new_teammate_object.Fullname, 
-                            new_teammate_object.MSSV_CMND, 
-                            new_teammate_object.Phone, 
-                            new_teammate_object.School, 
-                            new_teammate_object.Leader, 
-                            new_teammate_object.Occupation
-                        )
+            uf = userForm(request.POST)
+            if uf.is_valid():
+                uf.save()
 
-                    user = User.objects.create_user(username=tf_data.get('TeamName'), email=tf_data.get('Email'), password=tf_data.get('Password'))
-                    user.save()
-
-                    # idx = f'B{str(len(wks.get_all_values()) + 1)}'
-                    # wks.update(idx, sheet_data.tolist())
-                except Exception as ex:
-                    template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-                    message = template.format(type(ex).__name__, ex.args)
-                    print(message)
-                    
-                messages.success(request, '✔️ Tài khoản ' + tf_data.get('TeamName') + ' đã đăng ký thành công!')
+                data = np.array([[request.POST['email'], ph.hash(request.POST['password1'])]])
+            
+                idx = f'B{str(len(wks.get_all_values()) + 1)}' 
+                wks.update(idx, data.tolist())
+            
+                email = uf.cleaned_data.get('email')
+                messages.success(request, '✔️ Tài khoản '+email+' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
-                ctx = {
-                    'tf':tf,
-                    'tmf': tmf
-                }
-                messages.error(request, '❌ Thông tin không hợp lệ!')
+                ctx = {"uf":uf}
                 return render(request, 'register/register.html', ctx, status=422)
+
+# class register(View):
+#     def get(self, request): 
+        
+#         now = datetime.datetime.now()
+#         deadline = datetime.datetime(2023, 5, 25, 0, 0, 0, 0)
+#         time_remaining = deadline.day - now.day
+        
+#         type = request.GET.get('type')
+#         if time_remaining > 0:
+#             context = {
+#                 'tf': TeamForm, 
+#                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet ,
+#                 'isTimeOver': False
+#             }
+#         else:
+#             context = {
+#                 'tf': TeamForm, 
+#                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+#                 'isTimeOver': True
+#             }
+#         return render(request, 'register/register.html', context)
+    
+#     def post(self, request):
+#         type = request.POST.get('type')
+#         if request.method == 'POST':
+#             tf = TeamForm(request.POST)
+#             tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
+#             if(tf.is_valid() and tmf.is_valid()):
+#                 tf_data = tf.cleaned_data
+#                 sheet_data = [tf_data.get('TeamName'), tf_data.get('Email')]
+#                 try:
+#                     new_team_object = Team(TeamName = tf_data.get('TeamName'), Email = tf_data.get('Email'))
+#                     new_team_object.save()
+                    
+#                     for index, tm in enumerate(tmf):
+#                         tmf_data = tm.cleaned_data 
+#                         new_teammate_object = Teammate(
+#                             Team = new_team_object, 
+#                             Fullname = tmf_data.get('Fullname'),
+#                             MSSV_CMND = tmf_data.get('MSSV_CMND'),
+#                             Phone = tmf_data.get('Phone'),
+#                             School = tmf_data.get('School'),
+#                             Leader = True if index == 0 else False,
+#                             Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
+#                         )
+#                         new_teammate_object.save()
+                        
+#                         sheet_data.append(
+#                             new_teammate_object.Fullname, 
+#                             new_teammate_object.MSSV_CMND, 
+#                             new_teammate_object.Phone, 
+#                             new_teammate_object.School, 
+#                             new_teammate_object.Leader, 
+#                             new_teammate_object.Occupation
+#                         )
+
+#                     user = User.objects.create_user(username=tf_data.get('TeamName'), email=tf_data.get('Email'), password=tf_data.get('Password'))
+#                     user.save()
+
+#                     # idx = f'B{str(len(wks.get_all_values()) + 1)}'
+#                     # wks.update(idx, sheet_data.tolist())
+#                 except Exception as ex:
+#                     template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+#                     message = template.format(type(ex).__name__, ex.args)
+#                     print(message)
+                    
+#                 messages.success(request, '✔️ Tài khoản ' + tf_data.get('TeamName') + ' đã đăng ký thành công!')
+#                 return redirect('register:login')
+#             else:
+#                 ctx = {
+#                     'tf':tf,
+#                     'tmf': tmf
+#                 }
+#                 messages.error(request, '❌ Thông tin không hợp lệ!')
+#                 return render(request, 'register/register.html', ctx, status=422)
 
 class login(View):
     def get(self, request):
@@ -171,7 +199,7 @@ def profile(request):
 #                 messages.error(request, '❌ You entered an invalid value!')
 #                 return render(request, 'login/edit.html', ctx)
 
-class edit(View):
+# class edit(View):
     def get(self, request):
         team_data = Team.objects.get(email=request.user.username)
         teammate_data = Teammate.objects.get(TeamName=team_data.TeamName)

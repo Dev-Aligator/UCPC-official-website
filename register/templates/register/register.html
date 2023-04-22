@@ -9,104 +9,8 @@
 {% if isTimeOver %}
 <div class="container" style="margin-top: 15px;">
 	<h1 style="font-weight: bold;">Đã hết  thời gian đăng ký!</h1>
-</div>
-			
+</div>		
 {% else %}
-
-<<<<<<< HEAD
-<div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold; margin-bottom: 40px;">Đăng ký</h1>
-</div>
-{% for message in messages %}
-<div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
-
-<div class="form-group">
-	<div class="container">
-		<!-- <form id="registration_form" action="{% url 'register:register' %}" method="POST"> -->
-		<form id="registration_form" method="POST">
-			{% csrf_token %}
-			<div class="member_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold">Thông tin đội</h3>
-				<div class="team" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.TeamName.label }}</b><br>
-					{{ tf.TeamName }}
-					<i id="valid_team" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.TeamName.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Tên đội không được sử dụng từ ngữ, ký hiệu vi phạm truyền thống lịch sử, văn hóa, đạo đức và thuần phong mỹ tục của dân tộc.</p>
-				</div>
-				<div class="email" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.Email.label }}</b><br>
-					{{ tf.Email }}
-					<i id="valid_email" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_email" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.Email.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Email để đăng nhập và được Ban Tổ Chức dùng để liên lạc với đội thi.</p>
-				</div>
-				<div class="password" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.Password.label }}</b><br>
-					{{ tf.Password }}
-					<i id="valid_password" class="fa-solid fa-circle-check" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<i id="invalid_password" class="fa-solid fa-circle-exclamation" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<input id="checkbox_1" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showPassword()">Hiển thị mật khẩu
-					<small>{{ tf.Password.errors }}</small>
-				</div>
-				<div class="rpassword" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.RPassword.label }}</b><br>
-					{{ tf.RPassword }}
-					<i id="valid_rpassword" class="fa-solid fa-circle-check" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<i id="invalid_rpassword" class="fa-solid fa-circle-exclamation" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<input id="checkbox_2" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showRPassword()">Hiển thị mật khẩu
-					<small>{{ tf.RPassword.errors }}</small>
-				</div>
-			</div>
-			{{tmf.management_form}}
-			{% for tmForm in tmf %}
-				<div class="member_infor" style="margin-bottom: 30px;">
-					{% if forloop.counter == 1 %}
-						<h3 style="font-weight: bold;">Thành viên 1 (Đội trưởng)</h3>
-					{% else %}
-						{% if forloop.counter == 4 %}
-							<h3 style="font-weight: bold;">Giáo viên bảo hộ</h3>
-						{% else %}
-							<h3 style="font-weight: bold;">Thành viên {{forloop.counter}}</h3>
-						{% endif %}
-					{% endif %}
-					<div class="member" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Fullname.label }}</b><br>
-						{{ tmForm.Fullname }}
-						<i id="valid_member" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_member" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Fullname.errors }}</small>
-					</div>
-					<div class="mssv" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.MSSV_CMND.label }}</b><br>
-						{{ tmForm.MSSV_CMND }}
-						<i id="valid_mssv" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_mssv" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ t1f.MSSV_CMND.errors }}</small>
-					</div>
-					<div class="phone" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Phone.label }}</b><br>
-						{{ tmForm.Phone }}
-						<i id="valid_phone" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_phone" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Phone.errors }}</small>
-					</div>
-					<div class="school" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.School.label }}</b><br>
-						{{ tmForm.School }}
-						<small>{{ tmForm.School.errors }}</small><br>
-					</div>
-				</div>
-			{% endfor %}
-=======
-
-
-
 <div class="form-container">
 	<div class="register-card">
 		<div class="column">
@@ -137,7 +41,6 @@
 					<i id="valid_rpassword" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
 					<i id="invalid_rpassword" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none;"></i>
 					<small class="error">{{ uf.password2.errors }}</small>
->>>>>>> remotes/origin/login-register
 
 				</div>
 				<label class="terms">

@@ -3,6 +3,18 @@ from django.forms import inlineformset_factory
 from .models import Team, Teammate
 from .validator import Validator
 from .choices import Choices
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+class userForm(UserCreationForm):
+    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element','placeholder': '✉️ |  Email Address' }))
+    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[Validator.PwdRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': '🔒 | Password'}))
+    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': '🔒 | Re-enter password'}))
+    class Meta:
+        model = get_user_model()
+        fields = ['email']
+
 
 class TeamForm(forms.ModelForm):
     TeamName = forms.CharField(required=True, max_length = 30, label = 'Tên đội', validators=[Validator.TeamRegex], widget = forms.TextInput(attrs={'class': 'form-control', 'id': 'pos1', 'placeholder': 'Chữ cái đầu tiên trong tên đội phải viết hoa. Ví dụ: Team01' }))
