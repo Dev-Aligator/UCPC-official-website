@@ -1,9 +1,5 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
-=======
-from .forms import teamForm, loginForm, userForm
->>>>>>> remotes/origin/login-register
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -13,11 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from register.models import Team, Teammate, Post, Website
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from .choices import Choices
-=======
-from .models import UcpcUser
->>>>>>> remotes/origin/login-register
 
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -98,14 +90,14 @@ class register(View):
                         )
                         new_teammate_object.save()
                         
-                        # sheet_data.append(
-                        #     new_teammate_object.Fullname, 
-                        #     new_teammate_object.MSSV_CMND, 
-                        #     new_teammate_object.Phone, 
-                        #     new_teammate_object.School, 
-                        #     new_teammate_object.Leader, 
-                        #     new_teammate_object.Occupation
-                        # )
+                        sheet_data.append(
+                            new_teammate_object.Fullname, 
+                            new_teammate_object.MSSV_CMND, 
+                            new_teammate_object.Phone, 
+                            new_teammate_object.School, 
+                            new_teammate_object.Leader, 
+                            new_teammate_object.Occupation
+                        )
 
                     user = User.objects.create_user(username=tf_data.get('TeamName'), email=tf_data.get('Email'), password=tf_data.get('Password'))
                     user.save()
@@ -178,7 +170,36 @@ def profile(request):
 #                 ctx = {"ef":ef}
 #                 messages.error(request, '❌ You entered an invalid value!')
 #                 return render(request, 'login/edit.html', ctx)
-            
+
+class edit(View):
+    def get(self, request):
+        team_data = Team.objects.get(email=request.user.username)
+        teammate_data = Teammate.objects.get(TeamName=team_data.TeamName)
+        type = request.GET.get('type')
+        
+        return render(request, 'login/edit.html', {'ef':ef})
+    def post(self, request):
+        if request.method == 'POST':
+            ef = editForm(request.POST)
+            if ef.is_valid():
+                emp = Team.objects.get(email=request.user.username)
+                emp.member1 = ef.cleaned_data.get('member1')
+                emp.member2 = ef.cleaned_data.get('member2')
+                emp.member3 = ef.cleaned_data.get('member3')
+                emp.cmnd1 = ef.cleaned_data.get('cmnd1')
+                emp.cmnd2 = ef.cleaned_data.get('cmnd2')
+                emp.cmnd3 = ef.cleaned_data.get('cmnd3')
+                emp.phone1 = ef.cleaned_data.get('phone1')
+                emp.phone2 = ef.cleaned_data.get('phone2')
+                emp.phone3 = ef.cleaned_data.get('phone3')
+                emp.school = ef.cleaned_data.get('school')
+                emp.save()
+                messages.success(request, '✔️ Update success! ')
+                return redirect('register:profile')
+            else:
+                ctx = {"ef":ef}
+                messages.error(request, '❌ You entered an invalid value!')
+                return render(request, 'login/edit.html', ctx)    
 
 def logout(request):
     auth_logout(request)
