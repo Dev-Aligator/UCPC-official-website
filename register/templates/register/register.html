@@ -1,6 +1,10 @@
 {% extends 'register/navigations.html' %}
 {% load static %}
 
+{% block login-register %}
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
+{% endblock %}
+
 {% block content %}
 {% if isTimeOver %}
 <div class="container" style="margin-top: 15px;">
@@ -9,6 +13,7 @@
 			
 {% else %}
 
+<<<<<<< HEAD
 <div class="container" style="margin-top: 15px;">
 	<h1 style="font-weight: bold; margin-bottom: 40px;">Đăng ký</h1>
 </div>
@@ -98,11 +103,71 @@
 					</div>
 				</div>
 			{% endfor %}
+=======
 
-			<input id="agree_check" onchange="document.getElementById('submit_btn').disabled = !this.checked;" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showRPassword()">Tôi đã đọc và đồng ý với <a style ="color:#4CF2D2; font-size: 20px;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>QUY ĐỊNH</b></a> của cuộc thi.<br>
-			<button disabled type="submit" id="submit_btn" class="btn btn-primary" style="margin-top: 10px; background-color: #4CF2D2; border-color: #4CF2D2; color: black;">Đăng ký</button>
-		</form>
+
+
+<div class="form-container">
+	<div class="register-card">
+		<div class="column">
+			<h1>Sign up</h1>
+			<form id=register-form method="POST">
+				{% csrf_token %}
+				<div class="form-item">								
+					{{ uf.email }}
+					<i id="valid_email" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_email" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none;"></i>
+					<small class="error">{{ uf.email.errors }}</small>
+				</div>
+				<div class="form-item">
+					{{ uf.password1 }}
+					<i id="valid_password" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_password" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none"></i>
+					<small class="error">{{ uf.password1.errors }}</small>
+
+					<ul class="password-validation">
+						<li class="length-validation">Password contains at least 6 characters</li>
+						<li class="number-validation">Must contain number</li>
+						<li class="character-validation">At least one lowercase, one uppercase letter</li>
+					</ul>
+
+				</div>
+				<div class="form-item">
+					{{ uf.password2 }}
+					<i id="valid_rpassword" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_rpassword" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none;"></i>
+					<small class="error">{{ uf.password2.errors }}</small>
+>>>>>>> remotes/origin/login-register
+
+				</div>
+				<label class="terms">
+					<input type="checkbox" id="terms-checkbox" style="display:none;">
+					<span class="switch"></span>
+					I accept the terms of service
+				</label>	
+				<div class="flex">		  
+					<button type="submit" class="btn btn-primary">Create Account</button>
+				</div>
+				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
+				<div class="social-buttons">
+					<a href="#" class="google">
+						<img width=35 height="35" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
+					</a>
+					<a href="#" class="facebook">
+						<img width=35 height=35 src="https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg" alt="">
+					</a>
+				</div>
+			</form>
+		</div>
+		<div class="column">
+			<h2>Welcome to UCPC</h2>
+			<p>If you don't have an account, would you like to register right now</p>
+			<a href="{% url 'register:register' %}">Sign Up</a>
+		</div>
 	</div>
-</div>
+	</div>
+	
+	
+
 {% endif %}
 {% endblock content %}

@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
 from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
+=======
+from .forms import teamForm, loginForm, userForm
+>>>>>>> remotes/origin/login-register
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -9,7 +13,11 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from register.models import Team, Teammate, Post, Website
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from .choices import Choices
+=======
+from .models import UcpcUser
+>>>>>>> remotes/origin/login-register
 
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -39,6 +47,9 @@ except:
 def home(request):
     context = {}
     return render(request, 'register/home.html', context)
+
+
+
 
 class register(View):
     def get(self, request): 
@@ -115,7 +126,6 @@ class register(View):
                 }
                 messages.error(request, '❌ Thông tin không hợp lệ!')
                 return render(request, 'register/register.html', ctx, status=422)
-                
 
 class login(View):
     def get(self, request):

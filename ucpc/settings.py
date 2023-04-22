@@ -47,7 +47,17 @@ INSTALLED_APPS = [
 
     'register.apps.RegisterConfig',
     'import_export',
+
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +87,7 @@ TEMPLATES = [
         },
     },
 ]
+# AUTH_USER_MODEL = "register.UcpcUser"
 
 WSGI_APPLICATION = 'ucpc.wsgi.application'
 
@@ -150,3 +161,5 @@ STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'staticfiles'
 # MEDIA_ROOT = '/vol/web/media'
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+
+AUTH_USER_MODEL = 'register.UcpcUser'
