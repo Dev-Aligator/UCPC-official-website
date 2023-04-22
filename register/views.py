@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import TeamForm, LoginForm, HighSchoolFormSet, UniversityFormSet
-from .forms import TeamForm, LoginForm, TeammateFormSet
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -8,8 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from .models import Team, Teammate, Website
+from register.models import Team, Teammate, Post, Website
 from django.contrib.auth.decorators import login_required
+from .choices import Choices
 
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -20,10 +20,11 @@ from argon2 import PasswordHasher
 ph = PasswordHasher()
 
 try:
-    scope =[
+    scope = [
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/drive"]
+        "https://www.googleapis.com/auth/drive"
+    ]
     creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-9acf2432120a.json', scope)
 
     _name = "UCPC Team List"
@@ -47,7 +48,6 @@ class register(View):
         time_remaining = deadline.day - now.day
         
         type = request.GET.get('type')
-        
         if time_remaining > 0:
             context = {
                 'tf': TeamForm, 
@@ -64,57 +64,49 @@ class register(View):
     
     def post(self, request):
         type = request.POST.get('type')
-        
         if request.method == 'POST':
             tf = TeamForm(request.POST)
             tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-            if all(tf.is_valid(), tmf.is_valid()):
-                tf.save()
-                tmf.save()
-                # Username = request.POST['TeamName']
-                # Email = request.POST['Email']
-                # Password = request.POST['Password']
-                # user = User.objects.create_user(Username, Email, Password)
-                # user.save()
+            if(tf.is_valid() and tmf.is_valid()):
+                tf_data = tf.cleaned_data
+                sheet_data = [tf_data.get('TeamName'), tf_data.get('Email')]
+                try:
+                    new_team_object = Team(TeamName = tf_data.get('TeamName'), Email = tf_data.get('Email'))
+                    new_team_object.save()
+                    
+                    for index, tm in enumerate(tmf):
+                        tmf_data = tm.cleaned_data 
+                        new_teammate_object = Teammate(
+                            Team = new_team_object, 
+                            Fullname = tmf_data.get('Fullname'),
+                            MSSV_CMND = tmf_data.get('MSSV_CMND'),
+                            Phone = tmf_data.get('Phone'),
+                            School = tmf_data.get('School'),
+                            Leader = True if index == 0 else False,
+                            Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
+                        )
+                        new_teammate_object.save()
+                        
+                        # sheet_data.append(
+                        #     new_teammate_object.Fullname, 
+                        #     new_teammate_object.MSSV_CMND, 
+                        #     new_teammate_object.Phone, 
+                        #     new_teammate_object.School, 
+                        #     new_teammate_object.Leader, 
+                        #     new_teammate_object.Occupation
+                        # )
 
-                # data = np.array([[request.POST['Team'],
-                #                   request.POST['Email'],
-                #                   ph.hash(request.POST['Password']), 
-                #                   request.POST['Teammate1'],
-                #                   request.POST['Age1'],
-                #                   request.POST['CMND1'],
-                #                   request.POST['Phone1'],
-                #                   request.POST['Occupation1'],
-                #                   request.POST['School1'],
-                #                   request.POST['MSSV1'],
-                #                   request.POST['Teammate2'],
-                #                   request.POST['Age2'],
-                #                   request.POST['CMND2'],
-                #                   request.POST['Phone2'],
-                #                   request.POST['Occupation2'],
-                #                   request.POST['School2'],
-                #                   request.POST['MSSV2'],
-                #                   request.POST['Teammate3'],
-                #                   request.POST['Age3'],
-                #                   request.POST['CMND3'],
-                #                   request.POST['Phone3'],
-                #                   request.POST['Occupation3'],
-                #                   request.POST['School3'],
-                #                   request.POST['MSSV3'],
-                #                   request.POST['Teacher'],
-                #                   request.POST['CMNDTC'],
-                #                   request.POST['PhoneTC'],
-                #                   request.POST['OccupationTC'],
-                #                   request.POST['SchoolTC'],
-                #                 ]])
-                # try:
-                #     idx = f'B{str(len(wks.get_all_values()) + 1)}'
-                #     wks.update(idx, data.tolist())
-                # except:
-                #     pass
+                    user = User.objects.create_user(username=tf_data.get('TeamName'), email=tf_data.get('Email'), password=tf_data.get('Password'))
+                    user.save()
 
-                Team = tf.cleaned_data.get('TeamName')
-                messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
+                    # idx = f'B{str(len(wks.get_all_values()) + 1)}'
+                    # wks.update(idx, sheet_data.tolist())
+                except Exception as ex:
+                    template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                    message = template.format(type(ex).__name__, ex.args)
+                    print(message)
+                    
+                messages.success(request, '✔️ Tài khoản ' + tf_data.get('TeamName') + ' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
                 ctx = {
