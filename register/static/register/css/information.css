@@ -1,0 +1,62 @@
+.information {
+    display: flex;
+    height: 600px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.inf-description {
+    padding-left: 32px;
+}
+
+.inf-title {
+    font-size: 4.8rem;
+}
+
+.inf-text {
+    font-size: 1.6rem;
+}
+
+.inf-img {
+    position: relative;
+    top: -14%;
+    right: -6%;
+}
+
+.inf-img img {
+    width: 100%;
+}
+
+.inf-img__absolute--XL {
+    position: absolute;
+    top: 0px;
+    left: -4%;
+}
+
+.inf-img__absolute--XL img {
+    width: 35%;
+    opacity: var(--opacity);
+}
+
+.inf-img__absolute--L {
+    position: absolute;
+    top: 58%;
+    right: -20%;
+}
+
+.inf-img__absolute--L img {
+    width: 25%;
+    opacity: var(--opacity);
+}
+
+.inf-img__absolute--M {
+    position: absolute;
+    bottom: 6%;
+    left: 32%;
+}
+
+.inf-img__absolute--M img {
+    width: 15%;
+    opacity: var(--opacity);
+}

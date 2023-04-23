@@ -2,6 +2,7 @@
     --primary1-color: #A6E3E9;
     --primary2-color: #06283D;
     --primary3-color: #71C9CE;
+    --opacity: 0.3
 }
 
 html {
@@ -22,7 +23,7 @@ body {
     padding: 0;
     overflow-y: scroll;
 
-    background-color: #130820;
+    background-color: var(--primary2-color);
     color: white;
 }
 

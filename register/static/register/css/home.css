@@ -322,6 +322,10 @@ color: white;
   padding-bottom: 40px;
 }
 
+#ucpc {
+  margin-top: 64px;
+}
+
 #rules .container {
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
 }
