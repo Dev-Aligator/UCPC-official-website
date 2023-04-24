@@ -202,7 +202,7 @@ nav{
     margin-top: 20px;
   }
   
-  .sign-in-with-google button {
+  .sign-in-with-google a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,11 +218,11 @@ nav{
     transition: all 0.2s ease-in-out;
   }
   
-  .sign-in-with-google button:hover {
+  .sign-in-with-google a:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   }
   
-  .sign-in-with-google button img {
+  .sign-in-with-google a img {
     height: 32px;
     margin-right: 15px;
     width: 32px;
