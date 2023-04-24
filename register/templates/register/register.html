@@ -1,5 +1,6 @@
 {% extends 'register/navigations.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block login-register %}
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
@@ -60,10 +61,10 @@
 				</div>
 				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
 				<div class="sign-in-with-google">
-					<button class="google-button">
+					<a class="google-button" href="{% provider_login_url 'google' %}">
 						<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
-					  Sign up with Google
-					</button>
+					  Sign in with Google
+					</a>
 				</div>
 			</form>
 		</div>
