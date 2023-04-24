@@ -140,7 +140,7 @@ nav{
     margin-top: 1rem;
 }
 
-.register-card form button{
+.btn-primary{
     background-color: var(--theme-color);
     color: white;
     border: none;
@@ -151,7 +151,7 @@ nav{
     transition: all .2s;
 }
 
-.register-card form button:active{
+.btn-primary:active{
     scale: .95;
     background-color: darken(var(--theme-color), 10%);
 
@@ -232,6 +232,39 @@ nav{
     display: inline-block;
     margin-bottom: 0; /* add this line to remove the default margin of the label element */
     vertical-align: middle; /* add this line to align the text vertically with the switch */
+  }
+
+  .sign-in-with-google {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .sign-in-with-google button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    height: 60px;
+    padding: 0 20px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .sign-in-with-google button:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sign-in-with-google button img {
+    height: 32px;
+    margin-right: 15px;
+    width: 32px;
   }
 
 
