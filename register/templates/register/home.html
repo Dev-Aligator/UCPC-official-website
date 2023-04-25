@@ -185,20 +185,20 @@
         }, 0)
     })
 </script>
-<div id="countdown" class="container">
+<!-- <div id="countdown" class="container">
     <div id="countdown_info" class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <h1>Thời hạn đăng ký</h1>
             <h4>Ngày 25/05/2022</h4>
         </div>
         <div id="countdown_system" class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <!-- <h4>Time Remaining!</h4> -->
-            <!-- <ul id="countdown_clock">
+            <h4>Time Remaining!</h4>
+            <ul id="countdown_clock">
                     <li><span id="days"></span>NGÀY</li>
                     <li><span id="hours"></span>GIỜ</li>
                     <li><span id="minutes"></span>PHÚT</li>
                     <li id = "second_450"><span id="seconds"></span>GIÂY</li>
-                </ul> -->
+                </ul>
             <div class="row">
                 <div class=" clock col-lg-3 col-sm-6 col-md-3 col-6">
                     <div>
@@ -229,7 +229,43 @@
 
         </div>
     </div>
+</div> -->
+
+<div class="box-time">
+    <img class="box-time__img" src="{% static 'register/images/introduction/banner2.jpg' %}" width="100%" alt="">
+    
+    
+    <div id="countdown" class="container">
+        <div class="container">
+            <div class="countdown-info">
+                <div class="countdown-title">Thời hạn đăng ký</div>
+                <div class="countdown-end">Ngày 25/05/2022</div>
+            </div>
+    
+            <div class="countdown-system">
+                <div class="countdown-system__time">
+                    <span id="days"></span>
+                    <p>Ngày</p>
+                </div>
+                <div class="countdown-system__time">
+                    <span id="hours"></span>
+                    <p>Giờ</p>
+                </div>
+                <div class="countdown-system__time">
+                    <span id="minutes"></span>
+                    <p>Phút</p>
+                </div>
+                <div class="countdown-system__time">
+                    <span id="seconds"></span>
+                    <p>Giây</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 </div>
+
 <!-- Thời Gian Đăng Ký -->
 
 
