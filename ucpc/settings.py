@@ -192,6 +192,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 
-LOGIN_REDIRECT_URL = "/"
+SOCIALACCOUNT_ADAPTER = 'register.adapter.UcpcSocialAccountAdapter'
+ACCOUNT_ADAPTER = "register.adapter.UcpcAccountAdapter"
+
+LOGIN_REDIRECT_URL = "/profile/"
 
 
