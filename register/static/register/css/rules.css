@@ -14,6 +14,7 @@
 .rule-form,
 .rule-regulation {
     display: flex;
+    padding-left: 32px;
 }
 
 .rule-form,

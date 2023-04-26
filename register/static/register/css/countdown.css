@@ -3,7 +3,7 @@
 }
 
 .box-time__img {
-    height: 500px;
+    height: -webkit-fill-available;
     opacity: var(--opacity);
     position: absolute;
 }
