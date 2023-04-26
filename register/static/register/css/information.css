@@ -42,11 +42,11 @@
 .inf-img__absolute--L {
     position: absolute;
     top: 58%;
-    right: -20%;
+    left: 65%;
 }
 
 .inf-img__absolute--L img {
-    width: 25%;
+    width: 35%;
     opacity: var(--opacity);
 }
 

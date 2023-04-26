@@ -327,6 +327,7 @@ p {
 
 #ucpc {
   margin-top: 64px;
+  overflow: hidden;
 }
 
 #rules .container {
