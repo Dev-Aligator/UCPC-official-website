@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'register.apps.RegisterConfig',
+    'posting.apps.PostingConfig',
     'import_export',
 
     'django.contrib.sites',
