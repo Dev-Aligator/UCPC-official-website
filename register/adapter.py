@@ -19,7 +19,7 @@ scope =[
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-9acf2432120a.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('register/ucpc-team-list-9acf2432120a.json', scope)
 
 _name = "UCPC Team List"
 client = gspread.authorize(creds)
