@@ -23,5 +23,6 @@ admin.site.index_title = "UCPC "
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('register.urls')),
+    path('',include('posting.urls')),
     path('accounts/', include('allauth.urls')),
 ]
