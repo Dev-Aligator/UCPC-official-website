@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import userForm, LoginForm, HighSchoolFormSet, UniversityFormSet
-from django.http import HttpResponse
+from .forms import userForm, LoginForm, HighSchoolFormSet, UniversityFormSet, TeamForm
+from django.http import HttpResponseRedirect
 from django.views import View
 from django.views.generic import TemplateView
+from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -40,7 +41,6 @@ def home(request):
     context = {}
     return render(request, 'register/home.html', context)
 
-
 class register(View):
     def get(self, request):
         now = datetime.datetime.now()
@@ -65,87 +65,11 @@ class register(View):
                 wks.update(idx, data.tolist())
             
                 email = uf.cleaned_data.get('email')
-                messages.success(request, '✔️ Tài khoản '+email+' đã đăng ký thành công!')
+                messages.success(request, '✔️ Tài khoản ' + email + ' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
                 ctx = {"uf":uf}
                 return render(request, 'register/register.html', ctx, status=422)
-
-# class register(View):
-#     def get(self, request): 
-        
-#         now = datetime.datetime.now()
-#         deadline = datetime.datetime(2023, 5, 25, 0, 0, 0, 0)
-#         time_remaining = deadline.day - now.day
-        
-#         type = request.GET.get('type')
-#         if time_remaining > 0:
-#             context = {
-#                 'tf': TeamForm, 
-#                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet ,
-#                 'isTimeOver': False
-#             }
-#         else:
-#             context = {
-#                 'tf': TeamForm, 
-#                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
-#                 'isTimeOver': True
-#             }
-#         return render(request, 'register/register.html', context)
-    
-#     def post(self, request):
-#         type = request.POST.get('type')
-#         if request.method == 'POST':
-#             tf = TeamForm(request.POST)
-#             tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-#             if(tf.is_valid() and tmf.is_valid()):
-#                 tf_data = tf.cleaned_data
-#                 sheet_data = [tf_data.get('TeamName'), tf_data.get('Email')]
-#                 try:
-#                     new_team_object = Team(TeamName = tf_data.get('TeamName'), Email = tf_data.get('Email'))
-#                     new_team_object.save()
-                    
-#                     for index, tm in enumerate(tmf):
-#                         tmf_data = tm.cleaned_data 
-#                         new_teammate_object = Teammate(
-#                             Team = new_team_object, 
-#                             Fullname = tmf_data.get('Fullname'),
-#                             MSSV_CMND = tmf_data.get('MSSV_CMND'),
-#                             Phone = tmf_data.get('Phone'),
-#                             School = tmf_data.get('School'),
-#                             Leader = True if index == 0 else False,
-#                             Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
-#                         )
-#                         new_teammate_object.save()
-                        
-#                         sheet_data.append(
-#                             new_teammate_object.Fullname, 
-#                             new_teammate_object.MSSV_CMND, 
-#                             new_teammate_object.Phone, 
-#                             new_teammate_object.School, 
-#                             new_teammate_object.Leader, 
-#                             new_teammate_object.Occupation
-#                         )
-
-#                     user = User.objects.create_user(username=tf_data.get('TeamName'), email=tf_data.get('Email'), password=tf_data.get('Password'))
-#                     user.save()
-
-#                     # idx = f'B{str(len(wks.get_all_values()) + 1)}'
-#                     # wks.update(idx, sheet_data.tolist())
-#                 except Exception as ex:
-#                     template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-#                     message = template.format(type(ex).__name__, ex.args)
-#                     print(message)
-                    
-#                 messages.success(request, '✔️ Tài khoản ' + tf_data.get('TeamName') + ' đã đăng ký thành công!')
-#                 return redirect('register:login')
-#             else:
-#                 ctx = {
-#                     'tf':tf,
-#                     'tmf': tmf
-#                 }
-#                 messages.error(request, '❌ Thông tin không hợp lệ!')
-#                 return render(request, 'register/register.html', ctx, status=422)
 
 class login(View):
     def get(self, request):
@@ -160,74 +84,183 @@ class login(View):
 
             if user is not None:
                 auth_login(request, user)
-                return redirect('register:profile')
+                return redirect('register:home')
             else:
                 messages.error(request, '🙁 Email hoặc mật khẩu chưa chính xác!')
                 return redirect('register:login')
 
-@login_required         
-def profile(request):
-    data = Team.objects.filter(email=request.user.username)
-    args = {'data':data, 'user':request.user}
-    return render(request, 'login/profile.html', args)
-
-# class edit(View):
-#     def get(self, request):
-#         emp = Team.objects.get(email=request.user.username)
-#         ef = editForm(initial={'member1':emp.member1, 'cmnd1': emp.cmnd1, 'phone1': emp.phone1, 'member2':emp.member2, 'cmnd2': emp.cmnd2, 'phone2': emp.phone2,'member3':emp.member3, 'cmnd3': emp.cmnd3, 'phone3': emp.phone3,'school':emp.school})
-#         return render(request, 'login/edit.html', {'ef':ef})
-#     def post(self, request):
-#         if request.method == 'POST':
-#             ef = editForm(request.POST)
-#             if ef.is_valid():
-#                 emp = Team.objects.get(email=request.user.username)
-#                 emp.member1 = ef.cleaned_data.get('member1')
-#                 emp.member2 = ef.cleaned_data.get('member2')
-#                 emp.member3 = ef.cleaned_data.get('member3')
-#                 emp.cmnd1 = ef.cleaned_data.get('cmnd1')
-#                 emp.cmnd2 = ef.cleaned_data.get('cmnd2')
-#                 emp.cmnd3 = ef.cleaned_data.get('cmnd3')
-#                 emp.phone1 = ef.cleaned_data.get('phone1')
-#                 emp.phone2 = ef.cleaned_data.get('phone2')
-#                 emp.phone3 = ef.cleaned_data.get('phone3')
-#                 emp.school = ef.cleaned_data.get('school')
-#                 emp.save()
-#                 messages.success(request, '✔️ Update success! ')
-#                 return redirect('register:profile')
-#             else:
-#                 ctx = {"ef":ef}
-#                 messages.error(request, '❌ You entered an invalid value!')
-#                 return render(request, 'login/edit.html', ctx)
-
-# class edit(View):
+# View classes handle functions related to user profiles 
+class view_profile(View):
+    # Display user profile
     def get(self, request):
-        team_data = Team.objects.get(email=request.user.username)
-        teammate_data = Teammate.objects.get(TeamName=team_data.TeamName)
-        type = request.GET.get('type')
+        try:
+            ucpc_user = UcpcUser.objects.get(email=request.user.email)
+            filtered_team = Team.objects.get(UcpcUser=ucpc_user)
+            filtered_teammates = Teammate.objects.filter(Team=filtered_team)
+            ctx = {
+                'user_email': request.user.email,
+                'team': {
+                    'TeamName': filtered_team.TeamName,
+                    'FeePayment': filtered_team.FeePayment,
+                    'Rank': filtered_team.Rank
+                }, 
+                'teammates': [
+                    {
+                        'Fullname': teammate.Fullname,
+                        'MSSV_CMND': teammate.MSSV_CMND,
+                        'Phone': teammate.Phone,
+                        'School': teammate.School,
+                        'Leader': teammate.Leader,
+                        'Occupation': teammate.Occupation
+                    } for teammate in filtered_teammates
+                ]
+            }
+            return render(request, 'login/profile.html', ctx)   
+        except:
+            messages.error(request, '❌ Không tìm thấy đội thi. Vui lòng tạo đội thi mới!')
+            return redirect('register:create')
         
-        return render(request, 'login/edit.html', {'ef':ef})
+class create_profile(View):
+    # Display form to create user profile
+    def get(self, request): 
+        now = datetime.datetime.now()
+        deadline = datetime.datetime(2023, 5, 25)
+        time_remaining = deadline - now
+        
+        type = request.GET.get('type')
+        if time_remaining.days > 0:
+            ctx = {
+                'tf': TeamForm, 
+                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'isTimeOver': False
+            }
+        else:
+            ctx = {
+                'tf': TeamForm, 
+                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'isTimeOver': True
+            }
+        return render(request, 'login/create.html', ctx)
+
+    # Create new profile
     def post(self, request):
         if request.method == 'POST':
-            ef = editForm(request.POST)
-            if ef.is_valid():
-                emp = Team.objects.get(email=request.user.username)
-                emp.member1 = ef.cleaned_data.get('member1')
-                emp.member2 = ef.cleaned_data.get('member2')
-                emp.member3 = ef.cleaned_data.get('member3')
-                emp.cmnd1 = ef.cleaned_data.get('cmnd1')
-                emp.cmnd2 = ef.cleaned_data.get('cmnd2')
-                emp.cmnd3 = ef.cleaned_data.get('cmnd3')
-                emp.phone1 = ef.cleaned_data.get('phone1')
-                emp.phone2 = ef.cleaned_data.get('phone2')
-                emp.phone3 = ef.cleaned_data.get('phone3')
-                emp.school = ef.cleaned_data.get('school')
-                emp.save()
-                messages.success(request, '✔️ Update success! ')
-                return redirect('register:profile')
+            type = request.POST.get('type')
+            
+            tf = TeamForm(request.POST)
+            tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
+        
+            if(tf.is_valid() and tmf.is_valid()):
+                tf_data = tf.cleaned_data
+                try:
+                    ucpc_user = UcpcUser.objects.get(email=request.user.email)
+                    new_team = Team(
+                        UcpcUser = ucpc_user,
+                        TeamName = tf_data.get('TeamName')
+                    )
+                    new_team.save()
+                    
+                    for index, tm in enumerate(tmf):
+                        tmf_data = tm.cleaned_data 
+                        new_teammate = Teammate(
+                            Team = new_team, 
+                            Fullname = tmf_data.get('Fullname'),
+                            MSSV_CMND = tmf_data.get('MSSV_CMND'),
+                            Phone = tmf_data.get('Phone'),
+                            School = tmf_data.get('School'),
+                            Leader = True if index == 0 else False,
+                            Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
+                        )
+                        new_teammate.save()
+                        
+                    messages.success(request, '✔️ Tài khoản ' + request.user.email + ' tạo đội thi thành công!')
+                    return redirect('register:profile')
+                except Exception as ex:
+                    print(ex)
+                    ctx = {
+                        'tf':tf,
+                        'tmf': tmf
+                    }
+                    messages.error(request, '❌ Lỗi hệ thống!')
+                    return render(request, 'login/create.html', ctx, status=500)
             else:
-                ctx = {"ef":ef}
-                messages.error(request, '❌ You entered an invalid value!')
-                return render(request, 'login/edit.html', ctx)    
+                ctx = {
+                    'tf':tf,
+                    'tmf': tmf
+                }
+                messages.error(request, '❌ Thông tin không hợp lệ!')
+                return render(request, 'login/create.html', ctx, status=422)
+            
+class edit_profile(View):
+    def get(self, request): 
+        now = datetime.datetime.now()
+        deadline = datetime.datetime(2023, 5, 25)
+        time_remaining = deadline - now
+        
+        type = request.GET.get('type')
+        if time_remaining.days > 0:
+            ucpc_user = UcpcUser.objects.get(email = request.user.email)
+            filtered_team = Team.objects.get(UcpcUser = ucpc_user)
+            filtered_teammates = Teammate.objects.filter(Team = filtered_team)
+
+            tf_initial =  { 'TeamName': filtered_team.TeamName }
+            tmf_initial = [
+                {
+                    'Fullname': teammate.Fullname,
+                    'MSSV_CMND': teammate.MSSV_CMND,
+                    'Phone': teammate.Phone,
+                    'School': teammate.School      
+                } for teammate in filtered_teammates
+            ]
+            
+            ctx = {
+                'tf': TeamForm(initial = tf_initial), 
+                'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial) ,
+                'isTimeOver': False
+            }
+        else:
+            ctx = {
+                'tf': TeamForm, 
+                'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'isTimeOver': True
+            }
+        return render(request, 'login/edit.html', ctx)
+    
+    def post(self, request):
+        if request.method == 'POST':
+            try:
+                type = request.POST.get('type')
+                ucpc_user = UcpcUser.objects.get(email = request.user.email)
+                team_instance = Team.objects.get(UcpcUser = ucpc_user)
+                tf = TeamForm(request.POST, instance=team_instance)
+                if(tf.is_valid()):
+                    team_instance = tf.save()
+                teammates_instance = Teammate.objects.filter(Team = team_instance)
+                tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
+                for tm, teammate_instance in zip(tmf, teammates_instance):
+                    tm.instance = teammate_instance
+                if(tmf.is_valid()):
+                    tmf.save()
+                messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
+                return redirect('register:profile')
+            except Exception as ex:
+                print(ex)
+                messages.error(request, '❌ Lỗi hệ thống!')
+                return render(request, 'login/edit.html', status=500)
+            # if (tf.is_valid() and tmf.is_valid()): 
+            #     tf_instance = tf.save()
+            #     for tm in tmf:
+            #         tm.Team = tf_instance
+            #         tm.save()
+            #     messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
+            #     return redirect('register:profile')
+            # else:
+            #     ctx = { 
+            #         'tf':tf,
+            #         'tmf': tmf
+            #     }
+            #     messages.error(request, '❌ Thông tin không hợp lệ!')
+            #     return render(request, 'login/edit.html', ctx, status=422)
 
 def logout(request):
     auth_logout(request)

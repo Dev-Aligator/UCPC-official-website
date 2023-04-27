@@ -5,9 +5,9 @@ from django.contrib.auth import get_user_model
 
 # Register your models here.
 class TeamAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('ID', 'TeamName', 'Email', 'FeePayment', 'Rank')
+    list_display = ('ID', 'TeamName', 'FeePayment', 'Rank')
     list_filter = ['Rank', 'FeePayment']
-    search_fields = ['TeamName', 'Email', 'ID']
+    search_fields = ['TeamName', 'ID']
 
 class TeammateAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('ID', 'Team' ,'Fullname', 'MSSV_CMND', 'Phone', 'School', 'Leader', 'Occupation')

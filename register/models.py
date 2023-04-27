@@ -40,7 +40,7 @@ class UcpcUserManager(BaseUserManager):
 class UcpcUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -48,10 +48,10 @@ class UcpcUser(AbstractUser):
 
 class Team(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    UcpcUser = models.OneToOneField(UcpcUser, on_delete=models.CASCADE)
     TeamName = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[Validator.TeamRegex])
-    Email = models.EmailField(null=False, blank=False, unique=True)
     FeePayment = models.CharField(max_length=10, null=False, blank=False, choices=Choices.PAYMENT_STATUS_CHOICES, default=Choices.PAYMENT_STATUS_CHOICES[0][0])
-    Rank = models.IntegerField(null=False, blank=False, unique=True, default=-1)
+    Rank = models.IntegerField(null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.TeamName
