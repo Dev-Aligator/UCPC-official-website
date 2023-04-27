@@ -15,9 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/home.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/myStyle.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/main.css' %}">
-
 	<script src="https://kit.fontawesome.com/dadc55c5f1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	{% block login-register %}{% endblock %}
 
 </head>
 
@@ -40,7 +40,8 @@
 		crossorigin="anonymous"></script>
 
 
-	<script src="{% static 'register/javascript/registration.js' %}"></script>
+	<!-- <script src="{% static 'register/javascript/registration.js' %}"></script> -->
+	<script src="{% static 'register/javascript/ucpc-2023.register.js' %}"></script>
 	<!-- <script src="{% static 'register/javascript/timer.js' %}"></script> -->
 	<!-- <script src="{% static 'register/javascript/renderRegistrationPage.js' %}"></script> -->
 </body>

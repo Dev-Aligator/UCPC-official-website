@@ -21,17 +21,17 @@
             </ul>
             {% if request.user.is_authenticated %}
             <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:profile' %}" class="btn" style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Hồ sơ</a>
+                <a href="{% url 'register:profile' %}" class="btn" style="margin-right: 5px; width:120px; border: none !important; border-radius: 0 !important;">Hồ sơ</a>
             </div>
             <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:logout' %}" class="btn" style ="width:105px; border: none !important; border-radius: 0 !important;">Đăng xuất</a>
+                <a href="{% url 'register:logout' %}" class="btn" style ="width:120px; border: none !important; border-radius: 0 !important;">Đăng xuất</a>
             </div>
             {% else %}
             <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:login' %}" class="btn" style="margin-right: 5px; width:105px; border: none !important; border-radius: 0 !important;">Đăng nhập</a>
+                <a href="{% url 'register:login' %}" class="btn" style="margin-right: 5px; width:120px; border: none !important; border-radius: 0 !important;">Đăng nhập</a>
             </div>
             <div class="form-inline my-2 my-lg-0">
-                <a href="{% url 'register:register' %}" class="btn" style ="width:105px; border: none; border: none !important; border-radius: 0 !important;">Đăng ký</a>
+                <a href="{% url 'register:register' %}" class="btn" style ="width:120px; border: none; border: none !important; border-radius: 0 !important;">Đăng ký</a>
             </div>
             {% endif %}
         </div>

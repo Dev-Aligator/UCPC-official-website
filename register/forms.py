@@ -3,8 +3,32 @@ from django import forms
 from .models import Team
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 PasswordRegex = RegexValidator(r'^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$')
+
+
+class userForm(UserCreationForm):
+    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element','placeholder': '✉️ |  Email Address' }))
+    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[PasswordRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': '🔒 | Password'}))
+    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': '🔒 | Re-enter password'}))
+    class Meta:
+        model = get_user_model()
+        fields = ['email']
+
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError("This email address is already taken.")
+    #     return email
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.username = self.clean_email()
+    #     if commit:
+    #         user.save()
+    #     return user
+
 
 class teamForm(forms.ModelForm):
     team = forms.CharField(max_length = 30, label = 'Tên đội',widget = forms.TextInput(attrs={'class': 'form-control', 'id': 'pos1', 'placeholder': 'Chữ cái đầu tiên trong tên đội phải viết hoa. Ví dụ: Team01' }))

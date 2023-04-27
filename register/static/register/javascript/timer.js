@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let deadline = "May 26, 2022 00:00:00"
+    let deadline = "May 26, 2023 00:00:00"
     let countDown = new Date(deadline).getTime()
     let x = setInterval(function () {
         let now = new Date().getTime()

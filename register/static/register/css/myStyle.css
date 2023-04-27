@@ -54,12 +54,15 @@ hr{
 
 .valid_icon {
     color: #2ecc71 !important;
-    visibility: visible !important;
+    /* visibility: visible !important; */
+    display: inline !important;
+
 }
 
 .invalid_icon {
     color: #e74c3c !important;
-    visibility: visible !important;
+    /* visibility: visible !important; */
+    display: inline !important;
 }
 
 .login_email {

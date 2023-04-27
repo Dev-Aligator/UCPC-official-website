@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import teamForm, loginForm
+from .forms import teamForm, loginForm, userForm
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -9,6 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from .models import Team
 from django.contrib.auth.decorators import login_required
+from .models import UcpcUser
 
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -19,16 +20,17 @@ from argon2 import PasswordHasher
 ph = PasswordHasher()
 
 try:
-    scope =["https://spreadsheets.google.com/feeds",
+    scope =[
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('register/ucpc-team-list-9acf2432120a.json', scope)
 
-    _name = "List_of_teams"
+    _name = "UCPC Team List"
     client = gspread.authorize(creds)
     spreadsheet = client.open(_name)
     wks = spreadsheet.worksheet("List_teams")
+    wks.update_cell(1,1, "Updating data using gspread")
 except:
     pass
 
@@ -37,61 +39,97 @@ def home(request):
     context = {}
     return render(request, 'register/home.html', context)
 
+
+
+
 class register(View):
     def get(self, request):
         now = datetime.datetime.now()
-        deadline = datetime.datetime(2022, 5, 25)
+        deadline = datetime.datetime(2023, 5, 25)
         time_remaining = deadline - now
         if time_remaining.days < 0:
-            context = {'tf': teamForm, 'isTimeOver': True}
+            context = {'uf': userForm, 'isTimeOver': True}
+            # context = {'isTimeOver' : True}
         else:
-            context = {'tf': teamForm, 'isTimeOver': False}
+            context = {'uf': userForm, 'isTimeOver': False}
+            # context = {'isTimeOver' : False}
 
         return render(request, 'register/register.html', context)
     
     def post(self, request):
         if request.method == 'POST':
-            tf = teamForm(request.POST)
-            if tf.is_valid():
-                tf.save()
+            uf = userForm(request.POST)
+            if uf.is_valid():
+                uf.save()
 
-                Username = request.POST['team']
-                Email = request.POST['email']
-                Password = request.POST['password']
-                user = User.objects.create_user(Email, Email, Password)
-                user.save()
-
-                data = np.array([[request.POST['team'],
-                                  request.POST['email'],
-                                  ph.hash(request.POST['password']), 
-                                  request.POST['member1'],
-                                  request.POST['mssv1'],
-                                  request.POST['cmnd1'],
-                                  request.POST['phone1'],
-                                  request.POST['school1'],
-                                  request.POST['member2'],
-                                  request.POST['mssv2'],
-                                  request.POST['cmnd2'],
-                                  request.POST['phone2'],
-                                  request.POST['school2'],
-                                  request.POST['member3'],
-                                  request.POST['mssv3'],
-                                  request.POST['cmnd3'],
-                                  request.POST['phone3'],
-                                  request.POST['school3']]])
-                try:
-                    idx = f'B{str(len(wks.get_all_values()) + 1)}'
-                    wks.update(idx, data.tolist())
-                except:
-                    pass
-
-                Team = tf.cleaned_data.get('team')
-                messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
+                data = np.array([[request.POST['email'], ph.hash(request.POST['password1'])]])
+            
+                idx = f'B{str(len(wks.get_all_values()) + 1)}' 
+                wks.update(idx, data.tolist())
+            
+                email = uf.cleaned_data.get('email')
+                messages.success(request, '✔️ Tài khoản '+email+' đã đăng ký thành công!')
                 return redirect('register:login')
             else:
-                ctx = {"tf":tf}
-                messages.error(request, '❌ Thông tin không hợp lệ!')
+                ctx = {"uf":uf}
                 return render(request, 'register/register.html', ctx, status=422)
+        
+
+# class register(View):
+#     def get(self, request):
+#         now = datetime.datetime.now()
+#         deadline = datetime.datetime(2023, 5, 25)
+#         time_remaining = deadline - now
+#         if time_remaining.days < 0:
+#             context = {'tf': teamForm, 'isTimeOver': True}
+#         else:
+#             context = {'tf': teamForm, 'isTimeOver': False}
+
+#         return render(request, 'register/register.html', context)
+    
+#     def post(self, request):
+#         if request.method == 'POST':
+#             tf = teamForm(request.POST)
+#             if tf.is_valid():
+#                 tf.save()
+
+#                 Username = request.POST['team']
+#                 Email = request.POST['email']
+#                 Password = request.POST['password']
+#                 user = User.objects.create_user(Email, Email, Password)
+#                 user.save()
+
+#                 data = np.array([[request.POST['team'],
+#                                   request.POST['email'],
+#                                   ph.hash(request.POST['password']), 
+#                                   request.POST['member1'],
+#                                   request.POST['mssv1'],
+#                                   request.POST['cmnd1'],
+#                                   request.POST['phone1'],
+#                                   request.POST['school1'],
+#                                   request.POST['member2'],
+#                                   request.POST['mssv2'],
+#                                   request.POST['cmnd2'],
+#                                   request.POST['phone2'],
+#                                   request.POST['school2'],
+#                                   request.POST['member3'],
+#                                   request.POST['mssv3'],
+#                                   request.POST['cmnd3'],
+#                                   request.POST['phone3'],
+#                                   request.POST['school3']]])
+#                 try:
+#                     idx = f'B{str(len(wks.get_all_values()) + 1)}'
+#                     wks.update(idx, data.tolist())
+#                 except:
+#                     pass
+
+#                 Team = tf.cleaned_data.get('team')
+#                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
+#                 return redirect('register:login')
+#             else:
+#                 ctx = {"tf":tf}
+#                 messages.error(request, '❌ Thông tin không hợp lệ!')
+#                 return render(request, 'register/register.html', ctx, status=422)
                 
 
 class login(View):
@@ -155,3 +193,6 @@ def logout(request):
 
 
 
+def posts(request):
+    context = {}
+    return render(request, 'posting/post.html', context)

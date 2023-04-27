@@ -1,0 +1,383 @@
+{% extends 'register/navigations.html' %}
+{% load static %}
+
+{% block login-register %}
+	<link rel="stylesheet" type="text/css" href="{% static 'post/css/post.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" aria-label="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+
+            <h1 class="headline headline-1 section-title">
+              Thông báo <span class="span">UCPC</span>
+            </h1>
+
+            <p class="hero-text">
+				Chào mừng đến với trang tin tức chính thức của UCPC ! Đây là nơi cập nhật thông tin mới nhất về các hoạt động liên quan đến cuộc thi lập trình thuật toán nổi tiếng này. Tại đây, bạn sẽ được cập nhật về thông tin, lịch trình và quy định cuộc thi, cũng như các bài viết, thông báo mới nhất. 
+            </p>
+
+          
+
+          </div>
+
+          <div class="hero-banner">
+
+            <img src="{% static 'register/images/elements2023/UCPC@4x.png' %}" width="327" height="490" alt="Ucpc" class="w-100">
+
+            <img src="{% static 'post/images/pattern-2.svg' %}" width="27" height="26" alt="shape" class="shape shape-1">
+
+            <img src="{% static 'post/images/Ucpc_block.svg' %}" width="27" height="26" alt="shape" class="shape shape-2">
+
+          </div>
+
+          <img src="{% static 'post/images/shadow-1.svg' %}" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="{% static 'post/images/shadow-2.svg' %}" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+          <img src="{% static 'post/images/shadow-1.svg' %}" width="500" height="800" alt="" class="hero-bg hero-bg-3">
+
+          <img src="{% static 'post/images/shadow-2.svg' %}" width="500" height="800" alt="" class="hero-bg hero-bg-4">
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #POSTS
+      -->
+
+      <section class="topics" id="topics" aria-labelledby="topic-label">
+        <div class="container">
+
+          <div class="card topic-card">
+
+            <div class="card-content">
+
+              <h2 class="headline headline-2 section-title card-title" id="topic-label">
+                Hot posts
+              </h2>
+
+              <p class="card-text">
+                Đừng bỏ lỡ những cập nhật mới nhất về UCPC nhé !
+              </p>
+
+              <div class="btn-group">
+                <button class="btn-icon" aria-label="previous" data-slider-prev>
+                  <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+                </button>
+
+                <button class="btn-icon" aria-label="next" data-slider-next>
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+
+            </div>
+
+            <div class="slider" data-slider>
+              <ul class="slider-list" data-slider-container>
+                {% for post in hot_posts %}
+                <li class="slider-item">
+                  <a href="{{post.original_post}}" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="{{ post.image_url }}" width="507" height="618" loading="lazy" alt="{{ post.title }}"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">{{ post.title }}</span>
+
+                      <p class="slider-subtitle">Page Ucpc</p>
+                    </div>
+
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #FEATURED POST
+      -->
+
+      <section class="section feature" aria-label="feature" id="featured">
+        <div class="container">
+
+          <h2 class="headline headline-2 section-title">
+            <span class="span">Most picked</span>
+          </h2>
+
+          <p class="section-text">
+            Featured and highly important posts
+          </p>
+
+          <ul class="feature-list">
+            {% for post in most_posts %}
+            <li>
+              <div class="card feature-card">
+
+                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                  <img src="{{ post.image_url }}" width="1602" height="903" loading="lazy"
+                    alt="{{ post.title }}" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-wrapper">
+                    <div class="card-tag">
+                      <p class="span hover-2">{{ post.tags }}</a>
+                    </div>
+
+                    
+                  </div>
+
+                  <h3 class="headline headline-3">
+                    <a href="{{ post.original_post }}" class="card-title hover-2">
+                      {{ post.title }}
+                    </a>
+                  </h3>
+
+                  <div class="card-wrapper">
+
+                    <div class="profile-card">
+                      <img src="{% static 'post/images/UCPC.jpg' %}" width="48" height="48" loading="lazy" alt="Ucpc Page"
+                        class="profile-banner">
+
+                      <div>
+                        <p class="card-title">Ucpc Page</p>
+
+                        <p class="card-subtitle">{{ post.published_date }}</p>
+                      </div>
+                    </div>
+
+                    <a href="{{ post.original_post}}" class="card-btn">Read more</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+
+          <a href="https://www.facebook.com/uit.ucpc" class="btn btn-secondary">
+            <span class="span">See More Posts</span>
+
+            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+          </a>
+
+        </div>
+
+        <img src="{% static 'post/images/shadow-3.svg' %}" width="500" height="1500" loading="lazy" alt="" class="feature-bg">
+
+      </section>
+
+
+      <!-- 
+        - #RECENT POST
+      -->
+
+      <section class="section recent-post" id="recent" aria-labelledby="recent-label">
+        <div class="container">
+
+          <div class="post-main">
+
+            <h2 class="headline headline-2 section-title">
+              <span class="span">Recent posts</span>
+            </h2>
+
+            <p class="section-text">
+              Don't miss the latest updates
+            </p>
+
+            <ul id="post-list" class="grid-list">
+              {% for post in posts %}
+              <li>
+                <div class="recent-post-card">
+
+                  <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
+                    <img src="{{post.image_url}}" width="271" height="258" loading="lazy"
+                      alt="{{ post.title }}" class="img-cover">
+                  </figure>
+
+                  <div class="card-content">
+
+                    <p class="card-badge">Ucpc Posts</p>
+
+                    <h3 class="headline headline-3 card-title">
+                      <a href="{{ post.original_post }}" class="link hover-2">{{ post.title }}</a>
+                    </h3>
+
+                    <p class="card-text">
+                      {{ post.content }}
+                    </p>
+
+                    <div class="card-wrapper">
+                      <div class="card-tag">
+                        <p class="span hover-2">{{ post.tags }} </p>
+                      </div>
+
+                      <div class="wrapper">
+                        <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                        <span class="span">{{ post.published_date }} </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+
+            <nav aria-label="pagination" class="pagination" style="background: unset;">
+              {% if posts.has_previous %}
+              <a href="posts/?page={{ posts.previous_page_number }}#post-list" class="pagination-btn" aria-label="previous page" data-page="{{ posts.previous_page_number }}">
+                <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+              </a>
+              {% endif %}
+
+              {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                  <a href="posts/?page={{ i }}#post-list" class="pagination-btn" style="
+                  background-color: hsla(199, 89%, 49%, 1);" data-page="{{ i }}">{{ i }}</a>
+                {% elif i > posts.number|add:'-3' and i < posts.number|add:'3' %}
+                  <a href="posts/?page={{ i }}#post-list" class="pagination-btn" data-page="{{ i }}">{{ i }}</a>
+                {% endif %}
+              {% endfor %}
+
+              {% if posts.has_next %}
+              <a href="posts/?page={{ posts.next_page_number }}#post-list" class="pagination-btn" aria-label="next page" data-page="{{ posts.next_page_number }}">
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </a>
+              {% endif %}
+                
+            </nav>
+
+          </div>
+
+          <div class="post-aside grid-list">
+
+            <div class="card aside-card">
+
+              <h3 class="headline headline-2 aside-title">
+                <span class="span">Popular Posts</span>
+              </h3>
+
+              <ul class="popular-list">
+                {% for post in popular_posts %}
+                <li>
+                  <div class="popular-card">
+
+                    <figure class="card-banner img-holder" style="--width: 64; --height: 64;">
+                      <img src="{{ post.image_url }}" width="64" height="64" loading="lazy"
+                        alt="{{ post.titile }}" class="img-cover">
+                    </figure>
+
+                    <div class="card-content">
+
+                      <h4 class="headline headline-4 card-title">
+                        <a href="{{ post.original_post }}" class="link hover-2">{{ post.title }}</a>
+                      </h4>
+
+                      <div class="warpper">
+                        <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                        <span class="span">{{ post.published_date }}</span>
+
+                      </div>
+
+
+                    </div>
+
+                  </div>
+                </li>
+                {% endfor %}
+
+              </ul>
+
+            </div>
+
+            <div class="card aside-card facebook-card">
+
+              <a href="https://www.facebook.com/uit.ucpc" class="logo">
+                <img src="{% static 'register/images/elements2023/UCPC@4x.png' %}" width="60" height="20" loading="lazy" alt="Ucpc logo">
+              </a>
+
+              <p class="card-text">
+                Follow us on Facebook
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="{% static 'post/javascript/ucpc-2023.posting.js' %}"></script>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+{% endblock content %}

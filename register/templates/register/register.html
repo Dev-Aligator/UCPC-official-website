@@ -1,5 +1,10 @@
 {% extends 'register/navigations.html' %}
 {% load static %}
+{% load socialaccount %}
+
+{% block login-register %}
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -9,213 +14,69 @@
 </div>
 			
 {% else %}
-<div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold; margin-bottom: 40px;">Đăng ký</h1>
-</div>
 
 
-{% for message in messages %}
-<div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
 
-<div class="form-group">
-	<div class="container">
-		<!-- <form id="registration_form" action="{% url 'register:register' %}" method="POST"> -->
-		<form id="registration_form" method="POST">
-			{% csrf_token %}
-			
-			<div class="member_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold">Thông tin đội</h3>
-				<div class="team" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.team.label }}</b><br>
-					{{ tf.team }}
-					<i id="valid_team" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.team.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Tên đội không được sử dụng từ ngữ, ký hiệu vi phạm truyền thống lịch sử, văn hóa, đạo đức và thuần phong mỹ tục của dân tộc.</p>
-				</div>
-				<div class="email" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.email.label }}</b><br>
-					{{ tf.email }}
-					<i id="valid_email" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_email" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.email.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Email để đăng nhập và được Ban Tổ Chức dùng để liên lạc với đội thi.</p>
-				</div>
-				<div class="password" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.password.label }}</b><br>
-					{{ tf.password }}
-					<i id="valid_password" class="fa-solid fa-circle-check" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<i id="invalid_password" class="fa-solid fa-circle-exclamation" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<input id="checkbox_1" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showPassword()">Hiển thị mật khẩu
-					<small>{{ tf.password.errors }}</small>
-				</div>
-				<div class="rpassword" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.rpassword.label }}</b><br>
-					{{ tf.rpassword }}
-					<i id="valid_rpassword" class="fa-solid fa-circle-check" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<i id="invalid_rpassword" class="fa-solid fa-circle-exclamation" style="position: absolute; top: 40px; right: 40px; visibility: hidden;"></i>
-					<input id="checkbox_2" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showRPassword()">Hiển thị mật khẩu
-					<small>{{ tf.rpassword.errors }}</small>
-				</div>
-			</div>
 
-			<div class="member1_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold;">Thông tin đội trưởng</h3>
-				<div class="member1" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.member1.label }}</b><br>
-					{{ tf.member1 }}
-					<i id="valid_member1" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_member1" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.member1.errors }}</small>
+<div class="form-container">
+	<div class="register-card">
+		<div class="column">
+			<h1>Sign up</h1>
+			<form id=register-form method="POST">
+				{% csrf_token %}
+				<div class="form-item">								
+					{{ uf.email }}
+					<i id="valid_email" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_email" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none;"></i>
+					<small class="error">{{ uf.email.errors }}</small>
 				</div>
-				<div class="mssv1" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.mssv1.label }}</b><br>
-					{{ tf.mssv1 }}
-					<i id="valid_mssv1" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_mssv1" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.mssv1.errors }}</small>
-				</div>
-				<div class="cmnd1" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.cmnd1.label }}</b><br>
-					{{ tf.cmnd1 }}
-					<i id="valid_cmnd1" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_cmnd1" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.cmnd1.errors }}</small>
-				</div>
-				<div class="phone1" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.phone1.label }}</b><br>
-					{{ tf.phone1 }}
-					<i id="valid_phone1" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_phone1" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.phone1.errors }}</small>
-				</div>
-				<div class="school1" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.school1.label }}</b><br>
-					{{ tf.school1 }}
-					<datalist id="schools">
-						<option>Trường Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Bách khoa - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Tự nhiên - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Quốc Tế - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Xã hội và Nhân văn - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Sư phạm Kỹ thuật Thành phố Hồ Chí Minh</option>
-						<option>Học viện Công nghệ Bưu Chính Viễn thông</option>
-						<option>Trường Đại học Sư Phạm Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Công nghiệp Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Thủ Dầu Một</option>
-						<option>Trường Trung học phổ thông Gia Định</option>
-					</datalist>	
-					<small>{{ tf.school1.errors }}</small><br>
-				</div>
-			</div>
+				<div class="form-item">
+					{{ uf.password1 }}
+					<i id="valid_password" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_password" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none"></i>
+					<small class="error">{{ uf.password1.errors }}</small>
 
-			<div class="member2_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold;">Thông tin thành viên 2</h3>
-				<div class="member2" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.member2.label }}</b><br>
-					{{ tf.member2 }}
-					<i id="valid_member2" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_member2" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.member2.errors }}</small>
-				</div>
-				<div class="mssv2" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.mssv2.label }}</b><br>
-					{{ tf.mssv2 }}
-					<i id="valid_mssv2" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_mssv2" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.mssv2.errors }}</small>
-				</div>
-				<div class="cmnd2" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.cmnd2.label }}</b><br>
-					{{ tf.cmnd2 }}
-					<i id="valid_cmnd2" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_cmnd2" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.cmnd2.errors }}</small>
-				</div>
-				<div class="phone2" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.phone2.label }}</b><br>
-					{{ tf.phone2 }}
-					<i id="valid_phone2" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_phone2" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.phone2.errors }}</small>
-				</div>
-				<div class="school2" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.school2.label }}</b><br>
-					{{ tf.school2 }}
-					<datalist id="schools">
-						<option>Trường Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Bách khoa - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Tự nhiên - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Quốc Tế - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Xã hội và Nhân văn - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Sư phạm Kỹ thuật Thành phố Hồ Chí Minh</option>
-						<option>Học viện Công nghệ Bưu Chính Viễn thông</option>
-						<option>Trường Đại học Sư Phạm Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Công nghiệp Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Thủ Dầu Một</option>
-						<option>Trường Trung học phổ thông Gia Định</option>
-					</datalist>	
-					<small>{{ tf.school2.errors }}</small><br>
-				</div>
-			</div>
+					<ul class="password-validation">
+						<li class="length-validation">Password contains at least 6 characters</li>
+						<li class="number-validation">Must contain number</li>
+						<li class="character-validation">At least one lowercase, one uppercase letter</li>
+					</ul>
 
-			<div class="member3_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold;">Thông tin thành viên 3</h3>
-				<div class="member3" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.member3.label }}</b><br>
-					{{ tf.member3 }}
-					<i id="valid_member3" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_member3" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.member3.errors }}</small>
 				</div>
-				<div class="mssv3" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.mssv3.label }}</b><br>
-					{{ tf.mssv3 }}
-					<i id="valid_mssv3" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_mssv3" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.mssv3.errors }}</small>
-				</div>
-				<div class="cmnd3" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.cmnd3.label }}</b><br>
-					{{ tf.cmnd3 }}
-					<i id="valid_cmnd3" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_cmnd3" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.cmnd3.errors }}</small>
-				</div>
-				<div class="phone3" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.phone3.label }}</b><br>
-					{{ tf.phone3 }}
-					<i id="valid_phone3" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_phone3" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.phone3.errors }}</small>
-				</div>
-				<div class="school3" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.school3.label }}</b><br>
-					{{ tf.school3 }}
-					<datalist id="schools">
-						<option>Trường Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Bách khoa - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Tự nhiên - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Quốc Tế - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Khoa học Xã hội và Nhân văn - Đại học Quốc gia TP.HCM</option>
-						<option>Trường Đại học Sư phạm Kỹ thuật Thành phố Hồ Chí Minh</option>
-						<option>Học viện Công nghệ Bưu Chính Viễn thông</option>
-						<option>Trường Đại học Sư Phạm Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Công nghiệp Thành phố Hồ Chí Minh</option>
-						<option>Trường Đại học Thủ Dầu Một</option>
-						<option>Trường Trung học phổ thông Gia Định</option>
-					</datalist>	
-					<small>{{ tf.school3.errors }}</small><br>
-				</div>
-			</div>
+				<div class="form-item">
+					{{ uf.password2 }}
+					<i id="valid_rpassword" class="fa-solid fa-circle-check" style="margin-left: -50px;display:none;"></i>
+					<i id="invalid_rpassword" class="fa-solid fa-circle-exclamation" style="margin-left: -50px;display:none;"></i>
+					<small class="error">{{ uf.password2.errors }}</small>
 
-			<input id="agree_check" onchange="document.getElementById('submit_btn').disabled = !this.checked;" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showRPassword()">Tôi đã đọc và đồng ý với <a style ="color:#4CF2D2; font-size: 20px;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>QUY ĐỊNH</b></a> của cuộc thi.<br>
-			<button disabled type="submit" id="submit_btn" class="btn btn-primary" style="margin-top: 10px; background-color: #4CF2D2; border-color: #4CF2D2; color: black;">Đăng ký</button>
-		</form>
+				</div>
+				<label class="terms">
+					<input type="checkbox" id="terms-checkbox" style="display:none;">
+					<span class="switch"></span>
+					I accept the <a style="color:#4CF2D2;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing">terms of service</a>
+				</label>	
+				<div id="error-message" style="color: #f44336; display: none;">You must accept the terms of service.</div>
+				<div class="flex">		  
+					<button type="submit" class="btn btn-primary">Create Account</button>
+				</div>
+				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
+				<div class="sign-in-with-google">
+					<a class="google-button" href="{% provider_login_url 'google' %}">
+						<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
+					  Sign in with Google
+					</a>
+				</div>
+			</form>
+		</div>
+		<div class="column">
+			<h2>Welcome to UCPC</h2>
+			<p>If you don't have an account, would you like to register right now</p>
+			<a href="{% url 'register:register' %}">Sign Up</a>
+		</div>
 	</div>
-</div>
+	</div>
+	
+	
+
 {% endif %}
 {% endblock content %}
