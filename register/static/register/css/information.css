@@ -1,9 +1,10 @@
 .information {
     display: flex;
-    height: 600px;
+    min-height: 600px;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    padding: 24px 0;
 }
 
 .inf-description {
