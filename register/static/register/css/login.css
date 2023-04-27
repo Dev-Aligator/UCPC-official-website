@@ -1,5 +1,102 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-:root{--theme-color:#003782;}
+:root{
+    --theme-color:#003782;
+        /**
+     * COLORS
+     */
+  
+    /** Background colors */
+    --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+    --bg-carolina-blue: hsla(199, 89%, 49%, 1);
+    --bg-prussian-blue: hsla(216, 33%, 20%, 1);
+    --bg-oxford-blue: hsla(222, 44%, 13%, 1);
+    --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+  
+    /** Text colors */
+    --text-white: hsla(0, 0%, 100%, 1);
+    --text-alice-blue: hsla(216, 100%, 95%, 1);
+    --text-columbia-blue: hsla(199, 69%, 84%, 1);
+    --text-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+    --text-carolina-blue: hsla(199, 89%, 49%, 1);
+    --text-shadow-blue: hsla(217, 24%, 59%, 1);
+    --text-slate-gray: hsla(217, 17%, 48%, 1);
+  
+    /** Gradient colors */
+    --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
+    --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
+    --gradient-3: linear-gradient(0deg, #000d1a, transparent);
+  
+    /** Border colors */
+    --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+    --border-prussian-blue: hsla(216, 33%, 20%, 1);
+    --border-white: hsl(0, 0%, 100%);
+    --border-white-alpha-15: hsla(0, 0%, 100%, 0.15);
+  
+    /** Default colors */
+    --white: hsl(0, 0%, 100%, 1);
+    --black: hsl(0, 0%, 0%, 1);
+  
+    /**
+     * TYPOGRAPHY
+     */
+  
+    /** Font family */
+    --fontFamily-noto_sans: 'Noto Sans', sans-serif;
+  
+    /** Font size */
+    --fontSize-1: 2.9rem;
+    --fontSize-2: 2.0rem;
+    --fontSize-3: 1.8rem;
+    --fontSize-4: 1.6rem;
+    --fontSize-5: 1.5rem;
+    --fontSize-6: 1.4rem;
+    --fontSize-7: 1.2rem;
+    --fontSize-8: 1.3rem;
+  
+    /** Font weight */
+    --weight-medium: 500;
+    --weight-semiBold: 600;
+    --weight-bold: 700;
+    --weight-extraBold: 800;
+  
+    /** Line height */
+    --lineHeight-1: 1.3;
+    --lineHeight-2: 1.5;
+    --lineHeight-4: 1.5;
+  
+    /**
+     * BOX SHADOW
+     */
+  
+    --shadow-1: 0 8px 20px 0 hsla(0, 0%, 0%, 0.05);
+    --shadow-2: 0px 3px 20px hsla(180, 90%, 43%, 0.2);
+  
+    /**
+     * BORDER RADIUS
+     */
+  
+    --radius-6: 6px;
+    --radius-8: 8px;
+    --radius-16: 16px;
+    --radius-48: 48px;
+    --radius-circle: 50%;
+    --radius-pill: 200px;
+  
+    /**
+     * SPACING
+     */
+  
+    --section-padding: 70px;
+  
+    /**
+     * TRANSITION
+     */
+  
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease;
+    --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+    --cubic-out: cubic-bezier(0.05, 0.83, 0.52, 0.97);
+}
 *{
     padding:0;
     margin:0;
@@ -7,31 +104,73 @@
     margin-bottom: unset;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    color:unset;
-    background-color: unset;
-    background-image: url('../images/elements2023/UCPC@4x.png');
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: 30%;
-}
 
-body::after{
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-color: #06283D;
-    width: 60%;
-    height: 100vh;
-    clip-path: polygon(0 100%, 0 0 , 100% 0 , 70% 100%);
-    z-index: -1;
-    background-image: url('../images/elements2023/block2@4x.png'), url('../images/elements2023/block2@4x.png'), url('../images/elements2023/block2@4x.png'), url('../images/elements2023/block2@4x.png');
+body {
+    background-color: var(--bg-oxford-blue-2);
+    color: var(--text-shadow-blue);
+    font-family: 'Poppins', sans-serif;
+    line-height: var(--lineHeight-4);
+    overflow-y: overlay;
+    min-height: 100vh;
+    background-image: url('../images/elements2023/bg_mail3.png');
     background-repeat: no-repeat;
-    background-size: 5%, 10%, 15%, 15%;
-    background-position: 0% 30%, 25% 95%, 80% 0%, 35% 50%;
+    background-size: 25%;
+    background-position: left bottom;
+
+
+  }
+
+
+  .hero-banner { 
+    position: absolute;
+    top: 50%;
+    right: 2%;
 }
+  
+  .hero-banner .w-100 {
+    max-width: max-content;
+    margin-inline: auto;
+  }
+  
+  .shape {
+    position: absolute;
+    z-index: -1;
+  
+    animation: heroDecoAnim 3s linear infinite alternate;
+  }
+  
+  @keyframes heroDecoAnim {
+    0% { transform: translateY(40px) rotate(0); }
+    100% { transform: translateY(0) rotate(0.4turn); }
+  }
+  
+   .shape-1 {
+    top: 50px;
+    right: 40px;
+  }
+  
+  .shape-2 {
+    bottom: 20px;
+    left: 24px;
+  }
+
+
+  .hero-bg {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .hero-bg-1 {
+    top: 40px;
+    left: 0;
+  }
+
+  .hero-bg-2 {
+    top: 50%;
+    right: 0;
+  }
+
 
 nav{
    height:100px; 
@@ -246,6 +385,14 @@ nav{
 
     .social-buttons{
         justify-content: center;
+    }
+
+    .hero-banner {
+        display: none;
+    }
+
+    .hero-bg {
+        display:none;
     }
 }
 
