@@ -60,6 +60,8 @@
 .Nav-link {
     text-decoration: none;
     color: #fff;
+    width: 100%;
+    display: block;
 }
 
 .Nav-link:hover {
@@ -91,6 +93,9 @@
     font-family: 'Inter';
     font-weight: 700;
     margin-bottom: 16px;
+    padding: 0 16px;
+    display: block;
+    width: 100%;
 }
 
 .form-login,
@@ -107,6 +112,12 @@
 
 .carousel {
     top: 38px;
+}
+
+@media (min-width: 768px) { 
+    .Navbar {
+        max-height: 38px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -131,6 +142,7 @@
         display: block;
         margin-top: 20px;
         overflow: hidden;
+        width: 100%;
     }
 
     .Navbar::after {
@@ -177,9 +189,14 @@
     .form-login,
     .form-register {
         display: block;
+        width: 100%;
     }
 
     .form-inline {
         display: block;
+    }
+
+    .carousel {
+        top: 80px;
     }
 }
