@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from register.models import Team, Teammate, Post, Website, UcpcUser
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .choices import Choices
 
 import datetime
@@ -88,10 +88,11 @@ class login(View):
                 return redirect('register:login')
 
 # View classes handle functions related to user profiles 
-class view_profile(View):
+class view_profile(LoginRequiredMixin, View):
     # Display user profile
     def get(self, request):
         try:
+            # Get team and teammate objects from db based on ucpc user's email
             ucpc_user = UcpcUser.objects.get(email=request.user.email)
             filtered_team = Team.objects.get(UcpcUser=ucpc_user)
             filtered_teammates = Teammate.objects.filter(Team=filtered_team)
@@ -118,13 +119,14 @@ class view_profile(View):
             messages.error(request, '❌ Không tìm thấy đội thi. Vui lòng tạo đội thi mới!')
             return redirect('register:create')
         
-class create_profile(View):
+class create_profile(LoginRequiredMixin, View):
     # Display form to create user profile
     def get(self, request): 
+        # Get deadline
         now = datetime.datetime.now()
         deadline = datetime.datetime(2023, 5, 25)
         time_remaining = deadline - now
-        
+        # Get types of form
         type = request.GET.get('type')
         if time_remaining.days > 0:
             ctx = {
@@ -143,12 +145,14 @@ class create_profile(View):
     # Create new profile
     def post(self, request):
         if request.method == 'POST':
+            # Get types of form
             type = request.POST.get('type')
-            
+            # Posted form
             tf = TeamForm(request.POST)
             tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-        
+            # Check forms valid or not
             if(tf.is_valid() and tmf.is_valid()):
+                # Create & Save Team and Teammate objects with posted data
                 tf_data = tf.cleaned_data
                 try:
                     ucpc_user = UcpcUser.objects.get(email=request.user.email)
@@ -188,19 +192,24 @@ class create_profile(View):
                 }
                 messages.error(request, '❌ Thông tin không hợp lệ!')
                 return render(request, 'login/create.html', ctx, status=422)
-            
-class edit_profile(View):
-    def get(self, request): 
+
+        
+class edit_profile(LoginRequiredMixin, View):
+    # Display user profile for editing
+    def get(self, request):
+        # get deadline 
         now = datetime.datetime.now()
         deadline = datetime.datetime(2023, 5, 25)
         time_remaining = deadline - now
-        
+        #  get types of form
         type = request.GET.get('type')
         if time_remaining.days > 0:
+            # Get Team and Teammate objects from db based on ucpc user's email
             ucpc_user = UcpcUser.objects.get(email = request.user.email)
             filtered_team = Team.objects.get(UcpcUser = ucpc_user)
             filtered_teammates = Teammate.objects.filter(Team = filtered_team)
 
+            # Initiate data for forms with filtered data
             tf_initial =  { 'TeamName': filtered_team.TeamName }
             tmf_initial = [
                 {
@@ -224,19 +233,24 @@ class edit_profile(View):
             }
         return render(request, 'login/edit.html', ctx)
     
+    # Save edited user
     def post(self, request):
         if request.method == 'POST':
             try:
+                # Get Team and Teammate objects from db based on ucpc user's email
                 ucpc_user = UcpcUser.objects.get(email = request.user.email)
                 filtered_team = Team.objects.get(UcpcUser = ucpc_user)
                 filtered_teammates = Teammate.objects.filter(Team = filtered_team)
-                
+                # Get types of form
                 type = request.POST.get('type')
+                
+                # Fill instance for Team and Teammate objects
                 tf = TeamForm(request.POST, instance=filtered_team)
                 tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
                 for tm, teammate in zip(tmf, filtered_teammates):
                     tm.instance = teammate
                 
+                # Save objects to db
                 if(tf.is_valid() and tmf.is_valid()):
                     tf_instance = tf.save()
                     for tm in tmf:

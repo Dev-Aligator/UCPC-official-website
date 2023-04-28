@@ -199,6 +199,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 SOCIALACCOUNT_ADAPTER = 'register.adapter.UcpcSocialAccountAdapter'
 ACCOUNT_ADAPTER = "register.adapter.UcpcAccountAdapter"
 
+# Redirect url after login
 LOGIN_REDIRECT_URL = "/profile/"
-
+# Redirect url not yet login
+LOGIN_URL = "/login/"
 
