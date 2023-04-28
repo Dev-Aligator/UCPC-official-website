@@ -10,7 +10,6 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from register.models import Team, Teammate, Post, Website, UcpcUser
 from django.contrib.auth.decorators import login_required
-from django.db.models.signals import post_save
 from .choices import Choices
 
 import datetime
@@ -38,8 +37,7 @@ except:
 
 # Create your views here.
 def home(request):
-    context = {}
-    return render(request, 'register/home.html', context)
+    return render(request, 'register/home.html')
 
 class register(View):
     def get(self, request):
@@ -229,24 +227,31 @@ class edit_profile(View):
     def post(self, request):
         if request.method == 'POST':
             try:
-                # type = request.POST.get('type')
-                # ucpc_user = UcpcUser.objects.get(email = request.user.email)
-                # team_instance = Team.objects.get(UcpcUser = ucpc_user)
-                # teammates_instance = Teammate.objects.filter(Team = team_instance)
-                # tf = TeamForm(request.POST, instance=team_instance)
-                # tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-                # print(tf.is_valid(), tmf.is_valid())
-                # if(tf.is_valid() and tmf.is_valid()):
-                #     updated_team_instance = tf.save(commit=False)
-                #     updated_team_instance['UcpcUser'] = ucpc_user
-                #     updated_team_instance.save()
-                #     tmf.save()
+                ucpc_user = UcpcUser.objects.get(email = request.user.email)
+                filtered_team = Team.objects.get(UcpcUser = ucpc_user)
+                filtered_teammates = Teammate.objects.filter(Team = filtered_team)
+                
                 type = request.POST.get('type')
-                tf = TeamForm(request.POST)
+                tf = TeamForm(request.POST, instance=filtered_team)
                 tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-                print(tf.is_valid() and tmf.is_valid())
-                messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
-                return redirect('register:profile')
+                for tm, teammate in zip(tmf, filtered_teammates):
+                    tm.instance = teammate
+                
+                if(tf.is_valid() and tmf.is_valid()):
+                    tf_instance = tf.save()
+                    for tm in tmf:
+                        tm_instance = tm.save(commit=False)
+                        tm_instance.Team = tf_instance
+                        tm_instance.save()
+                    messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
+                    return redirect('register:profile')
+                else:
+                    ctx = {
+                        'tf':tf,
+                        'tmf': tmf
+                    }
+                    messages.error(request, '❌ Thông tin không hợp lệ!')
+                    return render(request, 'login/edit.html', ctx, status=422)
             except Exception as ex:
                 print(ex)
                 messages.error(request, '❌ Lỗi hệ thống!')
