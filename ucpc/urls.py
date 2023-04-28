@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include 
+
 admin.site.site_title = "UCPC Administration"
 admin.site.site_header = "Administration"
 admin.site.index_title = "UCPC "
@@ -22,5 +23,6 @@ admin.site.index_title = "UCPC "
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('register.urls')),
+    path('',include('posting.urls')),
     path('accounts/', include('allauth.urls')),
 ]

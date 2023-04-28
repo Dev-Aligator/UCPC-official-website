@@ -1,5 +1,6 @@
 {% extends 'register/navigations.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block login-register %}
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
@@ -46,18 +47,17 @@
 				<label class="terms">
 					<input type="checkbox" id="terms-checkbox" style="display:none;">
 					<span class="switch"></span>
-					I accept the terms of service
+					I accept the <a style="color:#4CF2D2;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing">terms of service</a>
 				</label>	
+				<div id="error-message" style="color: #f44336; display: none;">You must accept the terms of service.</div>
 				<div class="flex">		  
 					<button type="submit" class="btn btn-primary">Create Account</button>
 				</div>
 				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
-				<div class="social-buttons">
-					<a href="#" class="google">
-						<img width=35 height="35" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
-					</a>
-					<a href="#" class="facebook">
-						<img width=35 height=35 src="https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg" alt="">
+				<div class="sign-in-with-google">
+					<a class="google-button" href="{% provider_login_url 'google' %}">
+						<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
+					  Sign in with Google
 					</a>
 				</div>
 			</form>

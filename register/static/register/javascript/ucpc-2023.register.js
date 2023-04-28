@@ -93,3 +93,25 @@ function validate(e) {
         }
     }
 }
+
+
+const checkbox = document.getElementById('terms-checkbox');
+const submitBtn = document.getElementsByClassName('btn');
+const errorMessage = document.getElementById('error-message');
+checkbox.addEventListener('change', function() {
+    // Enable the submit button if the checkbox is checked
+    submitBtn.disabled = !checkbox.checked;
+  });
+  
+  form.addEventListener('submit', function(event) {
+    // Check if the checkbox is checked
+    if (!checkbox.checked) {
+      // If it's not checked, prevent the form from being submitted
+      event.preventDefault();
+      errorMessage.style.display = 'block';
+    }
+    else{
+        errorMessage.style.display = 'none';
+    }
+  });
+

@@ -25,9 +25,14 @@ try:
     scope = [
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
+<<<<<<< HEAD
         "https://www.googleapis.com/auth/drive"
     ]
     creds = ServiceAccountCredentials.from_json_keyfile_name('ucpc-team-list-9acf2432120a.json', scope)
+=======
+        "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name('register/ucpc-team-list-9acf2432120a.json', scope)
+>>>>>>> remotes/origin/posting
 
     _name = "UCPC Team List"
     client = gspread.authorize(creds)
@@ -257,3 +262,6 @@ def logout(request):
     auth_logout(request)
     return redirect('register:home')
 
+def posts(request):
+    context = {}
+    return render(request, 'posting/post.html', context)
