@@ -30,7 +30,7 @@ p {
   padding-top: 100px;
 }
 
-#countdown #countdown_info div {
+/* #countdown #countdown_info div {
   color: white;
   padding-bottom: 0px;
 }
@@ -43,7 +43,7 @@ p {
 #countdown #countdown_info h4 {
   color: fff;
   font-size: 27px;
-}
+} */
 
 /* #countdown_clock {
   margin-bottom: 0px;
@@ -76,7 +76,7 @@ p {
 } */
 
 
-#countdown_system .row .clock {
+/* #countdown_system .row .clock {
   background-color: white;
   text-align: center;
   align-items: center;
@@ -89,7 +89,7 @@ p {
 }
 
 #countdown_system .row .clock p {
-  /* padding-top: 10px; */
+  padding-top: 10px;
   text-align: center;
   color: #130820;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ p {
 }
 
 #countdown_system .row .clock span {
-  /* padding-top: px; */
+  padding-top: px;
   text-align: center;
   color: #130820;
   font-weight: bold;
@@ -114,14 +114,14 @@ p {
   font-size: 60px;
   font-weight: bold;
   color: #482b78;
-}
+} */
 
 /* Style for countdown */
 
 
 
 /* Style for timeline */
-.timeline {
+/* .timeline {
   position: relative;
   width: 100%;
   max-width: 1140px;
@@ -237,12 +237,12 @@ p {
   padding: 30px 90px 30px 30px;
   background: #4CF2D2;
   position: relative;
-  /* border-radius: 0 500px 500px 0; */
+  border-radius: 0 500px 500px 0;
 }
 
 .timeline .container.right .content {
   padding: 30px 30px 30px 90px;
-  /* border-radius: 500px 0 0 500px; */
+  border-radius: 500px 0 0 500px;
 }
 
 .timeline .container .content h2 {
@@ -261,8 +261,8 @@ p {
 
 .timeline .container .date {
   color: white;
-}
-
+} */
+/* 
 @media (max-width: 767.98px) {
   .timeline .head {
     text-align: center;
@@ -312,27 +312,27 @@ p {
   .timeline .container.left .content,
   .timeline .container.right .content {
     padding: 30px 30px 30px 90px;
-    /* border-radius: 500px 0 0 500px; */
+    border-radius: 500px 0 0 500px;
   }
-}
+} */
 
 /* Style for timeline */
 
 
 /* UCPC */
-#ucpc .container {
+/* #ucpc .container {
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
   padding-bottom: 40px;
-}
+} */
 
 #ucpc {
   margin-top: 64px;
   overflow: hidden;
 }
 
-#rules .container {
+/* #rules .container {
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
-}
+} */
 
 /* UCPC */
 /* Style for reward */
@@ -346,11 +346,11 @@ p {
   /* align-items: center;
   padding-top: 40px; */
 }
-
+/* 
 #reward #total_reward h1,
 h5 {
   color: white;
-  /* font-weight: bold; */
+  font-weight: bold;
 }
 
 #reward #total_reward h1 {
@@ -373,7 +373,7 @@ h5 {
 }
 
 #reward_information {
-  /* text-align: center; */
+  text-align: center;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -390,7 +390,7 @@ h5 {
   background-color: #4cf2d2;
   color: #130820;
 
-  /* border-radius: 8px; */
+  border-radius: 8px;
   height: 64px;
   text-align: center;
   min-width: 214px;
@@ -421,15 +421,19 @@ h5 {
 
 #reward #reward_information a:hover {
   text-decoration: none;
-}
+} */
 
 
 
 /* Style for reward */
-
+#timeline {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+}
 
 /* organizers */
-#organizers .container {
+/* #organizers .container {
   min-height: 210px;
   background-color: #130820;
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
@@ -467,7 +471,7 @@ h5 {
   width: 70%;
 }
 
-/* sponsors */
+sponsors
 #sponsors .container {
   min-height: 250px;
   background-color: #130820;
@@ -517,10 +521,10 @@ h5 {
 #sponsors .silver_sponsor .unit_logo .unit .sun_studio {
   padding-top: 35px;
   width: 70%;
-}
+} */
 
 /* footer */
-#footer {
+/* #footer {
   background-image: url(/static/register/images/footer/background.png);
   background-repeat: no-repeat;
   background-size: auto;
@@ -529,9 +533,9 @@ h5 {
   background-position: bottom center;
 }
 
-/* #footer .container {
+#footer .container {
   border-top: 1px rgba(255, 255, 255, 0.2) solid;
-} */
+}
 
 
 #footer h5 {
@@ -563,9 +567,9 @@ h5 {
 
 #footer .contact .row .unit_gm {
   text-align: left;
-}
+} */
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   #introduction_slider {
     height: auto;
   }
@@ -589,10 +593,10 @@ h5 {
     width: 95%;
   }
 
-  /* #footer .sponsor .unit_logo .unit img
+  #footer .sponsor .unit_logo .unit img
   {
   width: 60px;
-  } */
+  }
 
   #footer .contact .row img {
     width: 40px;
@@ -615,9 +619,9 @@ h5 {
   #organizers .unit_logo .unit .UCPC {
     width: 90%;
   }
-}
+} */
 
-@media only screen and (max-width: 450px) {
+/* @media only screen and (max-width: 450px) {
   #reward_information {
     margin-top: 50px;
     justify-content: center;
@@ -666,9 +670,9 @@ h5 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-}
+} */
 
-@media only screen and (max-width: 543px) {
+/* @media only screen and (max-width: 543px) {
   #countdown #countdown_system #countdown_clock #second_450 {
     margin-top: 5px;
   }
@@ -763,9 +767,9 @@ h5 {
   #footer .support img {
     width: 38%;
   }
-}
+} */
 
-@media only screen and (max-width: 992px) {
+/* @media only screen and (max-width: 992px) {
   #footer .contact .row img {
     width: 35px;
     margin-top: 0px;
@@ -775,9 +779,9 @@ h5 {
     padding-bottom: 40px;
     text-align: center;
   }
-}
+} */
 
-#registration_form .other_school input {
+/* #registration_form .other_school input {
   display: block;
   width: 100%;
   height: calc(1.5em + .75rem + 2px);
@@ -791,14 +795,4 @@ h5 {
   border: 1px solid #ced4da;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-#navbarSupportedContent {
-  display: flex;
-  justify-content: space-between;
-}
-
-.form-login,
-.form-register {
-  display: flex;
-}
+} */

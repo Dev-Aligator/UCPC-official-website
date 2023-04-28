@@ -335,8 +335,10 @@
             <div class="rule-object__title">Đối tượng:</div>
             <div class="rule-obect__info">
                 <p class="rule-object__description">
-                    Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học khác,
-                    các bạn học sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh viên
+                    Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học
+                    khác,
+                    các bạn học sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh
+                    viên
                     quốc tế.
                 </p>
                 <p class="rule-object__description">
@@ -358,7 +360,8 @@
                     <a href="mailto:ucpc@uit.edu.vn" class="rule-form__link"> email của ban tổ chức</a>.
                 </p>
                 <p class="rule-form__description">
-                    Các đội sau khi đăng ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên quan
+                    Các đội sau khi đăng ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên
+                    quan
                     tới tài khoản đăng ký dự thi vui lòng gửi mail về
                     <a href="mailto:ucpc@uit.edu.vn" class="rule-form__link">email của ban tổ chức</a>.
                 </p>
@@ -392,7 +395,7 @@
 <!-- Thông Tin giải thưởng -->
 <div class="structure">
     <img src="{% static 'register/images/introduction/banner3.jpg' %}" alt="" width="100%" class="structure__img">
-    
+
     <div id="reward" class="container">
         <h1 class="reward-title">Tổng giải thưởng lên đến</h1>
         <div class="reward-center">
@@ -414,87 +417,78 @@
 <!-- Thông Tin giải thưởng -->
 
 <!-- Lịch trình -->
-<div class="timeline" id="timeline">
-    <h1 class="head" style="margin: 40px 0 15px 20px; font-weight: bold;">Lịch trình cuộc thi</h1>
-    <div class="container left">
-        <div class="date"></div>
-        <!-- <i class="icon fa fa-home"></i> -->
-        <i class="icon fas fa-user-edit"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">11/05 : BẮT ĐẦU ĐĂNG KÝ</h2>
-            <p>
-                Mỗi đội có gồm 3 thành viên, đăng ký thông qua trang web cuộc thi.
-            </p>
+<section id="timeline">
+        <h1 class="timeline-title">Lịch trình</h1>
+        <div class="schedule">
+            <div class="timeline-line">
+                <div class="timeline-line__branch"></div>
+                <div class="timeline-line__branch"></div>
+                <div class="timeline-line__branch"></div>
+                <div class="timeline-line__branch"></div>
+                <div class="timeline-line__branch"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">08/05 : BẮT ĐẦU ĐĂNG KÝ</h2>
+                    <p class="timeline-info__description">
+                        Mỗi đội có gồm 3 thành viên, đăng ký thông qua trang web cuộc thi.
+                    </p>
+                </div>
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">16/05 - 25/05: MINIGAME 1 - Thu thập Sticker</h2>
+                    <p class="timeline-info__description">
+                        Cùng nhau sưu tập thật nhiều sticker để có cơ hội sở hữu những phần
+                        quà vô cùng hấp dẫn.
+                    </p>
+                </div>
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">16/05 - 18/05: MINIGAME 2 - Nhanh như chớp</h2>
+                    <p class="timeline-info__description">
+                        Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những phần quà
+                        hấp dẫn.
+                    </p>
+                </div>
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">23/05 - 25/05: MINIGAME 2 - Nhanh như chớp</h2>
+                    <p class="timeline-info__description">
+                        Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội sở hữu những
+                        phần quà hấp dẫn.
+                    </p>
+                </div>
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">25/05 : HẠN CHÓT ĐĂNG KÝ</h2>
+                    <p class="timeline-info__description"></p>
+                </div>
+                <div class="timeline-info">
+                    <h2 class="timeline-info__moldy">29/05 : DIỄN RA CUỘC THI</h2>
+                    <p class="timeline-info__description">
+                        Các team tham gia cuộc thi theo hình thức offline.
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="container right">
-        <div class="date"></div>
-        <i class="icon fas fa-gamepad"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">16/05 - 25/05: MINIGAME 1 - Thu thập Sticker</h2>
-            <p>
-                Cùng nhau sưu tập thật nhiều sticker để có cơ hội sở hữu những phần quà vô cùng hấp dẫn.
-            </p>
+    
+        <div class="timeline-img__absolute--XXXL">
+            <img src="{% static 'register/images/layout/block.png' %}">
         </div>
-    </div>
-    <div class="container left">
-        <div class="date"></div>
-        <i class="icon fas fa-puzzle-piece"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">16/05 - 18/05: MINIGAME 2 - Nhanh như chớp</h2>
-            <p>
-                Mini game sẽ được diễn ra tại trường Đại học Khoa học Tự nhiên, hãy tham gia để có cơ hội sở hữu những
-                phần quà hấp dẫn.
-            </p>
+        <div class="timeline-img__absolute--XL">
+            <img src="{% static 'register/images/layout/block.png' %}">
         </div>
-    </div>
-    <div class="container right">
-        <div class="date"></div>
-        <i class="icon fas fa-gamepad"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">19/05 - 21/05: MINIGAME 2 - Nhanh như chớp</h2>
-            <p>
-                Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những phần quà
-                hấp dẫn.
-            </p>
+        <div class="timeline-img__absolute--L">
+            <img src="{% static 'register/images/layout/block.png' %}">
+        </div>       
+        <div class="timeline-img__absolute--M">
+            <img src="{% static 'register/images/layout/block.png' %}">
         </div>
-    </div>
-    <div class="container left">
-        <div class="date"></div>
-        <i class="icon fas fa-puzzle-piece"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">23/05 - 25/05: MINIGAME 2 - Nhanh như chớp</h2>
-            <p>
-                Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội sở hữu những
-                phần quà hấp dẫn.
-            </p>
+        <div class="timeline-img__absolute--S">
+            <img src="{% static 'register/images/layout/block.png' %}">
         </div>
-    </div>
-    <div class="container right">
-        <div class="date"></div>
-        <i class="icon fas fa-lock"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">25/05 : HẠN CHÓT ĐĂNG KÝ</h2>
-            <p>
 
-            </p>
-        </div>
-    </div>
-    <div class="container left">
-        <div class="date"></div>
-        <i class="icon fas fa-trophy"></i>
-        <div class="content">
-            <h2 style="font-weight: bold;">29/05 : DIỄN RA CUỘC THI</h2>
-            <p>
-                Các team tham gia cuộc thi theo hình thức offline.
-            </p>
-        </div>
-    </div>
-</div>
+</section>
 <!-- Lịch trình -->
 
 <!-- Giới thiệu ban tổ chức -->
-<div id="organizers" class="container-fluid">
+<!-- <div id="organizers" class="container-fluid">
     <div class="container">
         <div class="row" style="padding-bottom: 30px;">
 
@@ -545,11 +539,11 @@
 
         </div>
     </div>
-</div>
+</div> -->
 <!-- Giới thiệu ban tổ chức -->
 
 <!-- Giới thiệu nhà tài trợ -->
-<div id="sponsors" class="container-fluid">
+<!-- <div id="sponsors" class="container-fluid">
     <div class="container">
         <div class="row" style="padding-bottom: 30px;">
             <div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -603,47 +597,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Giới thiệu nhà tài trợ -->
 
 <!-- footer -->
 <footer>
-    <div id="footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
+    <div id="footer" class="container">
 
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                    <h5>ĐƠN VỊ HỖ TRỢ</h5>
-                    <div style="text-align: center; align-items: center;">
-                        <div class="support">
-                            <img src="{% static 'register/images/footer/Doan.png' %}" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                    <h5 style="padding-left: 20px;">LIÊN HỆ</h5>
-                    <div class="contact" style="margin-top: 46px;">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="unit_fb">
-                                    <a target="_blank" href="https://www.facebook.com/uit.ucpc">
-                                        <img src="{% static 'register/images/footer/FB.png' %}">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="unit_gm">
-                                    <a target="_blank" href="mailto:ucpc@uit.edu.vn">
-                                        <img src="{% static 'register/images/footer/Gmail.png' %}">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </footer>
 <!-- footer -->
