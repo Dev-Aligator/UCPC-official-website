@@ -10,6 +10,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from register.models import Team, Teammate, Post, Website, UcpcUser
 from django.contrib.auth.decorators import login_required
+from django.db.models.signals import post_save
 from .choices import Choices
 
 import datetime
@@ -229,38 +230,28 @@ class edit_profile(View):
     def post(self, request):
         if request.method == 'POST':
             try:
+                # type = request.POST.get('type')
+                # ucpc_user = UcpcUser.objects.get(email = request.user.email)
+                # team_instance = Team.objects.get(UcpcUser = ucpc_user)
+                # teammates_instance = Teammate.objects.filter(Team = team_instance)
+                # tf = TeamForm(request.POST, instance=team_instance)
+                # tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
+                # print(tf.is_valid(), tmf.is_valid())
+                # if(tf.is_valid() and tmf.is_valid()):
+                #     updated_team_instance = tf.save(commit=False)
+                #     updated_team_instance['UcpcUser'] = ucpc_user
+                #     updated_team_instance.save()
+                #     tmf.save()
                 type = request.POST.get('type')
-                ucpc_user = UcpcUser.objects.get(email = request.user.email)
-                team_instance = Team.objects.get(UcpcUser = ucpc_user)
-                tf = TeamForm(request.POST, instance=team_instance)
-                if(tf.is_valid()):
-                    team_instance = tf.save()
-                teammates_instance = Teammate.objects.filter(Team = team_instance)
+                tf = TeamForm(request.POST)
                 tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
-                for tm, teammate_instance in zip(tmf, teammates_instance):
-                    tm.instance = teammate_instance
-                if(tmf.is_valid()):
-                    tmf.save()
+                print(tf.is_valid() and tmf.is_valid())
                 messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
                 return redirect('register:profile')
             except Exception as ex:
                 print(ex)
                 messages.error(request, '❌ Lỗi hệ thống!')
                 return render(request, 'login/edit.html', status=500)
-            # if (tf.is_valid() and tmf.is_valid()): 
-            #     tf_instance = tf.save()
-            #     for tm in tmf:
-            #         tm.Team = tf_instance
-            #         tm.save()
-            #     messages.success(request, '✔️ Tài khoản ' + request.user.email + ' cập nhật thông tin thành công!')
-            #     return redirect('register:profile')
-            # else:
-            #     ctx = { 
-            #         'tf':tf,
-            #         'tmf': tmf
-            #     }
-            #     messages.error(request, '❌ Thông tin không hợp lệ!')
-            #     return render(request, 'login/edit.html', ctx, status=422)
 
 def logout(request):
     auth_logout(request)
