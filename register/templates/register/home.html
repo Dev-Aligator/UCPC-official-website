@@ -164,7 +164,7 @@
 
 
 <!-- Thời Gian Đăng Ký -->
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
 
         let deadline = "May 25, 2022 00:00:00"
@@ -184,7 +184,7 @@
             }
         }, 0)
     })
-</script>
+</script> -->
 <!-- <div id="countdown" class="container">
     <div id="countdown_info" class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -230,41 +230,55 @@
         </div>
     </div>
 </div> -->
-
-<div class="box-time">
-    <img class="box-time__img" src="{% static 'register/images/introduction/banner2.jpg' %}" width="100%" alt="">
-
-
-    <div id="countdown" class="container">
-        <div class="container">
-            <div class="countdown-info">
-                <div class="countdown-title">Thời hạn đăng ký</div>
-                <div class="countdown-end">Ngày 25/05/2022</div>
-            </div>
-
-            <div class="countdown-system">
-                <div class="countdown-system__time">
-                    <span id="days"></span>
-                    <p>Ngày</p>
-                </div>
-                <div class="countdown-system__time">
-                    <span id="hours"></span>
-                    <p>Giờ</p>
-                </div>
-                <div class="countdown-system__time">
-                    <span id="minutes"></span>
-                    <p>Phút</p>
-                </div>
-                <div class="countdown-system__time">
-                    <span id="seconds"></span>
-                    <p>Giây</p>
-                </div>
-            </div>
+<div id="countdown" class="container">
+    <div class="container">
+        <div class="countdown-info">
+            <div class="countdown-title">Thời hạn đăng ký</div>
+            <div class="countdown-end">Ngày 25/05/2022</div>
         </div>
 
-    </div>
+        <div id="time">
+            
+            <div class="circle" style="--clr: #A6E3E9">
+                <div class="dots day_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="dd"></circle>
+                </svg>
+                <div id="days">00</div>
+            </div>
+            <div class="circle" style="--clr: #A6E3E9">
+                <div class="dots hr_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="hh"></circle>
+                </svg>
+                <div id="hours">00</div>
+            </div>
+            <div class="circle" style="--clr: #A6E3E9">
+                <div class="dots min_dot"></div>
 
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="mm"></circle>
+                </svg>
+                <div id="minutes">00</div>
+            </div>
+            <div class="circle" style="--clr: #A6E3E9">
+                <div class="dots sec_dot"></div>
+
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="ss"></circle>
+                </svg>
+                <div id="seconds">00</div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+<script src="{% static 'register/javascript/ucpc-2023.timer.js' %}"></script>
 
 <!-- Thời Gian Đăng Ký -->
 
