@@ -1,10 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700,900');
 
 
+.box-time__img {
+    position: absolute;
+    opacity: var(--opacity);
+    height: -webkit-fill-available;
+}
+
+.countdown {
+    padding-top: 100px;
+}
+
 .countdown-info {
     display: flex;
     padding-left: 16px;
     align-items: center;
+    justify-content: center;
 }
 
 .countdown-title {
