@@ -5,10 +5,14 @@
 
 .Navbar {
     background-color: var(--primary3-color);
-    max-height: 38px;
+    max-height: 53px;
     position: fixed;
     width: 100%;
     z-index: 100;
+}
+
+.Navbar-container {
+    margin: 0 20px;
 }
 
 .Navbar-toggler {
@@ -38,15 +42,16 @@
 .Navbar-Nav {
     width: 45%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .Nav-item {
     list-style: none;
     padding: 0 12px;
-    font-size: 10px;
+    font-size: 1.6rem;
     font-family: 'Inter';
     font-weight: 700;
-    line-height: 38px;
 }
 
 .Nav-item:first-child {
@@ -72,9 +77,10 @@
 .Navbar-brand {
     padding: 0;
     margin: 0;
-    height: 54px;
+    height: 68px;
     position: relative;
     z-index: 10;
+    width: 60px;
 }
 
 .Navbar-brand::after {
@@ -89,7 +95,7 @@
 
 .Nav-btn {
     color: #fff;
-    font-size: 10px;
+    font-size: 1.6rem;
     font-family: 'Inter';
     font-weight: 700;
     margin-bottom: 16px;
@@ -103,6 +109,7 @@
     display: flex;
     justify-content: right;
     width: 45%;
+    margin-top: 2px;
 }
 
 .Nav-btn:hover {
@@ -116,7 +123,7 @@
 
 @media (min-width: 768px) { 
     .Navbar {
-        max-height: 38px;
+        max-height: 53px;
     }
 }
 
