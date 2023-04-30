@@ -1,0 +1,106 @@
+/* Navbar */
+@media (min-width: 768px) { 
+    .Navbar {
+        max-height: 53px;
+    }
+}
+
+@media (max-width: 768px) {
+    #NavbarSupportedContent {
+        display: block;
+    }
+
+    .Navbar {
+        max-height: 80px;
+        overflow: hidden;
+    }
+
+    .Navbar-toggler {
+        font-size: 42px;
+        display: flex;
+        justify-content: end;
+        margin-top: 20px;
+        padding-right: 20px;
+    }
+
+    .Navbar-Nav {
+        display: block;
+        margin-top: 20px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .Navbar::after {
+        display: none;
+        color: transparent;
+    }
+
+    .Navbar::before {
+        display: none;
+        color: transparent;
+    }
+
+    .Navbar-brand::after {
+        display: none;
+        background-color: transparent;
+    }
+
+    .Navbar-brand {
+        height: 80px;
+        width: 80px;
+        position: absolute;
+        top: 0;
+    }
+
+    .Nav-item {
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .Nav-item:first-child {
+        padding-left: 12px;
+    }
+
+    .Nav-item:last-child {
+        border-bottom: 1px solid #06283D;
+    }
+
+    .Nav-btn {
+        padding-left: 12px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .form-login,
+    .form-register {
+        display: block;
+        width: 100%;
+    }
+
+    .form-inline {
+        display: block;
+    }
+
+    .carousel {
+        top: 80px;
+    }
+}
+
+/* Introduce */
+@media (max-width: 1200px) and (min-width: 768px) {
+    .sponsors-logo {
+        flex-direction: column;
+    }
+
+    .sponsors-logo__box {
+        flex-direction: row;
+    }
+}
+
+/* Footer */
+@media (max-width: 1000px) and (min-width: 768px){
+    .footer-info {
+        align-items: baseline;
+        flex-direction: column;
+    }
+}

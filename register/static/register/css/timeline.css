@@ -8,6 +8,8 @@
 .schedule {
     overflow-x: scroll;
     margin-bottom: 120px;
+    position: relative;
+    z-index: 10;
 }
 ::-webkit-scrollbar {
     height: 1px;
