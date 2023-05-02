@@ -24,7 +24,8 @@
 
 #time{
     font-family: 'Poppins', sans-serif;
-    display: flex;
+    display: flex;  
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 40px;
@@ -97,3 +98,11 @@
     border-radius: 50%;
     box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
 }
+
+
+@media screen and (max-width: 768px) {
+    /* #time > div{
+        width: 50%;
+    } */
+    
+  }
