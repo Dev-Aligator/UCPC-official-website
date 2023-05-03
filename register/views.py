@@ -16,7 +16,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import numpy as np
 from argon2 import PasswordHasher
-
 ph = PasswordHasher()
 
 try:
@@ -44,17 +43,20 @@ def home(request):
 
 class register(View):
     def get(self, request):
-        now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25)
-        time_remaining = deadline - now
-        if time_remaining.days < 0:
-            context = {'uf': userForm, 'isTimeOver': True}
-            # context = {'isTimeOver' : True}
+        if request.user.is_authenticated:
+            return redirect('register:home') 
         else:
-            context = {'uf': userForm, 'isTimeOver': False}
-            # context = {'isTimeOver' : False}
+            now = datetime.datetime.now()
+            deadline = datetime.datetime(2023, 5, 25)
+            time_remaining = deadline - now
+            if time_remaining.days < 0:
+                context = {'uf': userForm, 'isTimeOver': True}
+                # context = {'isTimeOver' : True}
+            else:
+                context = {'uf': userForm, 'isTimeOver': False}
+                # context = {'isTimeOver' : False}
 
-        return render(request, 'register/register.html', context)
+            return render(request, 'register/register.html', context)
     
     def post(self, request):
         if request.method == 'POST':
@@ -130,12 +132,14 @@ class register(View):
 #                 ctx = {"tf":tf}
 #                 messages.error(request, '❌ Thông tin không hợp lệ!')
 #                 return render(request, 'register/register.html', ctx, status=422)
-                
 
 class login(View):
     def get(self, request):
-        ctx = {'lf': loginForm}
-        return render(request, 'login/login.html', ctx)
+        if request.user.is_authenticated:
+            return redirect('register:home') 
+        else:
+            ctx = {'lf': loginForm}
+            return render(request, 'login/login.html', ctx)
     def post(self, request):
         if request.method == 'POST':
             Username = request.POST['email']
@@ -189,10 +193,3 @@ def logout(request):
     auth_logout(request)
     return redirect('register:home')
 
-
-
-
-
-def posts(request):
-    context = {}
-    return render(request, 'posting/post.html', context)
