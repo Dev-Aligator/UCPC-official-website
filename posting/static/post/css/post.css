@@ -11,6 +11,11 @@
     --bg-prussian-blue: hsla(216, 33%, 20%, 1);
     --bg-oxford-blue: hsla(222, 44%, 13%, 1);
     --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+    
+    --primary1-color: #A6E3E9;
+    --primary2-color: #06283D;
+    --primary3-color: #71C9CE;
+    --opacity: 0.3;
   
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);

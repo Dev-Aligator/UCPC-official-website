@@ -11,6 +11,11 @@
     --bg-prussian-blue: hsla(216, 33%, 20%, 1);
     --bg-oxford-blue: hsla(222, 44%, 13%, 1);
     --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+
+    --primary1-color: #A6E3E9;
+    --primary2-color: #06283D;
+    --primary3-color: #71C9CE;
+    --opacity: 0.3;
   
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);
@@ -172,11 +177,6 @@ body {
   }
 
 
-nav{
-   height:100px; 
-   border: black;
-    
-}
 .form-container{
     display: flex;
     justify-content: center;
@@ -430,9 +430,20 @@ p {
     text-align: center;
 }
 
+.Navbar
+{
+   position: fixed !important;
+   top: 0px !important;
+}
+
 /* Responsive */
 
-@media (max-width: 992px){
+@media (max-width: 1300px){
+    body{
+        overflow-y: scroll;
+        white-space: nowrap;
+        margin-top: 200px;
+    }
     .register-card {
         display: block;
         width: 500px;
@@ -445,6 +456,8 @@ p {
     .hero-bg {
         display:none;
     }
+
+
     /* .register-card .column:last-child{
         display: none;
     }
