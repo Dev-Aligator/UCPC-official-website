@@ -1,5 +1,16 @@
+:root {
+    --primary1-color: #A6E3E9;
+    --primary2-color: #06283D;
+    --primary3-color: #71C9CE;
+    --opacity: 0.3
+}
+
 html {
     scroll-behavior: smooth;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto Serif', serif;
 }
 
 * {
@@ -12,35 +23,35 @@ body {
     padding: 0;
     overflow-y: scroll;
 
-    background-color: #130820;
+    background-color: var(--primary2-color);
     color: white;
 }
 
-nav > .collapse > ul > li > a {
+/* nav > .collapse > ul > li > a {
     font-size: 25px;
-    color: white;
+    color: white; */
     /* margin-left: 60px;
     margin-right: 60px; */
-}
+/* } */
 
-nav {
-    background-color: #130820;
-}
+/* nav {
+    background-color: var(--primary3-color);
+} */
 
-.navbar .btn {
+.Navbar .Btn {
     background-color: #4cf2d2;
     color: #130820;
 }
 
-.navbar .btn:hover {
+.Navbar .Btn:hover {
     color: #130820;
     background-color: #fff;
 }
 
-.navbar-dark .navbar-collapse .navbar-nav .nav-item .nav-link {
+/* .navbar-dark .navbar-collapse .navbar-nav .nav-item .nav-link {
     color: white;
-    font-size: 20px;
-    margin-left: 20px;
-}
-
-
+    font: Inter;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 16px;
+} */
