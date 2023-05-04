@@ -12,16 +12,25 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+	{% block include-css %}
+
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/home.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/myStyle.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/main.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'register/css/navbar.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/information.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/countdown.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/rules.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/reward.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/timeline.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/introduce.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/footer.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/countdown.css' %}">
+
+
+	{% endblock include-css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/navbar.css' %}">
+
+	
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +38,7 @@
 
 	<script src="https://kit.fontawesome.com/dadc55c5f1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -58,6 +68,7 @@
 	<script src="{% static 'register/javascript/ucpc-2023.register.js' %}"></script>
 	<!-- <script src="{% static 'register/javascript/timer.js' %}"></script> -->
 	<!-- <script src="{% static 'register/javascript/renderRegistrationPage.js' %}"></script> -->
+	<script src="{% static 'register/javascript/toggler.js' %}"></script>
 </body>
 
 </html>

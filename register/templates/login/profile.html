@@ -1,67 +1,80 @@
-{% extends 'register/navigations.html' %}
+{% extends 'register/main.html' %}
 {% load static %}
 
-{% block content %}
-<div class="container" style="margin-top: 15px;">
-	<h1>Hồ sơ</h1>
-</div>
-
-{% for message in messages %}
+{% block main %}
 <div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
-
-<div class="container">
-	<span style="font-weight: 600;">Tên đội: </span>
-	{{ team.TeamName }}
-	<br>
-	<span style="font-weight: 600;">Email: </span>
-	{{ user_email }}
-	<br>
-	<span style="font-weight: 600;">Hạng: </span>
-	{{ team.Rank }}
-	<br>
-	<span style="font-weight: 600;">Lệ phí thi: </span>
-	{% if team.FeePaymnet == True %}
-		<span style="color: #4cf2d2;">Đã thanh toán</span>
-	{% else %}
-		<span style="color: #fcf951ff;">Chưa thanh toán (Cập nhật sau 24h)</span>
-	{% endif %}
-	<br>
-</div>
-<br>
-
-{% if teammates %}
-	<div class="container">
-		<table>
-			<tbody>
-				<tr>
-					<th>Họ và Tên</th>
-					<th>MSSV/CMND</th>
-					<th>Số điện thoại</th>
-					<th>Trường</th>
-				</tr>
-				{% for teammate in teammates %}
-				<tr>
-					{% if teammate.Leader == True %}
-						<td style="text-align: left;">{{ teammate.Fullname }} (Đội trưởng)</td>
-					{% else %}
-						{% if teammate.Occupation == Teacher %}
-							<td style="text-align: left;">{{ teammate.Fullname }} (Giáo viên bảo hộ)</td>
-						{% else %}
-							<td style="text-align: left;">{{ teammate.Fullname }}</td>
-						{% endif %}
-					{% endif %}
-					<td>{{ teammate.MSSV_CMND }}</td>
-					<td>{{ teammate.Phone }}</td>
-					<td>{{ teammate.School }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<p style="margin-top: 8px;">ℹ️ Mọi thông tin thắc mắc hoặc thay đổi vui lòng liên hệ Ban Tổ Chức tại mail: ucpc@uit.edu.vn</p>
+	<div class="topbar d-flex flex-row">
+		<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+		<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 	</div>
-{% endif %}
-
-{% endblock content %}
+	<div class="divider"></div>
+	{% for message in messages %}
+		<div class="message">
+			<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
+		</div>
+	{% endfor %}
+	<div class="title-container">
+		<h1 class="title">Hồ sơ đội thi UCPC</h1>
+	</div>
+	<div class="fee-container">
+		<div class="fee-title">Tình trạng lệ phí: </div>
+		{% if team.FeePaymnet == True %}
+			<span class="fee-status" style="color: #71C9CE;">Đã thanh toán</span>
+		{% else %}
+			<span class="fee-status" style="color: #CD1111;">Chưa thanh toán (Cập nhật sau 24h)</span>
+		{% endif %}
+	</div>
+	<div class="info-container">
+		<div class="general_info">
+			<div class="info-box">
+				<div class="box-title-container">
+					<h2 class="box-title">Thông tin đội</h2>
+				</div>
+				<div class="box-info-container">
+					<div class="box-label">Tên đội</div>
+					<!-- {{ team.TeamName }}
+					<br>
+					<span class="box-label">Email</span>
+					{{ user_email }}
+					<br>
+					<span class="box-label">Hạng</span>
+					{{ team.Rank }}	 -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="teammate_container">
+		{% if teammates %}
+			<div class="teammate">
+				<table>
+					<tbody>
+						<tr>
+							<th>Họ và Tên</th>
+							<th>MSSV/CMND</th>
+							<th>Số điện thoại</th>
+							<th>Trường</th>
+						</tr>
+						{% for teammate in teammates %}
+						<tr>
+							{% if teammate.Leader == True %}
+								<td style="text-align: left;">{{ teammate.Fullname }} (Đội trưởng)</td>
+							{% else %}
+								{% if teammate.Occupation == Teacher %}
+									<td style="text-align: left;">{{ teammate.Fullname }} (Giáo viên bảo hộ)</td>
+								{% else %}
+									<td style="text-align: left;">{{ teammate.Fullname }}</td>
+								{% endif %}
+							{% endif %}
+							<td>{{ teammate.MSSV_CMND }}</td>
+							<td>{{ teammate.Phone }}</td>
+							<td>{{ teammate.School }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<p style="margin-top: 8px;">ℹ️ Mọi thông tin thắc mắc hoặc thay đổi vui lòng liên hệ Ban Tổ Chức tại mail: ucpc@uit.edu.vn</p>
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock main %}

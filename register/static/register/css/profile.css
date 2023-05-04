@@ -1,0 +1,76 @@
+.logo-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    width: 146px;
+    color: #FFFFFF;
+}
+.logo {
+    margin-right: 7px
+}
+.topbar {
+    margin-top: 55px;
+    margin-bottom: 45px;
+}
+.divider {
+    border: 2px solid #71C9CE;
+}
+.title-container {
+    margin-top: 50px;
+    margin-bottom: 85px;
+}
+.title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 73px;
+    color: #FFFFFF;
+}
+.fee-container {
+    margin-bottom: 74.8px;
+}
+.fee-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #FFFFFF;
+    display: inline;
+}
+.fee-status {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #CD1111;
+}
+.info-box {
+    border: 2px solid #71C9CE;
+    border-radius: 48px;
+    box-sizing: border-box;
+}
+.box-title-container {
+    position: relative;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 45px;
+    top: -29px;
+    background: #06283D;
+}
+.box-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    color: #FFFFFF;
+}
+.box-info-container {
+    background-color: red;
+}
