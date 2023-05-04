@@ -5,12 +5,12 @@
 }
 
 .organizers {
-    min-width: 50%;
+    min-width: 100%;
 }
 
 .organizers-text {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 400;
     color: var(--primary1-color);
     padding: 48px 0 0;
@@ -27,11 +27,12 @@
 
 .sponsors {
     min-width: 50%;
+    display: none;
 }
 
 .sponsors-text {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 400;
     color: var(--primary1-color);
     padding: 48px 0 0;
@@ -43,7 +44,7 @@
 }
 
 .sponsors-type {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: var(--primary1-color);
 }
 
