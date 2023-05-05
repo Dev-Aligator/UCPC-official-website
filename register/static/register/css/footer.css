@@ -1,3 +1,85 @@
-#footer {
-    height: 100px;
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.footer-img {
+    height: -webkit-fill-available;
+    position: absolute;
+}
+
+.footer-link a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-left: 12px;
+}
+
+.footer-link:hover {
+    color: #333;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact {
+    padding: 0 24px;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.footer-contact__info {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.footer-contact__info a {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.footer-contact__icon {
+    font-size: 2rem;
+    padding-right: 8px;
+    font-weight: bolder;
+}
+
+.footer-logo img {
+    width: 50px;
+}
+
+.footer-img__absolute--L {
+    position: absolute;
+    top: -26%;
+    left: 26%;
+}
+
+.footer-img__absolute--L img {
+    width: 25%;
+    opacity: var(--opacity);
+}
+
+.footer-img__absolute--M {
+    position: absolute;
+    bottom: 6%;
+    left: 60%;
+}
+
+.footer-img__absolute--M img {
+    width:18%;
+    opacity: var(--opacity);
 }

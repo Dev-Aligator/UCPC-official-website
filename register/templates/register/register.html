@@ -2,9 +2,9 @@
 {% load static %}
 {% load socialaccount %}
 
-{% block login-register %}
+{% block include-css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
-{% endblock %}
+{% endblock include-css %}
 
 {% block content %}
 {% if isTimeOver %}

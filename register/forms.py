@@ -18,7 +18,6 @@ class userForm(UserCreationForm):
 
 class TeamForm(forms.ModelForm):
     TeamName = forms.CharField(required=True, max_length = 30, label = 'Tên đội', validators=[Validator.TeamRegex], widget = forms.TextInput(attrs={'class': 'form-control', 'id': 'pos1', 'placeholder': 'Chữ cái đầu tiên trong tên đội phải viết hoa. Ví dụ: Team01' }))
-    
     class Meta:
         model = Team
         fields = ['TeamName']

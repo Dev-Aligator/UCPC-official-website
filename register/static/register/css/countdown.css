@@ -1,12 +1,5 @@
-.box-time {
-    position: relative;
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700,900');
 
-.box-time__img {
-    height: -webkit-fill-available;
-    opacity: var(--opacity);
-    position: absolute;
-}
 
 .countdown-info {
     display: flex;
@@ -28,40 +21,88 @@
     padding-left: 20px;
 }
 
-.countdown-system {
-    display: flex;
-    justify-content: end;
+
+#time{
+    font-family: 'Poppins', sans-serif;
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    color: #fff;
 }
 
-.countdown-system__time {
-    border: 2px solid;
-    border-radius: 50%;
+#time .circle {
+    position: relative;
     width: 150px;
     height: 150px;
-    text-align: center;
-    line-height: 150px;
-    margin: 12px 24px 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#time .circle svg{
     position: relative;
+    width: 150px;
+    height: 150px;
+    transform: rotate(270deg);
+
 }
 
-.countdown-system__time span {
-    font-size: 4.8rem;
-    line-height: 14rem;
-    font-weight: 100;
+#time .circle svg circle{
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: #191919;
+    stroke-width: 4;
+    transform: translate(5px, 5px);
 }
 
-.countdown-system__time p {
+#time .circle svg circle:nth-child(2){
+    stroke: var(--clr);
+    stroke-dasharray: 440;
+}
+
+
+#time div {
     position: absolute;
-    right: -26px;
-    font-size: 1.6rem;
-    font-weight: 100;
-    top: -62px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 3.5rem;
 }
 
-.countdown-system__time:nth-child(2) p {
-    right: -18px;
+#time div span {
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 0.35em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.countdown-system__time:last-child p {
-    right: -20px;
+.dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
 }
+
+.dots::before{
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 15px;
+    height: 15px;
+    background: var(--clr);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+}
+
+
+@media screen and (max-width: 768px) {
+    /* #time > div{
+        width: 50%;
+    } */
+    
+  }

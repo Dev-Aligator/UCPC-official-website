@@ -28,5 +28,3 @@ Array.from(menuItems).forEach(function (item) {
         img.style.top = null
     }
 })
-
-

@@ -17,7 +17,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import numpy as np
 from argon2 import PasswordHasher
-
 ph = PasswordHasher()
 
 try:
@@ -41,15 +40,20 @@ def home(request):
 
 class register(View):
     def get(self, request):
-        now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25)
-        time_remaining = deadline - now
-        if time_remaining.days < 0:
-            context = {'uf': userForm, 'isTimeOver': True}
+        if request.user.is_authenticated:
+            return redirect('register:home') 
         else:
-            context = {'uf': userForm, 'isTimeOver': False}
+            now = datetime.datetime.now()
+            deadline = datetime.datetime(2023, 5, 25)
+            time_remaining = deadline - now
+            if time_remaining.days < 0:
+                context = {'uf': userForm, 'isTimeOver': True}
+                # context = {'isTimeOver' : True}
+            else:
+                context = {'uf': userForm, 'isTimeOver': False}
+                # context = {'isTimeOver' : False}
 
-        return render(request, 'register/register.html', context)
+            return render(request, 'register/register.html', context)
     
     def post(self, request):
         if request.method == 'POST':
@@ -68,11 +72,70 @@ class register(View):
             else:
                 ctx = {"uf":uf}
                 return render(request, 'register/register.html', ctx, status=422)
+        
+
+# class register(View):
+#     def get(self, request):
+#         now = datetime.datetime.now()
+#         deadline = datetime.datetime(2023, 5, 25)
+#         time_remaining = deadline - now
+#         if time_remaining.days < 0:
+#             context = {'tf': teamForm, 'isTimeOver': True}
+#         else:
+#             context = {'tf': teamForm, 'isTimeOver': False}
+
+#         return render(request, 'register/register.html', context)
+    
+#     def post(self, request):
+#         if request.method == 'POST':
+#             tf = teamForm(request.POST)
+#             if tf.is_valid():
+#                 tf.save()
+
+#                 Username = request.POST['team']
+#                 Email = request.POST['email']
+#                 Password = request.POST['password']
+#                 user = User.objects.create_user(Email, Email, Password)
+#                 user.save()
+
+#                 data = np.array([[request.POST['team'],
+#                                   request.POST['email'],
+#                                   ph.hash(request.POST['password']), 
+#                                   request.POST['member1'],
+#                                   request.POST['mssv1'],
+#                                   request.POST['cmnd1'],
+#                                   request.POST['phone1'],
+#                                   request.POST['school1'],
+#                                   request.POST['member2'],
+#                                   request.POST['mssv2'],
+#                                   request.POST['cmnd2'],
+#                                   request.POST['phone2'],
+#                                   request.POST['school2'],
+#                                   request.POST['member3'],
+#                                   request.POST['mssv3'],
+#                                   request.POST['cmnd3'],
+#                                   request.POST['phone3'],
+#                                   request.POST['school3']]])
+#                 try:
+#                     idx = f'B{str(len(wks.get_all_values()) + 1)}'
+#                     wks.update(idx, data.tolist())
+#                 except:
+#                     pass
+
+#                 Team = tf.cleaned_data.get('team')
+#                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
+#                 return redirect('register:login')
+#             else:
+#                 ctx = {"tf":tf}
+#                 messages.error(request, '❌ Thông tin không hợp lệ!')
+#                 return render(request, 'register/register.html', ctx, status=422)
 
 class login(View):
     def get(self, request):
-        ctx = {'lf': LoginForm}
-        return render(request, 'login/login.html', ctx)
+        if request.user.is_authenticated:
+            return redirect('register:home') 
+        else:
+            return render(request, 'login/login.html')
     def post(self, request):
         if request.method == 'POST':
             Username = request.POST['email']
@@ -115,7 +178,7 @@ class view_profile(LoginRequiredMixin, View):
                 ]
             }
             return render(request, 'login/profile.html', ctx)   
-        except:
+        except Exception as exp:
             messages.error(request, '❌ Không tìm thấy đội thi. Vui lòng tạo đội thi mới!')
             return redirect('register:create')
         
@@ -210,7 +273,9 @@ class edit_profile(LoginRequiredMixin, View):
             filtered_teammates = Teammate.objects.filter(Team = filtered_team)
 
             # Initiate data for forms with filtered data
-            tf_initial =  { 'TeamName': filtered_team.TeamName }
+            tf_initial =  { 
+                'TeamName': filtered_team.TeamName, 
+            }
             tmf_initial = [
                 {
                     'Fullname': teammate.Fullname,
@@ -221,6 +286,7 @@ class edit_profile(LoginRequiredMixin, View):
             ]
             
             ctx = {
+                ''
                 'tf': TeamForm(initial = tf_initial), 
                 'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial) ,
                 'isTimeOver': False
@@ -249,7 +315,6 @@ class edit_profile(LoginRequiredMixin, View):
                 tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
                 for tm, teammate in zip(tmf, filtered_teammates):
                     tm.instance = teammate
-                
                 # Save objects to db
                 if(tf.is_valid() and tmf.is_valid()):
                     tf_instance = tf.save()
@@ -275,6 +340,3 @@ def logout(request):
     auth_logout(request)
     return redirect('register:home')
 
-def posts(request):
-    context = {}
-    return render(request, 'posting/post.html', context)

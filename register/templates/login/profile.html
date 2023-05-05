@@ -3,10 +3,12 @@
 
 {% block main %}
 <div class="container">
-	<div class="topbar d-flex flex-row">
-		<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
-		<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
-	</div>
+	<a href="{% url 'register:home' %}">
+		<div class="topbar d-flex flex-row">
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
+		</div>	
+	</a>
 	<div class="divider"></div>
 	{% for message in messages %}
 		<div class="message">
@@ -24,57 +26,112 @@
 			<span class="fee-status" style="color: #CD1111;">Chưa thanh toán (Cập nhật sau 24h)</span>
 		{% endif %}
 	</div>
-	<div class="info-container">
+	<div class="info-container" style="margin-bottom: 300px;">
 		<div class="general_info">
 			<div class="info-box">
 				<div class="box-title-container">
 					<h2 class="box-title">Thông tin đội</h2>
 				</div>
 				<div class="box-info-container">
-					<div class="box-label">Tên đội</div>
-					<!-- {{ team.TeamName }}
-					<br>
-					<span class="box-label">Email</span>
-					{{ user_email }}
-					<br>
-					<span class="box-label">Hạng</span>
-					{{ team.Rank }}	 -->
+					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+						<div class="box-label-primary">Tên đội</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ team.TeamName }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+						<div class="box-label-primary">Email</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ user_email }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper">
+						<div class="box-label-primary">Hạng</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{% if team.Rank %}
+								{{ team.Rank }}
+								{% else %}
+								<span class="" style="color: #CD1111; font-weight: 400;">Chưa cập nhật</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="teammate_container">
 		{% if teammates %}
-			<div class="teammate">
-				<table>
-					<tbody>
-						<tr>
-							<th>Họ và Tên</th>
-							<th>MSSV/CMND</th>
-							<th>Số điện thoại</th>
-							<th>Trường</th>
-						</tr>
-						{% for teammate in teammates %}
-						<tr>
-							{% if teammate.Leader == True %}
-								<td style="text-align: left;">{{ teammate.Fullname }} (Đội trưởng)</td>
-							{% else %}
-								{% if teammate.Occupation == Teacher %}
-									<td style="text-align: left;">{{ teammate.Fullname }} (Giáo viên bảo hộ)</td>
-								{% else %}
-									<td style="text-align: left;">{{ teammate.Fullname }}</td>
-								{% endif %}
-							{% endif %}
-							<td>{{ teammate.MSSV_CMND }}</td>
-							<td>{{ teammate.Phone }}</td>
-							<td>{{ teammate.School }}</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-				<p style="margin-top: 8px;">ℹ️ Mọi thông tin thắc mắc hoặc thay đổi vui lòng liên hệ Ban Tổ Chức tại mail: ucpc@uit.edu.vn</p>
+		<div class="teammate_container">
+			{% for teammate in teammates %}
+			<div class="info-box" style="margin-top: 70px">
+				<div class="box-title-container">
+					{% if teammate.Occpation == 'Teacher' %}
+					<h2 class="box-title">Người phụ trách</h2>
+					{% else %}
+						{% if teammate.Leader == True %}
+						<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+						{% else %}
+						<h2 class="box-title">Thành viên {{ forloop.counter }}</h2>
+						{% endif %}
+					{% endif %}
+				</div>
+				<div class="box-info-container">
+					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+						<div class="box-label-secondary">Họ và tên</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.Fullname }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+						<div class="box-label-secondary">MSSV/CCCD</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.MSSV_CMND }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+						<div class="box-label-secondary">Số điện thoại</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.Phone }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper">
+						<div class="box-label-secondary">Tên trường</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.School }}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			{% endfor %}
+		</div>
 		{% endif %}
+		<div class="btn-container" id="profile-btn-container">
+			<a href="{% url 'register:home' %}">
+				<button type="button" class="exit-btn">Trở về</button>
+			</a>
+			<a href="{% url 'register:edit' %}">
+				<button type="button" class="edit-btn" style="margin-left: 57px">Chỉnh sửa thông tin</button>
+			</a>
+		</div>
 	</div>
 </div>
 {% endblock main %}
