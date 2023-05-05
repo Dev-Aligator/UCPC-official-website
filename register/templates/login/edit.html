@@ -2,91 +2,133 @@
 {% load static %}
 
 {% block main %}
-<!-- {% if isTimeOver %}
+{% if isTimeOver %}
 <div class="container" style="margin-top: 15px;">
 	<h1 style="font-weight: bold;">Đã hết thời gian chỉnh sửa thông tin đội thi!</h1>
 </div>	
 {% else %}
-<div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold; margin-bottom: 40px;">Chỉnh sửa thông tin đội thi</h1>
-</div>
-{% for message in messages %}
 <div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %} -->
-<div class="container">
-	<div class="topbar d-flex flex-row">
-		<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
-		<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
+	<a href="{% url 'register:home' %}">
+		<div class="topbar d-flex flex-row">
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
+		</div>	
+	</a>
+	<div class="divider-container d-flex align-items-center justify-content-center">
+		<div class="divider"></div>
 	</div>
-	<div class="divider"></div>
+	{% for message in messages %}
+	<div class="message-container">
+		<p class="messages">{{message}}</p>
+	</div>
+	{% endfor %}
 	<div class="title-container">
-		<h1 class="title">Hồ sơ đội thi UCPC</h1>
+		<h1 class="title">Chỉnh sửa hồ sơ đội thi UCPC</h1>
 	</div>
-	<div class="fee-container">
-		<div class="fee-title">Tình trạng lệ phí: </div>
-		{% if tf.FeePaymnet == True %}
-			<span class="fee-status" style="color: #71C9CE;">Đã thanh toán</span>
-		{% else %}
-			<span class="fee-status" style="color: #CD1111;">Chưa thanh toán (Cập nhật sau 24h)</span>
-		{% endif %}
-	</div>
-	<div class="form-group">
-		<form id="registration_form" method="POST">
-			{% csrf_token %}
-			<div class="member_infor" style="margin-bottom: 30px;">
-				<div class="team" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.TeamName.label }}</b><br>
-					{{ tf.TeamName }}
-					<i id="valid_team" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.TeamName.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Tên đội không được sử dụng từ ngữ, ký hiệu vi phạm truyền thống lịch sử, văn hóa, đạo đức và thuần phong mỹ tục của dân tộc.</p>
-				</div>
-			</div>
-			{{ tmf.management_form }}
-			{% for tmForm in tmf %}
-				<div class="member_infor" style="margin-bottom: 30px;">
-					{% if forloop.counter == 1 %}
-						<h3 style="font-weight: bold;">Thành viên 1 (Đội trưởng)</h3>
-					{% else %}
-						{% if forloop.counter == 4 %}
-							<h3 style="font-weight: bold;">Giáo viên bảo hộ</h3>
-						{% else %}
-							<h3 style="font-weight: bold;">Thành viên {{forloop.counter}}</h3>
-						{% endif %}
-					{% endif %}
-					<div class="member" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Fullname.label }}</b><br>
-						{{ tmForm.Fullname }}
-						<i id="valid_member" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_member" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Fullname.errors }}</small>
-					</div>
-					<div class="mssv" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.MSSV_CMND.label }}</b><br>
-						{{ tmForm.MSSV_CMND }}
-						<i id="valid_mssv" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_mssv" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.MSSV_CMND.errors }}</small>
-					</div>
-					<div class="phone" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Phone.label }}</b><br>
-						{{ tmForm.Phone }}
-						<i id="valid_phone" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_phone" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Phone.errors }}</small>
-					</div>
-					<div class="school" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.School.label }}</b><br>
-						{{ tmForm.School }}
-						<small>{{ tmForm.School.errors }}</small><br>
+	<div class="info-container" style="margin-bottom: 300px;">
+		<div class="form-group">
+			<form id="registration_form" method="POST">
+				{% csrf_token %}
+				<div class="general_info">
+					<div class="info-box">
+						<div class="box-title-container">
+							<h2 class="box-title">Thông tin đội</h2>
+						</div>
+						<div class="box-info-container">
+							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+								<div class="box-label-primary">Tên đội</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tf.TeamName }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tf.TeamName.errors }}</small>
+								<p class="box-value-hint">Tên đội không được sử dụng từ ngữ, ký hiệu vi phạm truyền thống lịch sử, văn hóa, đạo đức và thuần phong mỹ tục của dân tộc.</p>
+							</div>	
+						</div>
 					</div>
 				</div>
-			{% endfor %}
-			<button type="submit" id="submit_btn" class="btn btn-primary" style="margin-top: 10px; background-color: #4CF2D2; border-color: #4CF2D2; color: black;">Chỉnh sửa</button>
-		</form>
+				<div class="teammates_info">
+					{{ tmf.management_form }}
+					{% for tmForm in tmf %}
+					<div class="info-box" style="margin-top: 70px;">
+						<div class="box-title-container">
+							{% if tmForm.Occpation == 'Teacher' %}
+							<h2 class="box-title">Người phụ trách</h2>
+							{% else %}
+								{% if tmForm.Leader == True %}
+								<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+								{% else %}
+								<h2 class="box-title">Thành viên {{ forloop.counter }}</h2>
+								{% endif %}
+							{% endif %}
+						</div>
+						<div class="box-info-container">
+							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+								<div class="box-label-secondary">Họ và tên</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.Fullname }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.Fullname.errors }}</small>
+							</div>
+							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+								<div class="box-label-secondary">MSSV/CCCD</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.MSSV_CMND }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.MSSV_CMND.errors }}</small>
+							</div>
+							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+								<div class="box-label-secondary">Số điện thoại</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.Phone }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.Phone.errors }}</small>
+							</div>
+							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+								<div class="box-label-secondary">Tên trường</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.School }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.School.errors }}</small>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="btn-container row" id="profile-btn-container">
+					<a class="col-xl-4 col-lg-12" href="{% url 'register:profile' %}">
+						<button type="button" class="exit-btn">Trở về</button>
+					</a>
+					<div class="col-xl-8 col-lg-12">
+						<button type="submit" id="submit_btn" class="edit-btn">Cập nhật thông tin</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 

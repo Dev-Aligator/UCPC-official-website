@@ -9,22 +9,16 @@
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
-	<div class="divider"></div>
+	<div class="divider-container d-flex align-items-center justify-content-center">
+		<div class="divider"></div>
+	</div>
 	{% for message in messages %}
-		<div class="message">
-			<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-		</div>
+	<div class="message-container">
+		<p class="messages">{{message}}</p>
+	</div>
 	{% endfor %}
 	<div class="title-container">
 		<h1 class="title">Hồ sơ đội thi UCPC</h1>
-	</div>
-	<div class="fee-container">
-		<div class="fee-title">Tình trạng lệ phí: </div>
-		{% if team.FeePaymnet == True %}
-			<span class="fee-status" style="color: #71C9CE;">Đã thanh toán</span>
-		{% else %}
-			<span class="fee-status" style="color: #CD1111;">Chưa thanh toán (Cập nhật sau 24h)</span>
-		{% endif %}
 	</div>
 	<div class="info-container" style="margin-bottom: 300px;">
 		<div class="general_info">
@@ -59,7 +53,7 @@
 								{% if team.Rank %}
 								{{ team.Rank }}
 								{% else %}
-								<span class="" style="color: #CD1111; font-weight: 400;">Chưa cập nhật</span>
+								<span class="" style="color: #CD1111; font-weight: 450;">Chưa cập nhật</span>
 								{% endif %}
 							</div>
 						</div>
@@ -124,12 +118,37 @@
 			{% endfor %}
 		</div>
 		{% endif %}
-		<div class="btn-container" id="profile-btn-container">
-			<a href="{% url 'register:home' %}">
+		{% if team.FeePaymnet == True %}
+			<div class="status-container">
+				<div class="fee-title">Tình trạng lệ phí: </div>
+				<span class="fee-status" style="color: #71C9CE;">Đã thanh toán</span>
+			</div>
+		{% else %}
+			<div class="fee-qr d-flex flex-row justify-content-between row">
+				<div class="info-container d-flex flex-column justify-content-around col-lg-8 col-md-12">
+					<div class="status-container">	
+						<div class="fee-title">Tình trạng lệ phí: </div>
+						<span class="fee-status" style="color: #CD1111;">Chưa thanh toán</span>
+					</div>
+					<div class="content-container">
+						<h2 class="fee-title">Lệ phí: 90.000 VND/team</h2>
+						<h3 class="fee-label">Xin vui lòng chuyển khoản với nội dung</h3>
+						<p class="fee-content">"Tên đội_DONG TIEN UCPC_2023"</p>
+					</div>
+				</div>
+				<div class="qr-container col-lg-4 col-md-12 d-flex justify-content-center align-items-center">
+					<div class="qr-img-1 d-flex justify-content-center align-items-center">
+						<div class="qr-img-2 d-flex justify-content-center align-items-center">QR</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		<div class="btn-container row" id="profile-btn-container">
+			<a class="col-xl-4 col-lg-12" href="{% url 'register:home' %}">
 				<button type="button" class="exit-btn">Trở về</button>
 			</a>
-			<a href="{% url 'register:edit' %}">
-				<button type="button" class="edit-btn" style="margin-left: 57px">Chỉnh sửa thông tin</button>
+			<a class="col-xl-8 col-lg-12" href="{% url 'register:edit' %}">
+				<button type="button" class="edit-btn">Chỉnh sửa thông tin</button>
 			</a>
 		</div>
 	</div>

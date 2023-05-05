@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from register.models import Team, Teammate, Post, Website, UcpcUser
+from register.models import Team, Teammate, UcpcUser
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .choices import Choices
 
@@ -286,7 +286,6 @@ class edit_profile(LoginRequiredMixin, View):
             ]
             
             ctx = {
-                ''
                 'tf': TeamForm(initial = tf_initial), 
                 'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial) ,
                 'isTimeOver': False
