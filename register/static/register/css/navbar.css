@@ -5,10 +5,14 @@
 
 .Navbar {
     background-color: var(--primary3-color);
-    max-height: 38px;
+    max-height: 62px;
     position: fixed;
     width: 100%;
     z-index: 100;
+}
+
+.Navbar-container {
+    margin: 0 20px;
 }
 
 .Navbar-toggler {
@@ -38,15 +42,18 @@
 .Navbar-Nav {
     width: 45%;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 1.4rem;
+    padding-left: 15px;
 }
 
 .Nav-item {
     list-style: none;
     padding: 0 12px;
-    font-size: 10px;
+    font-size: 1.8rem;
     font-family: 'Inter';
     font-weight: 700;
-    line-height: 38px;
 }
 
 .Nav-item:first-child {
@@ -72,9 +79,10 @@
 .Navbar-brand {
     padding: 0;
     margin: 0;
-    height: 54px;
+    height: 80px;
     position: relative;
     z-index: 10;
+    width: 60px;
 }
 
 .Navbar-brand::after {
@@ -82,14 +90,14 @@
     position: absolute;
     width: 58px;
     height: 18px;
-    bottom: 0;
+    bottom: 2px;
     left: calc(100% - 50% - 29px);
     background-color: var(--primary3-color);
 }
 
 .Nav-btn {
     color: #fff;
-    font-size: 10px;
+    font-size: 1.8rem;
     font-family: 'Inter';
     font-weight: 700;
     margin-bottom: 16px;
@@ -103,6 +111,7 @@
     display: flex;
     justify-content: right;
     width: 45%;
+    margin-top: 2px;
 }
 
 .Nav-btn:hover {
@@ -111,92 +120,5 @@
 }
 
 .carousel {
-    top: 38px;
-}
-
-@media (min-width: 768px) { 
-    .Navbar {
-        max-height: 38px;
-    }
-}
-
-@media (max-width: 768px) {
-    #NavbarSupportedContent {
-        display: block;
-    }
-
-    .Navbar {
-        max-height: 80px;
-        overflow: hidden;
-    }
-
-    .Navbar-toggler {
-        font-size: 42px;
-        display: flex;
-        justify-content: end;
-        margin-top: 20px;
-        padding-right: 20px;
-    }
-
-    .Navbar-Nav {
-        display: block;
-        margin-top: 20px;
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .Navbar::after {
-        display: none;
-        color: transparent;
-    }
-
-    .Navbar::before {
-        display: none;
-        color: transparent;
-    }
-
-    .Navbar-brand::after {
-        display: none;
-        background-color: transparent;
-    }
-
-    .Navbar-brand {
-        height: 80px;
-        width: 80px;
-        position: absolute;
-        top: 0;
-    }
-
-    .Nav-item {
-        font-size: 20px;
-        line-height: 40px;
-    }
-
-    .Nav-item:first-child {
-        padding-left: 12px;
-    }
-
-    .Nav-item:last-child {
-        border-bottom: 1px solid #06283D;
-    }
-
-    .Nav-btn {
-        padding-left: 12px;
-        font-size: 20px;
-        line-height: 40px;
-    }
-
-    .form-login,
-    .form-register {
-        display: block;
-        width: 100%;
-    }
-
-    .form-inline {
-        display: block;
-    }
-
-    .carousel {
-        top: 80px;
-    }
+    top: 52px;
 }

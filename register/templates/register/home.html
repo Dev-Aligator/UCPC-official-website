@@ -5,7 +5,7 @@
 
 <!-- Navbar -->
 <nav class="Navbar">
-    <div class="container">
+    <div class="Navbar-container">
         <!-- <button class="Navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSupportedContent"
             aria-controls="NavbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
             <span class="Navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
         <div id="NavbarSupportedContent">
             <ul class="Navbar-Nav">
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#countdown">UCPC</a>
+                    <a class="Nav-link" href="#ucpc">UCPC</a>
                 </li>
                 <li class="Nav-item">
                     <a class="Nav-link" href="#rules">Thể Lệ</a>
@@ -30,13 +30,12 @@
                     <a class="Nav-link" href="#reward">Lịch Trình</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#organizers">Liên Hệ</a>
+                    <a class="Nav-link" href="#introduce">Liên Hệ</a>
                 </li>
             </ul>
 
             <a class="Navbar-brand" href="{% url 'register:home' %}">
-                <img class="Navbar-brand" id="Layer_1" width="50px" height="50px"
-                    src="{% static 'register/images/introduction/white_logo.svg' %}">
+                <img class="Navbar-brand" id="Layer_1" src="{% static 'register/images/introduction/white_logo.svg' %}">
                 <!-- <svg style ="width:123px; height:123px;" class="Navbar-brand" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302.13 302.13"><defs><style>.cls-1{fill:#fff;}</style></defs><title>white_logo</title><polygon class="cls-1" points="162.15 114.73 150.47 103.05 138.78 114.73 127.1 103.05 138.78 91.36 150.47 79.67 162.15 91.36 173.84 103.05 162.15 114.73"/><polygon class="cls-1" points="199.44 144.98 184.5 130.05 169.57 144.98 154.64 130.05 169.57 115.12 184.5 100.19 199.44 115.12 214.37 130.05 199.44 144.98"/><polygon class="cls-1" points="132.26 144.98 117.33 130.05 102.4 144.98 87.47 130.05 102.4 115.12 117.33 100.19 132.26 115.12 147.19 130.05 132.26 144.98"/><polygon class="cls-1" points="52.06 31.33 52.06 49.33 52.06 193.33 52.06 211.33 70.06 211.33 97.06 211.33 97.06 193.33 70.06 193.33 70.06 49.33 97.06 49.33 97.06 31.33 70.06 31.33 52.06 31.33"/><polygon class="cls-1" points="232.06 31.33 205.06 31.33 205.06 49.33 232.06 49.33 232.06 193.33 205.06 193.33 205.06 211.33 232.06 211.33 250.06 211.33 250.06 193.33 250.06 49.33 250.06 31.33 232.06 31.33"/><rect class="cls-1" x="115.06" y="193.33" width="72" height="18"/><path class="cls-1" d="M98.55,230.14H106v29H98.55v-3.25c-1.8,2.73-4.7,4.07-8.65,4.07a10.5,10.5,0,0,1-7.9-3.2c-2-2.15-3.08-5.05-3.08-8.83V230.14h7.49V247c0,3.9,2.27,6,5.75,6,3.89,0,6.39-2.38,6.39-7.21Z"/><path class="cls-1" d="M113.77,258.49a4.93,4.93,0,1,1,7,0A4.94,4.94,0,0,1,113.77,258.49Z"/><path class="cls-1" d="M131.31,255.58a15.33,15.33,0,0,1,11-26.25,14.45,14.45,0,0,1,13,7.49l-6.45,3.78a7.16,7.16,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.89,7.89,0,0,0,2.21,5.69,7.53,7.53,0,0,0,5.57,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/><path class="cls-1" d="M186.5,233.8a16.28,16.28,0,0,1,0,21.78,13.09,13.09,0,0,1-10,4.42c-4.06,0-7.2-1.4-9.41-4.24v15H159.6V230.14h7.49v3.43c2.21-2.85,5.35-4.24,9.41-4.24A13.17,13.17,0,0,1,186.5,233.8Zm-11.39,19a7.79,7.79,0,0,0,5.75-2.26,8,8,0,0,0,2.33-5.93,7.81,7.81,0,0,0-2.33-5.87,8.29,8.29,0,0,0-11.5,0,8,8,0,0,0-2.27,5.87,8.22,8.22,0,0,0,2.27,5.93A7.79,7.79,0,0,0,175.11,252.85Z"/><path class="cls-1" d="M198.81,255.58a15.33,15.33,0,0,1,11-26.25,14.46,14.46,0,0,1,13,7.49l-6.45,3.78a7.17,7.17,0,0,0-6.62-3.9,7.61,7.61,0,0,0-7.78,8,7.93,7.93,0,0,0,2.2,5.69,7.57,7.57,0,0,0,5.58,2.21,7.16,7.16,0,0,0,6.68-3.83l6.51,3.72a15.46,15.46,0,0,1-24.11,3.13Z"/></svg> -->
             </a>
 
@@ -164,81 +163,16 @@
 
 
 <!-- Thời Gian Đăng Ký -->
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
+<div id="countdown">
+    <img class="box-time__img" src="{% static 'register/images/introduction/banner2.jpg' %}" width="100%" alt="">
 
-        let deadline = "May 25, 2022 00:00:00"
-        let countDown = new Date(deadline).getTime()
-        let x = setInterval(function () {
-            let now = new Date().getTime()
-            let distance = countDown - now
-            document.querySelector("#days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)),
-                document.querySelector("#hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                document.querySelector("#minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                document.querySelector("#seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-            if (distance < 0) {
-                document.querySelector("#days").innerHTML = 00,
-                    document.querySelector("#hours").innerHTML = 00,
-                    document.querySelector("#minutes").innerHTML = 00,
-                    document.querySelector("#seconds").innerHTML = 00;
-            }
-        }, 0)
-    })
-</script> -->
-<!-- <div id="countdown" class="container">
-    <div id="countdown_info" class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <h1>Thời hạn đăng ký</h1>
-            <h4>Ngày 25/05/2022</h4>
-        </div>
-        <div id="countdown_system" class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <h4>Time Remaining!</h4>
-            <ul id="countdown_clock">
-                    <li><span id="days"></span>NGÀY</li>
-                    <li><span id="hours"></span>GIỜ</li>
-                    <li><span id="minutes"></span>PHÚT</li>
-                    <li id = "second_450"><span id="seconds"></span>GIÂY</li>
-                </ul>
-            <div class="row">
-                <div class=" clock col-lg-3 col-sm-6 col-md-3 col-6">
-                    <div>
-                        <span id="days"></span>
-                        <p>Ngày</p>
-                    </div>
-                </div>
-                <div class="clock col-lg-3 col-sm-6 col-md-3 col-6">
-                    <div>
-                        <span id="hours"></span>
-                        <p>Giờ</p>
-                    </div>
-                </div>
-                <div class="clock col-lg-3 col-sm-6 col-md-3 col-6">
-                    <div>
-                        <span id="minutes"></span>
-                        <p>Phút</p>
-                    </div>
-                </div>
-                <div class="clock col-lg-3 col-sm-6 col-md-3 col-6">
-                    <div>
-                        <span id="seconds"></span>
-                        <p>Giây</p>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</div> -->
-<div id="countdown" class="container">
-    <div class="container">
+    <div class="container countdown">
         <div class="countdown-info">
             <div class="countdown-title">Thời hạn đăng ký</div>
             <div class="countdown-end">Ngày 25/05/2022</div>
         </div>
 
         <div id="time">
-            
             <div class="circle" style="--clr: #A6E3E9">
                 <div class="dots day_dot"></div>
                 <svg>
@@ -284,53 +218,6 @@
 
 
 <!-- Thể lệ cuộc thi -->
-<!-- <section id="rules">
-    <div class="container" style="padding: 40px 15px;">
-        <h1 style="font-weight: bold;">Thể lệ cuộc thi</h1>
-        <div class="participants row" style=" color: white; text-align: justify; margin-bottom: 20px;">
-            <div class="col-sm-3 col-12" style="text-align: left;">
-                <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Đối tượng:</p>
-            </div>
-            <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Tất cả sinh viên
-                    trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học khác, các bạn học
-                    sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh viên quốc
-                    tế.</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Thí sinh đăng ký
-                    theo đội (mỗi đội gồm 3 thành viên).</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Độ tuổi: 15 – 23
-                    tuổi (tính đến ngày diễn ra cuộc thi).</p>
-            </div>
-        </div>
-        <div class="registration_format row" style=" color: white; text-align: justify; margin-bottom: 20px;">
-            <div class="col-sm-3 col-12" style="text-align: left;">
-                <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Hình thức đăng ký:</p>
-            </div>
-            <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các sinh viên đăng
-                    ký thông tin tham dự thông qua <a target="_blank" style="color:#4CF2D2;"
-                        href="https://ucpc.uit.edu.vn/register/"><b>trang web cuộc thi</b></a>, đối với học sinh THPT
-                    yêu cầu có HLV và đăng ký qua <a target="_blank" style="color:#4CF2D2;"
-                        href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Các đội sau khi đăng
-                    ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên quan tới tài khoản
-                    đăng ký dự thi vui lòng gửi mail về <a target="_blank" style="color:#4CF2D2;"
-                        href="mailto:ucpc@uit.edu.vn"><b>email của ban tổ chức</b></a>.</p>
-            </div>
-        </div>
-        <div class="regulation row" style=" color: white; text-align: justify;">
-            <div class="col-sm-3 col-12" style="text-align: left;">
-                <p style="font-size: 25px; font-weight:bold; color: white; margin-bottom: 10px;">Quy định cuộc thi:</p>
-            </div>
-            <div class="col-sm-9 col-12">
-                <p style="font-size: 16px; text-align: justify; color: white; margin-bottom: 10px;">Để xem toàn bộ quy
-                    định cuộc thi, vui lòng truy cập <a style="color:#4CF2D2; font-size: 20px;" target="_blank"
-                        href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>TẠI
-                            ĐÂY</b></a>.</p>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <section id="rules">
     <div class="container">
@@ -339,9 +226,11 @@
             <div class="rule-object__title">Đối tượng:</div>
             <div class="rule-obect__info">
                 <p class="rule-object__description">
-                    Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường Đại học
+                    Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường
+                    Đại học
                     khác,
-                    các bạn học sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập trình sinh
+                    các bạn học sinh Trung học phổ thông có yêu thích và muốn thử sức với phong cách thi lập
+                    trình sinh
                     viên
                     quốc tế.
                 </p>
@@ -364,7 +253,8 @@
                     <a href="mailto:ucpc@uit.edu.vn" class="rule-form__link"> email của ban tổ chức</a>.
                 </p>
                 <p class="rule-form__description">
-                    Các đội sau khi đăng ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề nào liên
+                    Các đội sau khi đăng ký dự thi có nhu cầu thay đổi thông tin tham dự hoặc có bất kỳ vấn đề
+                    nào liên
                     quan
                     tới tài khoản đăng ký dự thi vui lòng gửi mail về
                     <a href="mailto:ucpc@uit.edu.vn" class="rule-form__link">email của ban tổ chức</a>.
@@ -448,7 +338,8 @@
             <div class="timeline-info">
                 <h2 class="timeline-info__moldy">16/05 - 18/05: MINIGAME 2 - Nhanh như chớp</h2>
                 <p class="timeline-info__description">
-                    Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những phần
+                    Mini game sẽ được diễn ra tại trường Đại học Quốc Tế, hãy tham gia để có cơ hội sở hữu những
+                    phần
                     quà
                     hấp dẫn.
                 </p>
@@ -456,7 +347,8 @@
             <div class="timeline-info">
                 <h2 class="timeline-info__moldy">23/05 - 25/05: MINIGAME 2 - Nhanh như chớp</h2>
                 <p class="timeline-info__description">
-                    Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội sở hữu
+                    Mini game sẽ được diễn ra tại trường Đại học Công nghệ Thông tin, hãy tham gia để có cơ hội
+                    sở hữu
                     những
                     phần quà hấp dẫn.
                 </p>
@@ -493,63 +385,6 @@
 </section>
 <!-- Lịch trình -->
 
-<!-- Giới thiệu nhà tài trợ -->
-<!-- <div id="sponsors" class="container-fluid">
-    <div class="container">
-        <div class="row" style="padding-bottom: 30px;">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-                <div class="gold_sponsor">
-                    <h5>ĐƠN VỊ TÀI TRỢ VÀNG</h5>
-                    <div class="unit_logo">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                <div class="unit">
-                                    <a href="http://www.tma.vn" target="_blank" rel="noopener noreferrer"><img
-                                            class="TMA" src="{% static 'register/images/sponsors/TMA.png' %}"></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                <div class="unit">
-                                    <a href="http://citynow.vn/" target="_blank" rel="noopener noreferrer"><img
-                                            class="Citynow"
-                                            src="{% static 'register/images/sponsors/Citynow.png' %}"></a>
-                                </div>
-                                <div class="unit">
-                                    <a href="http://www.autonomous.ai/" target="_blank" rel="noopener noreferrer"><img
-                                            class="Autonomous"
-                                            src="{% static 'register/images/sponsors/Autonomous.png' %}"></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                <div class="unit">
-                                    <a href="https://www.mckinsey.com/vn/overview" target="_blank"
-                                        rel="noopener noreferrer"><img class="McKinsey"
-                                            src="{% static 'register/images/sponsors/McKinsey.png' %}"></a>
-                                </div>
-                                <div class="unit">
-                                    <a href="https://gianty.com.vn/vi/company" target="_blank"
-                                        rel="noopener noreferrer"><img class="Gianty"
-                                            src="{% static 'register/images/sponsors/Gianty.png' %}"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-12 silver">
-                <div class="silver_sponsor">
-                    <h5>ĐƠN VỊ TÀI TRỢ BẠC</h5>
-                    <div class="unit_logo">
-                        <div class="unit" style="text-align: center; align-items: center;">
-                            <img class="sun_studio" src="{% static 'register/images/sponsors/Sun-studio.png' %}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- Giới thiệu nhà tài trợ -->
 
 <!-- introduce -->
 <div id="introduce">
@@ -652,8 +487,19 @@
                 <p>Theo dõi thêm tại</p>
                 <div class="footer-contact__info">
                     <i class="footer-contact__icon fa-brands fa-facebook-f"></i>
-                    <a target="_blank" href="https://www.facebook.com/uit.ucpc"><b>https://www.facebook.com/uit.ucpc</b></a>
+                    <a target="_blank"
+                        href="https://www.facebook.com/uit.ucpc"><b>https://www.facebook.com/uit.ucpc</b></a>
                 </div>
+            </div>
+        </div>
+
+        <div class="footer-info__mobi">
+            <div class="footer-contact">
+                <p>Liên hệ</p>
+                <a target="_blank" href="mailto:ucpc@uit.edu.vn"><i
+                        class="footer-contact__icon fa-regular fa-envelope"></i></a>
+                <a target="_blank" href="https://www.facebook.com/uit.ucpc"><i
+                        class="footer-contact__icon fa-brands fa-facebook-f"></i></a>
             </div>
         </div>
 
