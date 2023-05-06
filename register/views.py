@@ -16,14 +16,16 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import numpy as np
 from argon2 import PasswordHasher
-ph = PasswordHasher()
 
+import os
+ph = PasswordHasher()
+DIRNAME = os.path.dirname(__file__)
 try:
     scope =[
         'https://www.googleapis.com/auth/spreadsheets',
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('register/ucpc-team-list-9acf2432120a.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(os.path.join(DIRNAME, 'ucpc-team-list-9acf2432120a.json'), scope)
 
     _name = "UCPC Team List"
     client = gspread.authorize(creds)
