@@ -264,8 +264,7 @@ class edit_profile(LoginRequiredMixin, View):
         now = datetime.datetime.now()
         deadline = datetime.datetime(2023, 5, 25)
         time_remaining = deadline - now
-        #  get types of form
-        type = request.GET.get('type')
+        
         if time_remaining.days > 0:
             # Get Team and Teammate objects from db based on ucpc user's email
             ucpc_user = UcpcUser.objects.get(email = request.user.email)
@@ -281,13 +280,14 @@ class edit_profile(LoginRequiredMixin, View):
                     'Fullname': teammate.Fullname,
                     'MSSV_CMND': teammate.MSSV_CMND,
                     'Phone': teammate.Phone,
-                    'School': teammate.School      
+                    'School': teammate.School, 
                 } for teammate in filtered_teammates
             ]
+            type = "HighSchool" if len(tmf_initial) == 4 else "University"
             
             ctx = {
                 'tf': TeamForm(initial = tf_initial), 
-                'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial) ,
+                'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial),
                 'isTimeOver': False
             }
         else:

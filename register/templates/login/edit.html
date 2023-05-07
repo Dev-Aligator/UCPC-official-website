@@ -56,11 +56,11 @@
 					{% for tmForm in tmf %}
 					<div class="info-box" style="margin-top: 70px;">
 						<div class="box-title-container">
-							{% if tmForm.Occpation == 'Teacher' %}
-							<h2 class="box-title">Người phụ trách</h2>
+							{% if forloop.counter == 1 %}
+							<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
 							{% else %}
-								{% if tmForm.Leader == True %}
-								<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+								{% if forloop.counter == 4 %}
+								<h2 class="box-title">N	gười phụ trách</h2>
 								{% else %}
 								<h2 class="box-title">Thành viên {{ forloop.counter }}</h2>
 								{% endif %}

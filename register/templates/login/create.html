@@ -5,82 +5,27 @@
 {% if isTimeOver %}
 <div class="container" style="margin-top: 15px;">
 	<h1 style="font-weight: bold;">Đã hết thời gian tạo đội thi!</h1>
-</div>
-			
+</div>	
 {% else %}
-
-<!-- <div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold; margin-bottom: 40px;">Tạo đội thi</h1>
-</div>
-{% for message in messages %}
 <div class="container">
-	<p id="messages" style="margin: 0 0 15px 0;">{{message}}</p>
-</div>
-{% endfor %}
-
-<div class="form-group">
-	<div class="container">
-		<form id="registration_form" method="POST">
-			{% csrf_token %}
-			<div class="member_infor" style="margin-bottom: 30px;">
-				<h3 style="font-weight: bold">Thông tin đội</h3>
-				<div class="team" style="margin-top: 10px;">
-					<b style="font-size: 20px;">{{ tf.TeamName.label }}</b><br>
-					{{ tf.TeamName }}
-					<i id="valid_team" class="fa-solid fa-circle-check"></i>
-					<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-					<small>{{ tf.TeamName.errors }}</small>
-					<p style="margin-top: 5px;">ℹ️ Tên đội không được sử dụng từ ngữ, ký hiệu vi phạm truyền thống lịch sử, văn hóa, đạo đức và thuần phong mỹ tục của dân tộc.</p>
-				</div>
+	<!-- Create Router Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center row">
+		  <div class="modal-content col-xxl-7 col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
+			<!-- <div class="modal-background">
+				<img id="modal-block-1" class="modal-block" src="../../static/register/images/layout/block.png"/>
+				<img id="modal-block-2" class="modal-block" src="../../static/register/images/layout/block.png"/>
+				<img id="modal-block-3" class="modal-block" src="../../static/register/images/layout/block.png"/>
+				<img id="modal-block-4" class="modal-block" src="../../static/register/images/layout/block.png"/>
+			</div> -->
+			<div class="modal-body d-flex flex-row align-items-center justify-content-center row">
+				<div id="uni-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5" style="margin-right: 44px;">Sinh viên Đại học</div>
+				<div id="school-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5">Học sinh Trung học Phổ Thông</div>
 			</div>
-			{{tmf.management_form}}
-			{% for tmForm in tmf %}
-				<div class="member_infor" style="margin-bottom: 30px;">
-					{% if forloop.counter == 1 %}
-						<h3 style="font-weight: bold;">Thành viên 1 (Đội trưởng)</h3>
-					{% else %}
-						{% if forloop.counter == 4 %}
-							<h3 style="font-weight: bold;">Giáo viên bảo hộ</h3>
-						{% else %}
-							<h3 style="font-weight: bold;">Thành viên {{forloop.counter}}</h3>
-						{% endif %}
-					{% endif %}
-					<div class="member" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Fullname.label }}</b><br>
-						{{ tmForm.Fullname }}
-						<i id="valid_member" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_member" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Fullname.errors }}</small>
-					</div>
-					<div class="mssv" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.MSSV_CMND.label }}</b><br>
-						{{ tmForm.MSSV_CMND }}
-						<i id="valid_mssv" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_mssv" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.MSSV_CMND.errors }}</small>
-					</div>
-					<div class="phone" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.Phone.label }}</b><br>
-						{{ tmForm.Phone }}
-						<i id="valid_phone" class="fa-solid fa-circle-check"></i>
-						<i id="invalid_phone" class="fa-solid fa-circle-exclamation"></i>
-						<small>{{ tmForm.Phone.errors }}</small>
-					</div>
-					<div class="school" style="margin-top: 10px;">
-						<b style="font-size: 20px;">{{ tmForm.School.label }}</b><br>
-						{{ tmForm.School }}
-						<small>{{ tmForm.School.errors }}</small><br>
-					</div>
-				</div>
-			{% endfor %}
-
-			<input id="agree_check" onchange="document.getElementById('submit_btn').disabled = !this.checked;" type="checkbox" style="margin: 10px 5px 10px 0;" onclick="showRPassword()">Tôi đã đọc và đồng ý với <a style ="color:#4CF2D2; font-size: 20px;" target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"><b>QUY ĐỊNH</b></a> của cuộc thi.<br>
-			<button disabled type="submit" id="submit_btn" class="btn btn-primary" style="margin-top: 10px; background-color: #4CF2D2; border-color: #4CF2D2; color: black;">Đăng ký</button>
-		</form>
+		  </div>
+		</div>
 	</div>
-</div> -->
 
-<div class="container">
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
 			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
@@ -129,11 +74,11 @@
 					{% for tmForm in tmf %}
 					<div class="info-box" style="margin-top: 70px;">
 						<div class="box-title-container">
-							{% if tmForm.Occpation == 'Teacher' %}
-							<h2 class="box-title">Người phụ trách</h2>
+							{% if forloop.counter == 1 %}
+							<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
 							{% else %}
-								{% if tmForm.Leader == True %}
-								<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+								{% if forloop.counter == 4 %}
+								<h2 class="box-title">Người phụ trách</h2>
 								{% else %}
 								<h2 class="box-title">Thành viên {{ forloop.counter }}</h2>
 								{% endif %}

@@ -314,3 +314,53 @@ a {
     line-height: 15px;
     color: #FFFFFF;
 }
+.modal-dialog {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.modal-content {
+    height: 48vh;
+    background: #06283D;
+    border-radius: 32px;
+}
+#modal-block-1 {
+    height: 7rem;
+    width: 6.25rem;
+}
+#modal-block-2 {
+    height: 16rem;
+    width: 14.5rem;
+}
+#modal-block-3 {
+    height: 5rem;
+    width: 4.5rem;
+}
+#modal-block-4 {
+    height: 5rem;
+    width: 4.5rem;
+}
+.option-block {
+    background: #06283D;
+    opacity: 0.6;
+    border: 2px solid #71C9CE;
+    border-radius: 32px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.option-block:hover {
+    background: #71C9CE;
+    border: 2px solid #71C9CE;
+    border-radius: 32px;
+    color: #06283D;
+    font-weight: 650;
+}
