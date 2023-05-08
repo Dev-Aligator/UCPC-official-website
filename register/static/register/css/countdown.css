@@ -23,6 +23,7 @@
     font-weight: 700;
     color: var(--primary1-color);
     padding-right: 20px;
+    z-index: 10;
 }
 
 .countdown-end {
@@ -30,6 +31,7 @@
     font-weight: 100;
     color: #fff;
     padding-left: 20px;
+    z-index: 10;
 }
 
 
@@ -107,4 +109,48 @@
     background: var(--clr);
     border-radius: 50%;
     box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+}
+
+.countdown-img__absolute--XL {
+    position: absolute;
+    bottom: -12%;
+    left: 2%;
+}
+
+.countdown-img__absolute--XL img {
+    width: 35%;
+    opacity: var(--opacity);
+}
+
+.countdown-img__absolute--L {
+    position: absolute;
+    top: 4%;
+    left: 45%;
+}
+
+.countdown-img__absolute--L img {
+    width: 25%;
+    opacity: var(--opacity);
+}
+
+.countdown-img__absolute--M {
+    position: absolute;
+    bottom: 6%;
+    left: 82%;
+}
+
+.countdown-img__absolute--M img {
+    width: 65%;
+    opacity: var(--opacity);
+}
+
+.countdown-img__absolute--S {
+    position: absolute;
+    bottom: -2%;
+    left: 64%;
+}
+
+.countdown-img__absolute--S img {
+    width: 10%;
+    opacity: var(--opacity);
 }

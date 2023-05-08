@@ -1,5 +1,7 @@
 .structure {
     position: relative;
+    border-top: 1px rgba(255, 255, 255, 0.2) solid;
+    border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
 }
 
 .structure__img {
@@ -10,7 +12,7 @@
 
 .reward-title {
     font-size: 4.8rem;
-    font-weight: 200;
+    font-weight: 700;
     color: var(--primary1-color);
     text-align: center;
 }
@@ -28,6 +30,7 @@
     max-width: 700px;
     position: relative;
     border-bottom: 1px solid;
+    z-index: 10;
 }
 
 .reward-main::after {
@@ -56,9 +59,12 @@
 
 .reward-extra {
     font-size: 2.4rem;
+    font-weight: 700;
     color: var(--primary1-color);
     text-align: center;
     padding-top: 12px;
+    position: relative;
+    z-index: 10;
 }
 
 .reward-gift {
@@ -69,4 +75,38 @@
 .reward-gift__img {
     width: 10%;
     margin: 32px 24px 2%;
+    z-index: 10;
+}
+
+.reward-img__absolute--XL {
+    position: absolute;
+    top: -12%;
+    left: 74%;
+}
+
+.reward-img__absolute--XL img {
+    width: 55%;
+    opacity: var(--opacity);
+}
+
+.reward-img__absolute--L {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+}
+
+.reward-img__absolute--L img {
+    width: 25%;
+    opacity: var(--opacity);
+}
+
+.reward-img__absolute--M {
+    position: absolute;
+    bottom: 6%;
+    left: 82%;
+}
+
+.reward-img__absolute--M img {
+    width: 35%;
+    opacity: var(--opacity);
 }
