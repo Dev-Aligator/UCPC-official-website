@@ -254,6 +254,9 @@ class create_profile(LoginRequiredMixin, View):
                     'tmf': tmf
                 }
                 messages.error(request, '❌ Thông tin không hợp lệ!')
+                for err in tmf.non_form_errors():
+                    if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')
+                    if (err == 'Please correct the duplicate data for MSSV_CMND.'): messages.error(request, '❌ MSSV/CCCD trùng lặp!')
                 return render(request, 'login/create.html', ctx, status=422)
 
         
@@ -329,6 +332,9 @@ class edit_profile(LoginRequiredMixin, View):
                         'tmf': tmf
                     }
                     messages.error(request, '❌ Thông tin không hợp lệ!')
+                    for err in tmf.non_form_errors():
+                        if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')
+                        if (err == 'Please correct the duplicate data for MSSV_CMND.'): messages.error(request, '❌ MSSV/CCCD trùng lặp!')
                     return render(request, 'login/edit.html', ctx, status=422)
             except Exception as ex:
                 print(ex)
