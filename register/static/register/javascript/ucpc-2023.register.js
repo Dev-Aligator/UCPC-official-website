@@ -1,8 +1,8 @@
 const form = document.querySelector('#register-form');
 
-const PasswordRegex = /^(?=.{6,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$/;
+const PasswordRegex = /^(?=.{8,})(?=.*[a-z]+)(?=.*\d+)(?=.*[A-Z]+)[ -~]*$/;
 const EmailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-const PasswordLengthRegex = /^[a-zA-Z0-9]{6,}$/;
+const PasswordLengthRegex = /^[a-zA-Z0-9]{8,}$/;
 const PasswordNumberRegex = /.*[0-9].*/;
 const PasswordLetterRegex = /(?=.*[a-z])(?=.*[A-Z]).*/;
 let email = form.elements.namedItem("email");
@@ -76,11 +76,11 @@ function validate(e) {
         else{
             lastListItem.style.color = "#D3D3D3";
         }
-        
+
     }
 
     if (e.target.name == "password2") {
-        if (e.target.value == password.value && PasswordRegex.test(e.target.value)) { 
+        if (e.target.value == password.value && PasswordRegex.test(e.target.value)) {
             e.target.classList.add('valid_input');
             e.target.classList.remove('invalid_input');
             valid_rpassword.classList.add('valid_icon');
@@ -102,7 +102,7 @@ checkbox.addEventListener('change', function() {
     // Enable the submit button if the checkbox is checked
     submitBtn.disabled = !checkbox.checked;
   });
-  
+
   form.addEventListener('submit', function(event) {
     // Check if the checkbox is checked
     if (!checkbox.checked) {
