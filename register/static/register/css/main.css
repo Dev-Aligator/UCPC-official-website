@@ -27,16 +27,6 @@ body {
     color: white;
 }
 
-/* nav > .collapse > ul > li > a {
-    font-size: 25px;
-    color: white; */
-    /* margin-left: 60px;
-    margin-right: 60px; */
-/* } */
-
-/* nav {
-    background-color: var(--primary3-color);
-} */
 
 .Navbar .Btn {
     background-color: #4cf2d2;
@@ -48,12 +38,3 @@ body {
     background-color: #fff;
 }
 
-/* .navbar-dark .navbar-collapse .navbar-nav .nav-item .nav-link {
-    color: white;
-    font: Inter;
-    font-size: 12px;
-    font-weight: 700;
-    margin-left: 16px;
-<<<<<<< HEAD
-} */
->>>>>>>>> Temporary merge branch 2
