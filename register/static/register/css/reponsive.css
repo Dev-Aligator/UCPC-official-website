@@ -66,7 +66,7 @@
     }
 
     .Nav-btn {
-        padding-left: 12px;
+        padding-left: 24px;
         font-size: 20px;
         line-height: 40px;
     }
@@ -119,17 +119,33 @@
 
 /* rules */
 @media (max-width: 767px){
+    .rule-title {
+        padding: 72px 0 28px;
+    }
 
     .rule-object,
     .rule-form,
     .rule-regulation {
         padding-left: 0;
+        flex-direction: column;
     }
 
     .rule-object__title,
     .rule-form__title,
     .rule-regulation__title {
-        width: 96px;
+        width: 100%;
+        border-right: hidden;
+    }
+
+    .rule-object__description,
+    .rule-form__description,
+    .rule-regulation__description {
+        padding-left: 0;
+        padding-bottom: 12px;
+    }
+
+    .rule-form, .rule-regulation {
+        padding-top: 42px;
     }
 
     .rule-regulation {
@@ -215,6 +231,10 @@
 
     .schedule {
         margin-bottom: 72px;
+    }
+
+    .schedule::-webkit-scrollbar-thumb {
+        display: none;
     }
 
     .timeline-line__branch:first-child {

@@ -112,6 +112,7 @@
     justify-content: right;
     width: 45%;
     margin-top: 2px;
+    padding-right: 24px;
 }
 
 .Nav-btn:hover {
