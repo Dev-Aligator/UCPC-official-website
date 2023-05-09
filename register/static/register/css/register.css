@@ -122,7 +122,8 @@ body {
     background-size: 25%;
     background-position: left bottom;
 
-
+    overflow: auto;
+    white-space: nowrap;
   }
 
 
@@ -443,7 +444,6 @@ p {
     body{
         overflow-y: scroll;
         white-space: nowrap;
-        margin-top: 200px;
     }
     .register-card {
         display: block;
