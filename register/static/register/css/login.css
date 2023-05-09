@@ -4,19 +4,19 @@
         /**
      * COLORS
      */
-
+  
     /** Background colors */
     --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --bg-carolina-blue: hsla(199, 89%, 49%, 1);
     --bg-prussian-blue: hsla(216, 33%, 20%, 1);
     --bg-oxford-blue: hsla(222, 44%, 13%, 1);
     --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
-
+  
     --primary1-color: #A6E3E9;
     --primary2-color: #06283D;
     --primary3-color: #71C9CE;
     --opacity: 0.3;
-
+  
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);
     --text-alice-blue: hsla(216, 100%, 95%, 1);
@@ -25,29 +25,29 @@
     --text-carolina-blue: hsla(199, 89%, 49%, 1);
     --text-shadow-blue: hsla(217, 24%, 59%, 1);
     --text-slate-gray: hsla(217, 17%, 48%, 1);
-
+  
     /** Gradient colors */
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
     --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
     --gradient-3: linear-gradient(0deg, #000d1a, transparent);
-
+  
     /** Border colors */
     --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --border-prussian-blue: hsla(216, 33%, 20%, 1);
     --border-white: hsl(0, 0%, 100%);
     --border-white-alpha-15: hsla(0, 0%, 100%, 0.15);
-
+  
     /** Default colors */
     --white: hsl(0, 0%, 100%, 1);
     --black: hsl(0, 0%, 0%, 1);
-
+  
     /**
      * TYPOGRAPHY
      */
-
+  
     /** Font family */
     --fontFamily-noto_sans: 'Noto Sans', sans-serif;
-
+  
     /** Font size */
     --fontSize-1: 2.9rem;
     --fontSize-2: 2.0rem;
@@ -57,46 +57,46 @@
     --fontSize-6: 1.4rem;
     --fontSize-7: 1.2rem;
     --fontSize-8: 1.3rem;
-
+  
     /** Font weight */
     --weight-medium: 500;
     --weight-semiBold: 600;
     --weight-bold: 700;
     --weight-extraBold: 800;
-
+  
     /** Line height */
     --lineHeight-1: 1.3;
     --lineHeight-2: 1.5;
     --lineHeight-4: 1.5;
-
+  
     /**
      * BOX SHADOW
      */
-
+  
     --shadow-1: 0 8px 20px 0 hsla(0, 0%, 0%, 0.05);
     --shadow-2: 0px 3px 20px hsla(180, 90%, 43%, 0.2);
-
+  
     /**
      * BORDER RADIUS
      */
-
+  
     --radius-6: 6px;
     --radius-8: 8px;
     --radius-16: 16px;
     --radius-48: 48px;
     --radius-circle: 50%;
     --radius-pill: 200px;
-
+  
     /**
      * SPACING
      */
-
+  
     --section-padding: 70px;
-
+  
     /**
      * TRANSITION
      */
-
+  
     --transition-1: 0.25s ease;
     --transition-2: 0.5s ease;
     --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
@@ -126,34 +126,34 @@ body{
   }
 
 
-  .hero-banner {
+  .hero-banner { 
     position: absolute;
     top: 50%;
     right: 2%;
 }
-
+  
   .hero-banner .ucpc-block {
     max-width: max-content;
     margin-inline: auto;
   }
-
+  
   .shape {
     position: absolute;
     z-index: -1;
-
+  
     animation: heroDecoAnim 3s linear infinite alternate;
   }
-
+  
   @keyframes heroDecoAnim {
     0% { transform: translateY(40px) rotate(0); }
     100% { transform: translateY(0) rotate(0.4turn); }
   }
-
+  
    .shape-1 {
     top: 50px;
     right: 40px;
   }
-
+  
   .shape-2 {
     bottom: 20px;
     left: 24px;
@@ -190,11 +190,11 @@ body{
     background-color: white;
     border: 1px solid #ddd;
     box-shadow: 0 10px 50px -30px black;
-    width: 1200px;
     border-radius: 30px;
-    display: grid;
-    grid-template-columns: auto auto;
-
+    display: block;
+    width: 500px;
+    text-align: center;
+    
 }
 
 .login-card a{
@@ -252,7 +252,27 @@ body{
     margin-bottom:  15px;
 }
 
-.login-card .form-element{
+
+input[type='text'], input[type='password'] {
+    border: 1px solid black;
+    height: 65px;
+    width: 100%;
+    outline: none;
+    transition: background .5s;
+    font-size: 18px;
+}
+
+.form-item label {
+    display: inline-block;
+    background-color: white;
+    margin-bottom: 10px;
+    position: absolute;
+    padding: 0 10px;
+    transform: translate(30px, -10px);
+    font-size: 14px;
+}
+
+/* .login-card .form-element{
     width: 100%;
     border: none;
     background-color: #f1f1f1;
@@ -260,7 +280,7 @@ body{
     font-size: 18px;
     border-radius: 50px;
     transition:box-shadow .2s;
-}
+} */
 
 .login-card .form-element:focus{
     outline: none;
@@ -290,7 +310,9 @@ body{
     cursor: pointer;
     font-weight: 600;
     transition: all .2s;
+    width: 100%;
 }
+
 
 .btn-primary:active{
     scale: .95;
@@ -307,7 +329,30 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
+    gap: 1rem;
 }
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .25em;
+  }
 
 /* .social-buttons {
     display: flex;
@@ -342,7 +387,7 @@ body{
     align-items: center;
     margin-top: 20px;
   }
-
+  
   .sign-in-with-google a {
     display: flex;
     justify-content: center;
@@ -357,12 +402,13 @@ body{
     height: 60px;
     padding: 0 20px;
     transition: all 0.2s ease-in-out;
+    width: 100%;
   }
-
+  
   .sign-in-with-google a:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   }
-
+  
   .sign-in-with-google a img {
     height: 32px;
     margin-right: 15px;
@@ -374,6 +420,27 @@ body{
      position: fixed !important;
      top: 0px !important;
   }
+
+
+.social-buttons{
+    justify-content: center;
+}
+
+.form-item {
+    margin-bottom: 40px; /* Add margin between form items */
+}
+
+.form-element {
+    padding: 20px; /* Add padding to form elements */
+}
+
+.hr-text {
+    display: inline-block;
+    position: relative;
+    top: -0.7em; /* Adjust the value to vertically center the text */
+    padding: 0 0.5em;
+    background-color: white; /* Set the background color to match the page background */
+  }
 /* Responsive */
 
 @media (max-width: 992px){
@@ -382,24 +449,6 @@ body{
         white-space: nowrap;
         margin-top: 200px;
     }
-
-    .login-card {
-        display: block;
-        width: 500px;
-        text-align: center;
-    }
-    .login-card .column:last-child{
-        display: none;
-    }
-    .flex{
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .social-buttons{
-        justify-content: center;
-    }
-
     .hero-banner {
         display: none;
     }

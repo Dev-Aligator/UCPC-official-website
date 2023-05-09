@@ -44,14 +44,16 @@
 <div class="form-container">
 <div class="login-card">
 	<div class="column">
-		<h1>Login</h1>
+		<h1>Sign in</h1>
 		<form method="POST">
 			{% csrf_token %}
 			<div class="form-item">
-				<input type="text" class="form-element" placeholder="✉️ |  Email Address" name="email" required>
+				<label for="email">Enter Email</label>
+				<input type="text" id="email" name="email" class="form-element" required>
 			</div>
 			<div class="form-item">
-				<input type="password" class="form-element" id="password-form" placeholder="🔒 | Password"  name="password" required>
+				<label for="password">Enter Password</label>
+				<input type="password" id="password" name="password" class="form-element" required>
 			</div>
     			{% for message in messages %}
 				<div class="messages">
@@ -63,8 +65,10 @@
     			{% endfor %}
 			<div class="flex">
 				<button type="submit" class="btn btn-primary">Sign in</button>
-				<a href="#">Reset your password</a>
+				<span>Forgot your Password? <a href="#">Reset password</a></span>
 			</div>
+			<div class="separator">Or</div>
+
 			<div class="sign-in-with-google">
 				<a class="google-button" href="{% provider_login_url 'google' %}">
 					<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
@@ -74,7 +78,7 @@
 
 		</form>
 	</div>
-	<div class="column">
+	<div class="column" style="display:none;">
 		<h2>Welcome to UCPC</h2>
 		<p>If you don't have an account, would you like to register right now</p>
 		<a href="{% url 'register:register' %}">Sign Up</a>
