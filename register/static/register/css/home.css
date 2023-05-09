@@ -13,9 +13,12 @@ p {
 #introduction_slider {
   height: auto;
 }
+
 #countdown {
   position: relative;
   min-height: 500px;
+  border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+  border-top: 1px rgba(255, 255, 255, 0.2) solid;
 }
 
 
@@ -23,7 +26,6 @@ p {
 
 #ucpc {
   margin-top: 64px;
-  overflow: hidden;
 }
 
 /* reward */
@@ -31,13 +33,12 @@ p {
 #reward {
   min-height: 500px;
   position: relative;
-  padding-top: 2%;
+  padding: 100px 0;
 }
 
 /* Style for reward */
 #timeline {
   position: relative;
-  overflow: hidden;
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
 }
  

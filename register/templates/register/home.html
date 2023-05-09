@@ -1,11 +1,13 @@
 {% extends 'register/main.html' %}
 {% load static %}
 
+
+
 {% block main %}
 
 <!-- Navbar -->
 <nav class="Navbar">
-    <div class="Navbar-container">
+    <div>
         <!-- <button class="Navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSupportedContent"
             aria-controls="NavbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
             <span class="Navbar-toggler-icon"></span>
@@ -21,16 +23,19 @@
                     <a class="Nav-link" href="#ucpc">UCPC</a>
                 </li>
                 <li class="Nav-item">
+                    <a class="Nav-link" href="posts/">Tin Tức</a>
+                </li>
+                <li class="Nav-item">
                     <a class="Nav-link" href="#rules">Thể Lệ</a>
                 </li>
                 <li class="Nav-item">
                     <a class="Nav-link" href="#reward">Giải Thưởng</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#reward">Lịch Trình</a>
+                    <a class="Nav-link" href="#timeline">Lịch Trình</a>
                 </li>
                 <li class="Nav-item">
-                    <a class="Nav-link" href="#introduce">Liên Hệ</a>
+                    <a class="Nav-link" href="#footer">Liên Hệ</a>
                 </li>
             </ul>
 
@@ -164,8 +169,6 @@
 
 <!-- Thời Gian Đăng Ký -->
 <div id="countdown">
-    <img class="box-time__img" src="{% static 'register/images/introduction/banner2.jpg' %}" width="100%" alt="">
-
     <div class="container countdown">
         <div class="countdown-info">
             <div class="countdown-title">Thời hạn đăng ký</div>
@@ -207,8 +210,20 @@
                 </svg>
                 <div id="seconds">00</div>
             </div>
-
         </div>
+    </div>
+    
+    <div class="countdown-img__absolute--XL">
+        <img src="{% static 'register/images/layout/block.png' %}">
+    </div>
+    <div class="countdown-img__absolute--L">
+        <img src="{% static 'register/images/layout/block.png' %}">
+    </div>
+    <div class="countdown-img__absolute--M">
+        <img src="{% static 'register/images/layout/block.png' %}">
+    </div>
+    <div class="countdown-img__absolute--S">
+        <img src="{% static 'register/images/layout/block.png' %}">
     </div>
 </div>
 
@@ -223,7 +238,7 @@
     <div class="container">
         <h1 class="rule-title">Thể lệ cuộc thi</h1>
         <div class="rule-object">
-            <div class="rule-object__title">Đối tượng:</div>
+            <div class="rule-object__title">Đối tượng</div>
             <div class="rule-obect__info">
                 <p class="rule-object__description">
                     Tất cả sinh viên trường Đại học Công nghệ Thông tin, cùng các sinh viên đến từ các trường
@@ -244,11 +259,11 @@
         </div>
 
         <div class="rule-form">
-            <div class="rule-form__title">Hình thức đăng ký:</div>
+            <div class="rule-form__title">Hình thức đăng ký</div>
             <div class="rule-form__info">
                 <p class="rule-form__description">
                     Các sinh viên đăng ký thông tin tham dự thông qua
-                    <a href="https://ucpc.uit.edu.vn/register/" class="rule-form__link"> trang web cuộc thi</a>
+                    <a href="https://ucpc.uit.edu.vn/register/" target="_blank" class="rule-form__link"> trang web cuộc thi</a>
                     , đối với học sinh THPT yêu cầu có HLV và đăng ký qua
                     <a href="mailto:ucpc@uit.edu.vn" class="rule-form__link"> email của ban tổ chức</a>.
                 </p>
@@ -263,12 +278,12 @@
         </div>
 
         <div class="rule-regulation">
-            <div class="rule-regulation__title">Quy định cuộc thi:</div>
+            <div class="rule-regulation__title">Quy định cuộc thi</div>
             <div class="rule-regulation__info">
                 <p class="rule-regulation__description">
                     Để xem toàn bộ quy định cuộc thi, vui lòng truy cập
                     <a href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing"
-                        class="rule-regulation__link">TẠI ĐÂY</a>.
+                    target="_blank"  class="rule-regulation__link">TẠI ĐÂY</a>.
                 </p>
             </div>
         </div>
@@ -288,14 +303,12 @@
 
 <!-- Thông Tin giải thưởng -->
 <div class="structure">
-    <img src="{% static 'register/images/introduction/banner3.jpg' %}" alt="" width="100%" class="structure__img">
-
     <div id="reward" class="container">
         <h1 class="reward-title">Tổng giải thưởng lên đến</h1>
         <div class="reward-center">
             <div class="reward-main">30.000.000 VNĐ</div>
         </div>
-        <div class="reward-extra">Cùng nhiều quà tặng </br>hấp dẫn</div>
+        <div class="reward-extra">Cùng nhiều quà tặng hấp dẫn</div>
 
         <div class="reward-gift">
             <img src="{% static 'register/images/layout/gift1.png' %}" alt="" class="reward-gift__img">
@@ -303,6 +316,16 @@
             <img src="{% static 'register/images/layout/gift3.png' %}" alt="" class="reward-gift__img">
             <img src="{% static 'register/images/layout/gift4.png' %}" alt="" class="reward-gift__img">
             <img src="{% static 'register/images/layout/gift5.png' %}" alt="" class="reward-gift__img">
+        </div>
+
+        <div class="reward-img__absolute--XL">
+            <img src="{% static 'register/images/layout/block.png' %}">
+        </div>
+        <div class="reward-img__absolute--L">
+            <img src="{% static 'register/images/layout/block.png' %}">
+        </div>
+        <div class="reward-img__absolute--M">
+            <img src="{% static 'register/images/layout/block.png' %}">
         </div>
     </div>
 </div>
@@ -385,31 +408,34 @@
 </section>
 <!-- Lịch trình -->
 
-
 <!-- introduce -->
 <div id="introduce">
     <div class="container introduce">
         <div class="organizers">
-            <div class="organizers-text">Đơn vị tổ chức</div>
-            <div class="organizers-logo">
-                <a target="_blank" href="http://www.uit.edu.vn/" rel="noopener noreferrer">
-                    <img class="UIT" src="{% static 'register/images/footer/UIT.png' %}">
-                </a>
-                <a href="http://facebook.com/tuoitre.uit" target="_blank" rel="noopener noreferrer">
-                    <img class="HSV" src="{% static 'register/images/footer/HSV.png' %}">
-                </a>
-                <a href="http://cs.uit.edu.vn" target="_blank" rel="noopener noreferrer">
-                    <img class="CS" src="{% static 'register/images/footer/CS.png' %}">
-                </a>
-                <a href="http://www.facebook.com/uit.ucpc" target="_blank" rel="noopener noreferrer">
-                    <img class="UCPC" src="{% static 'register/images/footer/UCPC.png' %}">
-                </a>
+            <div class="organizers-info">
+                <div class="organizers-text">Đơn vị tổ chức</div>
+                <div class="organizers-logo">
+                    <a target="_blank" href="http://www.uit.edu.vn/" rel="noopener noreferrer">
+                        <img class="UIT" src="{% static 'register/images/footer/UIT.png' %}">
+                    </a>
+                    <a href="http://facebook.com/tuoitre.uit" target="_blank" rel="noopener noreferrer">
+                        <img class="HSV" src="{% static 'register/images/footer/HSV.png' %}">
+                    </a>
+                    <a href="http://cs.uit.edu.vn" target="_blank" rel="noopener noreferrer">
+                        <img class="CS" src="{% static 'register/images/footer/CS.png' %}">
+                    </a>
+                    <a href="http://www.facebook.com/uit.ucpc" target="_blank" rel="noopener noreferrer">
+                        <img class="UCPC" src="{% static 'register/images/footer/UCPC.png' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="organizers-info">
+                <div class="organizers-text">Đơn vị hỗ trợ</div>
+                <div class="organizers-logo">
+                    <img src="{% static 'register/images/footer/Doan.png' %}" alt="">
+                </div>
             </div>
 
-            <div class="organizers-text">Đơn hỗ trợ</div>
-            <div class="organizers-logo">
-                <img src="{% static 'register/images/footer/Doan.png' %}" alt="">
-            </div>
         </div>
         <div class="sponsors">
             <div class="sponsors-text">Nhà tài trợ</div>
@@ -488,7 +514,7 @@
                 <div class="footer-contact__info">
                     <i class="footer-contact__icon fa-brands fa-facebook-f"></i>
                     <a target="_blank"
-                        href="https://www.facebook.com/uit.ucpc"><b>https://www.facebook.com/uit.ucpc</b></a>
+                        href="https://www.facebook.com/uit.ucpc"><b>facebook.com.uit.ucpc</b></a>
                 </div>
             </div>
         </div>
