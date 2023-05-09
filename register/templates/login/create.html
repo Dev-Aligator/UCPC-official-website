@@ -11,13 +11,11 @@
 	<!-- Create Router Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center row">
-		  <div class="modal-content col-xxl-7 col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
-			<!-- <div class="modal-background">
-				<img id="modal-block-1" class="modal-block" src="../../static/register/images/layout/block.png"/>
-				<img id="modal-block-2" class="modal-block" src="../../static/register/images/layout/block.png"/>
-				<img id="modal-block-3" class="modal-block" src="../../static/register/images/layout/block.png"/>
-				<img id="modal-block-4" class="modal-block" src="../../static/register/images/layout/block.png"/>
-			</div> -->
+		  <div class="modal-content col-xxl-7 col-xl-7 col-lg-11 col-md-11 col-sm-11 col-11">
+			<img id="modal-block-1" class="modal-block" src="../../static/register/images/layout/block.png"/>
+			<img id="modal-block-2" class="modal-block" src="../../static/register/images/layout/block.png"/>
+			<img id="modal-block-3" class="modal-block" src="../../static/register/images/layout/block.png"/>
+			<img id="modal-block-4" class="modal-block" src="../../static/register/images/layout/block.png"/>
 			<div class="modal-body d-flex flex-row align-items-center justify-content-center row">
 				<div id="uni-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5" style="margin-right: 44px;">Sinh viên Đại học</div>
 				<div id="school-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5">Học sinh Trung học Phổ Thông</div>
@@ -35,11 +33,13 @@
 	<div class="divider-container d-flex align-items-center justify-content-center">
 		<div class="divider"></div>
 	</div>
-	{% for message in messages %}
-	<div class="message-container">
-		<p class="messages">{{message}}</p>
+	<div class="d-flex flex-row align-items-center justify-content-start">
+		{% for message in messages %}
+		<div class="message-container">
+			<p class="messages">{{message}}</p>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 	<div class="title-container">
 		<h1 class="title">Đăng ký đội thi UCPC</h1>
 	</div>

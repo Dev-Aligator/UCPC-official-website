@@ -17,11 +17,13 @@
 	<div class="divider-container d-flex align-items-center justify-content-center">
 		<div class="divider"></div>
 	</div>
-	{% for message in messages %}
-	<div class="message-container">
-		<p class="messages">{{message}}</p>
+	<div class="d-flex flex-row align-items-center justify-content-start">
+		{% for message in messages %}
+		<div class="message-container">
+			<p class="messages">{{message}}</p>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 	<div class="title-container">
 		<h1 class="title">Chỉnh sửa hồ sơ đội thi UCPC</h1>
 	</div>
