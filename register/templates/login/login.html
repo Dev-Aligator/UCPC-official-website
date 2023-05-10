@@ -58,7 +58,7 @@
     			{% for message in messages %}
 				<div class="messages">
       				{% if message.tags == 'error' %}
-        				<p class="error">{{ message }}</p>
+        				<p style="white-space: pre-wrap;"class="error">{{ message }}</p>
       				{% endif %}
 				</div>
 

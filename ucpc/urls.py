@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include 
+from django.conf import settings
+from allauth.socialaccount import providers
+from importlib import import_module
 
 admin.site.site_title = "UCPC Administration"
 admin.site.site_header = "Administration"
@@ -24,5 +27,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('register.urls')),
     path('',include('posting.urls')),
-    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.urls')),
 ]
+
+if settings.SOCIALACCOUNT_ENABLED:
+    urlpatterns += [path("social/", include("allauth.socialaccount.urls"))]
+
+# Provider urlpatterns, as separate attribute (for reusability).
+provider_urlpatterns = []
+for provider in providers.registry.get_list():
+    try:
+        prov_mod = import_module(provider.get_package() + ".urls")
+    except ImportError:
+        continue
+    prov_urlpatterns = getattr(prov_mod, "urlpatterns", None)
+    if prov_urlpatterns:
+        provider_urlpatterns += prov_urlpatterns
+urlpatterns += provider_urlpatterns

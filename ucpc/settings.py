@@ -199,6 +199,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 SOCIALACCOUNT_ADAPTER = 'register.adapter.UcpcSocialAccountAdapter'
 ACCOUNT_ADAPTER = "register.adapter.UcpcAccountAdapter"
 
+SOCIALACCOUNT_ENABLED = "allauth.socialaccount" in INSTALLED_APPS
+
 # Redirect url after login
 LOGIN_REDIRECT_URL = "/"
 # Redirect url not yet login
