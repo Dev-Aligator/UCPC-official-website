@@ -268,6 +268,19 @@ class create_profile(LoginRequiredMixin, View):
                     if row_index is not None:
                         row_index = f'D{str(row_index)}' 
                         wks.update(row_index, googleSheetData.tolist())
+
+                    # EMail 
+                    subject = "Password Reset Requested"
+                    email_template_name = "login/remind_email.txt"
+                    c = {
+					"email":request.user.email,
+					'Teamname': tf_data.get('TeamName'),
+					}
+                    email = render_to_string(email_template_name, c)
+                    try:
+                        send_mail(subject, email, os.environ.get("EMAIL_HOST_USER") , [request.user.email], fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
                     messages.success(request, '✔️ Tài khoản ' + request.user.email + ' tạo đội thi thành công!')
                     return redirect('register:profile')
                 except Exception as ex:

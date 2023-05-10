@@ -1,0 +1,17 @@
+{% autoescape off %}
+Hello, {{ Teamname }}
+
+Chúc mừng bạn đã đăng ký thành công tham gia cuộc thi UIT Collegiate Programming Contest (UCPC). Chúng tôi xin chân thành cảm ơn sự quan tâm của bạn đối với cuộc thi của chúng tôi.
+
+
+
+Chúng tôi xin thông báo rằng bạn đã tạo đội tham gia cuộc thi UCPC thành công. Để hoàn tất việc đăng ký, Bạn cần nộp phí cuộc thi là 90.000 VND/team theo hướng dẫn trên trang đăng ký.
+
+Nếu Bạn có bất kỳ thắc mắc nào, xin vui lòng liên hệ với chúng tôi qua địa chỉ email support@ucpc.com.
+
+If you did not make this request, you can simply ignore this email.
+
+Sincerely,
+The Ucpc Team
+
+{% endautoescape %}
