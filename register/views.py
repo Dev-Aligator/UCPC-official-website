@@ -256,8 +256,6 @@ class create_profile(LoginRequiredMixin, View):
                             # The current user's email was not found in the sheet
                             row_index = None
                     googleSheetData = np.array([googleSheetData])
-                    print(googleSheetData.tolist())
-                    print(row_index)
                     if row_index is not None:
                         row_index = f'D{str(row_index)}' 
                         wks.update(row_index, googleSheetData.tolist())
@@ -365,8 +363,6 @@ class edit_profile(LoginRequiredMixin, View):
                             # The current user's email was not found in the sheet
                             row_index = None
                     googleSheetData = np.array([googleSheetData])
-                    print(googleSheetData.tolist())
-                    print(row_index)
                     if row_index is not None:
                         row_index = f'D{str(row_index)}' 
                         wks.update(row_index, googleSheetData.tolist())
