@@ -270,7 +270,7 @@ class create_profile(LoginRequiredMixin, View):
                         wks.update(row_index, googleSheetData.tolist())
 
                     # EMail 
-                    subject = "Password Reset Requested"
+                    subject = "[Notification] Successful Registration for UCPC"
                     email_template_name = "login/remind_email.txt"
                     c = {
 					"email":request.user.email,
