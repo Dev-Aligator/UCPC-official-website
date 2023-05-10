@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY','samplesecret123')
 # DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 DEBUG=True 
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
 
 if ALLOWED_HOSTS_ENV:
@@ -206,3 +206,5 @@ LOGIN_REDIRECT_URL = "/"
 # Redirect url not yet login
 LOGIN_URL = "/login/"
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
