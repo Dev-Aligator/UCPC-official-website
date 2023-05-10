@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+
+
 ]
 
 
@@ -206,5 +208,11 @@ LOGIN_REDIRECT_URL = "/"
 # Redirect url not yet login
 LOGIN_URL = "/login/"
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER= os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD= os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

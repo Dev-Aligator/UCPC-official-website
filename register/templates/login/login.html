@@ -14,7 +14,7 @@
 {% if messages %}
 	{% for message in messages %}
 		{% if message.tags == 'success' %}
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 60px">
 				<strong>
 					{{ message }}
 				</strong>
@@ -65,7 +65,7 @@
     			{% endfor %}
 			<div class="flex">
 				<button type="submit" class="btn btn-primary">Sign in</button>
-				<span>Forgot your Password? <a href="#">Reset password</a></span>
+				<span>Forgot your Password? <a href="/password_reset">Reset password</a></span>
 			</div>
 			<div class="separator">Or</div>
 

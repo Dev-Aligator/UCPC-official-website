@@ -18,7 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from allauth.socialaccount import providers
 from importlib import import_module
-
+from django.contrib.auth import views as auth_views 
+from register import views
 admin.site.site_title = "UCPC Administration"
 admin.site.site_header = "Administration"
 admin.site.index_title = "UCPC "
@@ -28,6 +29,7 @@ urlpatterns = [
     path('',include('register.urls')),
     path('',include('posting.urls')),
     # path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 if settings.SOCIALACCOUNT_ENABLED:
