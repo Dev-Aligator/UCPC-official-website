@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block main %}
-<div class="container">
+<div class="profile-container">
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" />
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
@@ -22,14 +22,14 @@
 	<div class="title-container">
 		<h1 class="title">Hồ sơ đội thi UCPC</h1>
 	</div>
-	<div class="info-container" style="margin-bottom: 300px;">
-		<div class="general_info">
+	<div class="info-container row" style="margin-bottom: 300px;">
+		<div class="general_info col-xxl-8 col-xl-9">
 			<div class="info-box">
 				<div class="box-title-container">
 					<h2 class="box-title">Thông tin đội</h2>
 				</div>
 				<div class="box-info-container">
-					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+					<div class="box-info-wrapper mb-5">
 						<div class="box-label-primary">Tên đội</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -38,7 +38,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+					<div class="box-info-wrapper mb-5">
 						<div class="box-label-primary">Email</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -64,22 +64,22 @@
 			</div>
 		</div>
 		{% if teammates %}
-		<div class="teammate_container">
+		<div class="teammate_container col-xxl-8 col-xl-9">
 			{% for teammate in teammates %}
-			<div class="info-box" style="margin-top: 70px">
+			<div class="info-box teammate-info-box">
 				<div class="box-title-container">
 					{% if teammate.Occupation == 'TC' %}
 					<h2 class="box-title">Người phụ trách</h2>
 					{% else %}
 						{% if teammate.Leader == True %}
-						<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+						<h2 class="box-title">Thành viên 1 (Đội Trưởng)</h2>
 						{% else %}
 						<h2 class="box-title">Thành viên {{ forloop.counter }}</h2>
 						{% endif %}
 					{% endif %}
 				</div>
 				<div class="box-info-container">
-					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+					<div class="box-info-wrapper mb-4">
 						<div class="box-label-secondary">Họ và tên</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -88,16 +88,27 @@
 							</div>
 						</div>
 					</div>
-					<div class="box-info-wrapper" style="margin-bottom: 40px;">
-						<div class="box-label-secondary">MSSV/CCCD</div>
+					{% if teammate.Occupation == 'ST' %}
+					<div class="box-info-wrapper mb-4">
+						<div class="box-label-secondary">MSSV</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
 							<div class="box-value">
-								{{ teammate.MSSV_CMND }}
+								{{ teammate.MSSV }}
 							</div>
 						</div>
 					</div>
-					<div class="box-info-wrapper" style="margin-bottom: 40px;">
+					{% endif %}
+					<div class="box-info-wrapper mb-4">
+						<div class="box-label-secondary">CMND/CCCD</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.CMND_CCCD }}
+							</div>
+						</div>
+					</div>
+					<div class="box-info-wrapper mb-4">
 						<div class="box-label-secondary">Số điện thoại</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -106,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="box-info-wrapper">
+					<div class="box-info-wrapper mb-4">
 						<div class="box-label-secondary">Tên trường</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -115,27 +126,47 @@
 							</div>
 						</div>
 					</div>
+					{% if teammate.Occupation == 'TC' %} 
+					<div class="box-info-wrapper">
+						<div class="box-label-secondary">Chức vụ</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.JobTitle }}
+							</div>
+						</div>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 			{% endfor %}
 		</div>
 		{% endif %}
-		{% if team.FeePaymnet == True %}
-			<div class="status-container">
-				<div class="fee-title">Tình trạng lệ phí: </div>
-				<span class="fee-status" style="color: #2FEC42;">Đã thanh toán</span>
+		<div class="fee-qr d-flex flex-row col-xxl-8 col-xl-9 row">
+			{% if team.FeePayment != 'CMPL' %}
+			<div class="info-container col-lg-4 col-md-12">
+				<div class="status-container">
+					<div class="fee-title">Tình trạng lệ phí</div>
+					<div class="fee-status mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1" style="color: #CD1111;">Chưa thanh toán</div>
+					<div class="fee-status" style="color: #CD1111;">90.000 VND/Team</div>
+				</div>
+				<div class="content-container mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1">
+					<h3 class="fee-label">Xin vui lòng chuyển khoản với nội dung</h3>
+					<p class="fee-content">"Tên đội_DONG TIEN UCPC_2023"</p>
+				</div>
 			</div>
-		{% else %}
-			<div class="fee-qr d-flex flex-row justify-content-between row">
-				<div class="info-container d-flex flex-column justify-content-around col-lg-8 col-md-12">
-					<div class="status-container">	
-						<div class="fee-title">Tình trạng lệ phí: </div>
-						<span class="fee-status" style="color: #CD1111;">Chưa thanh toán</span>
-					</div>
-					<div class="content-container">
-						<h2 class="fee-title">Lệ phí: 90.000 VND/team</h2>
-						<h3 class="fee-label">Xin vui lòng chuyển khoản với nội dung</h3>
-						<p class="fee-content">"Tên đội_DONG TIEN UCPC_2023"</p>
+			{% else %}
+			<div class="info-container col-12">
+				<div class="status-container">
+					<div class="fee-title">Tình trạng lệ phí</div>
+					<div class="fee-status mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1" style="color: #2FEC42;">Đã thanh toán</div>
+				</div>
+			</div>
+			{% endif %}
+			{% if team.FeePayment != 'CMPL' %}
+				<div class="qr-container col-lg-4 col-md-12 d-flex justify-content-center align-items-center">
+					<div class="qr-img-1 d-flex justify-content-center align-items-center">
+						<div class="qr-img-2 d-flex justify-content-center align-items-center">QR</div>
 					</div>
 				</div>
 				<div class="qr-container col-lg-4 col-md-12 d-flex justify-content-center align-items-center">
@@ -143,13 +174,13 @@
 						<div class="qr-img-2 d-flex justify-content-center align-items-center">QR</div>
 					</div>
 				</div>
-			</div>
-		{% endif %}
-		<div class="btn-container row" id="profile-btn-container">
-			<a class="col-xl-4 col-lg-12" href="{% url 'register:home' %}">
+			{% endif %}
+		</div>
+		<div class="btn-container col-xxl-8 col-xl-9 row" id="profile-btn-container">
+			<a class="col-xl-4 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:home' %}">
 				<button type="button" class="exit-btn">Trở về</button>
 			</a>
-			<a class="col-xl-8 col-lg-12" href="{% url 'register:edit' %}">
+			<a class="col-xl-8 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:edit' %}">
 				<button type="button" class="edit-btn">Chỉnh sửa thông tin</button>
 			</a>
 		</div>

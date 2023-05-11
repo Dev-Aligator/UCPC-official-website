@@ -181,16 +181,19 @@ class view_profile(LoginRequiredMixin, View):
                 'teammates': [
                     {
                         'Fullname': teammate.Fullname,
-                        'MSSV_CMND': teammate.MSSV_CMND,
+                        'MSSV': teammate.MSSV,
+                        'CMND_CCCD': teammate.CMND_CCCD,
                         'Phone': teammate.Phone,
                         'School': teammate.School,
                         'Leader': teammate.Leader,
-                        'Occupation': teammate.Occupation
+                        'Occupation': teammate.Occupation,
+                        'JobTitle': teammate.JobTitle
                     } for teammate in filtered_teammates
                 ]
             }
             return render(request, 'login/profile.html', ctx)   
         except Exception as exp:
+            print(exp)
             messages.error(request, '❌ Không tìm thấy đội thi. Vui lòng tạo đội thi mới!')
             return redirect('register:create')
         
@@ -207,12 +210,14 @@ class create_profile(LoginRequiredMixin, View):
             ctx = {
                 'tf': TeamForm, 
                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'team_type': type,
                 'isTimeOver': False
             }
         else:
             ctx = {
                 'tf': TeamForm, 
                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'team_type': type,
                 'isTimeOver': True
             }
         return render(request, 'login/create.html', ctx)
@@ -221,10 +226,11 @@ class create_profile(LoginRequiredMixin, View):
     def post(self, request):
         if request.method == 'POST':
             # Get types of form
-            type = request.POST.get('type')
+            type = request.GET.get('type')
             # Posted form
             tf = TeamForm(request.POST)
             tmf = HighSchoolFormSet(request.POST) if type == 'HighSchool' else UniversityFormSet(request.POST)
+            print(type)
             # Check forms valid or not
             if(tf.is_valid() and tmf.is_valid()):
                 # Create & Save Team and Teammate objects with posted data
@@ -243,11 +249,13 @@ class create_profile(LoginRequiredMixin, View):
                         new_teammate = Teammate(
                             Team = new_team, 
                             Fullname = tmf_data.get('Fullname'),
-                            MSSV_CMND = tmf_data.get('MSSV_CMND'),
+                            MSSV = None if type == 'HighSchool' else tmf_data.get('MSSV'),
+                            CMND_CCCD = tmf_data.get('CMND_CCCD'),
                             Phone = tmf_data.get('Phone'),
                             School = tmf_data.get('School'),
                             Leader = True if index == 0 else False,
-                            Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]
+                            Occupation = Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0],
+                            JobTitle = tmf_data.get('JobTitle') if index == 3 else 'Student/Pupil'
                         )
                         new_teammate.save()
                         googleSheetData.extend([tmf_data.get('Fullname'), tmf_data.get('MSSV_CMND'), tmf_data.get('Phone'), Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]])
@@ -287,19 +295,22 @@ class create_profile(LoginRequiredMixin, View):
                     print(ex)
                     ctx = {
                         'tf':tf,
-                        'tmf': tmf
+                        'tmf': tmf,
+                        'teamm_type': type
                     }
                     messages.error(request, '❌ Lỗi hệ thống!')
                     return render(request, 'login/create.html', ctx, status=500)
             else:
                 ctx = {
                     'tf':tf,
-                    'tmf': tmf
+                    'tmf': tmf,
+                    'team_type': type
                 }
                 messages.error(request, '❌ Thông tin không hợp lệ!')
                 for err in tmf.non_form_errors():
                     if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')
-                    if (err == 'Please correct the duplicate data for MSSV_CMND.'): messages.error(request, '❌ MSSV/CCCD trùng lặp!')
+                    if (err == 'Please correct the duplicate data for MSSV.'): messages.error(request, '❌ MSSV trùng lặp!')
+                    if (err == 'Please correct the duplicate data for CMND_CCCD.'): messages.error(request, '❌ CMND/CCCD trùng lặp!')
                 return render(request, 'login/create.html', ctx, status=422)
 
         
@@ -324,9 +335,11 @@ class edit_profile(LoginRequiredMixin, View):
             tmf_initial = [
                 {
                     'Fullname': teammate.Fullname,
-                    'MSSV_CMND': teammate.MSSV_CMND,
+                    'MSSV': teammate.MSSV,
+                    'CMND_CCCD': teammate.CMND_CCCD,
                     'Phone': teammate.Phone,
-                    'School': teammate.School, 
+                    'School': teammate.School,
+                    'JobTitle': teammate.JobTitle, 
                 } for teammate in filtered_teammates
             ]
             type = "HighSchool" if len(tmf_initial) == 4 else "University"
@@ -334,12 +347,14 @@ class edit_profile(LoginRequiredMixin, View):
             ctx = {
                 'tf': TeamForm(initial = tf_initial), 
                 'tmf': HighSchoolFormSet(initial = tmf_initial) if type == 'HighSchool' else UniversityFormSet(initial = tmf_initial),
+                'team_type': type,
                 'isTimeOver': False
             }
         else:
             ctx = {
                 'tf': TeamForm, 
                 'tmf': HighSchoolFormSet if type == 'HighSchool' else UniversityFormSet,
+                'team_type': type,
                 'isTimeOver': True
             }
         return render(request, 'login/edit.html', ctx)
@@ -353,7 +368,7 @@ class edit_profile(LoginRequiredMixin, View):
                 filtered_team = Team.objects.get(UcpcUser = ucpc_user)
                 filtered_teammates = Teammate.objects.filter(Team = filtered_team)
                 # Get types of form
-                type = request.POST.get('type')
+                type = request.GET.get('type')
                 
                 # Fill instance for Team and Teammate objects
                 tf = TeamForm(request.POST, instance=filtered_team)
@@ -393,8 +408,10 @@ class edit_profile(LoginRequiredMixin, View):
                 else:
                     ctx = {
                         'tf':tf,
-                        'tmf': tmf
+                        'tmf': tmf,
+                        'team_type': type
                     }
+                    print(tf.errors)
                     messages.error(request, '❌ Thông tin không hợp lệ!')
                     for err in tmf.non_form_errors():
                         if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')

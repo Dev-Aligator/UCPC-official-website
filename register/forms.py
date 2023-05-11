@@ -27,43 +27,53 @@ class TeamForm(forms.ModelForm):
 
         # add custom error messages
         self.fields['TeamName'].error_messages.update({
-            'invalid': '⚠️ Tên đội không hợp lệ!',
+            'invalid': '⚠️ Tên đội không hợp lệ! (Tên đội hợp lệ có độ dài tối đa 30 ký tự)',
         })
 
 class TeammateForm(forms.ModelForm):
-    Fullname = forms.CharField(required=True, max_length=30, label='Họ và tên', validators=[Validator.NameRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: Nguyễn Văn A', 'name': 'Fullname' }))
-    MSSV_CMND = forms.CharField(required=True, max_length=12, label = 'MSSV/CMND', validators=[Validator.MSSV_CMNDRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'MSSV có 8 chữ số hoặc CMND/CCCD có 9/12 chữ số. Ví dụ: 381932123'}))
+    Fullname = forms.CharField(required=True, max_length=30, label = 'Họ và tên', validators=[Validator.NameRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: Nguyễn Văn A', 'name': 'Fullname' }))
+    MSSV = forms.CharField(required=False, max_length=30, label = 'MSSV', validators=[Validator.MSSVRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: 22520012'}))
+    CMND_CCCD = forms.CharField(required=True, max_length=30, label = 'CMND/CCCD', validators=[Validator.CMND_CCCDRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'CMND/CCCD có 9 hoặc 12 chữ số. Ví dụ: 381932123'}))
     Phone = forms.CharField(required=True, max_length=11, label = 'Số điện thoại', validators=[Validator.PhoneRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'id': 'pos2', 'placeholder': 'Số điện thoại có 10 hoặc 11 chữ số. Ví dụ: 0912345678'}))
     School = forms.ChoiceField(required=True, label='Tên trường', choices=Choices.SCHOOL_CHOICES, widget=forms.Select(attrs={'class': 'form-box-control', 'list': 'schools', 'placeholder': 'Ví dụ: Đại học Công nghệ Thông tin - ĐHQG TP.HCM'}))
+    JobTitle = forms.CharField(required=False, max_length=30, label='Chức vụ', validators=[Validator.JobTitleRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: Giáo viên chủ nhiệm'}))
     
     def __init__(self, *args, **kwargs):
         super(TeammateForm, self).__init__(*args, **kwargs)
         self.fields['Fullname'].error_messages.update({
-            'invalid': '⚠️ Tên không hợp lệ!',
+            'invalid': '⚠️ Tên không hợp lệ! (Tên đội hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng)',
         })
-        self.fields['MSSV_CMND'].error_messages.update({
-            'invalid': '⚠️ Mã số sinh viên / Chứng minh nhân dân không hợp lệ! (MSSV hợp lệ có 8 chữ số / CMND hợp lệ có 9 hoặc 12 chữ số)',
+        self.fields['MSSV'].error_messages.update({
+            'invalid': '⚠️ Mã số sinh viên không hợp lệ! (Mã số sinh viên hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng)',
+        })
+        self.fields['CMND_CCCD'].error_messages.update({
+            'invalid': '⚠️ Chứng minh nhân dân hoặc Căn cước công dân không hợp lệ! (CMND/CCCD hợp lệ có 9 hoặc 12 chữ số)',
         })
         self.fields['Phone'].error_messages.update({
             'invalid': '⚠️ Số điện thoại không hợp lệ! (Số điện thoại hợp lệ có 10 hoặc 11 chữ số)',
         }) 
+        self.fields['JobTitle'].error_messages.update({
+            'invalid': '⚠️ Chức vụ không hợp lệ (Chức vụ hợp lệ không bao gồm chữ số và ký tự đặc biệt)'
+        })
         
     class Meta:
         model = Teammate
-        fields = ['Fullname', 'MSSV_CMND', 'Phone', 'School']
+        fields = ['Fullname', 'MSSV', 'CMND_CCCD', 'Phone', 'School', 'JobTitle']
     
 HighSchoolFormSet = inlineformset_factory(
     parent_model=Team, 
     model=Teammate, 
     form=TeammateForm,
-    extra=4
+    extra=4,
+    fields=('Fullname', 'CMND_CCCD', 'Phone', 'School', 'JobTitle')
 )
 
 UniversityFormSet = inlineformset_factory (
     parent_model=Team,
     model=Teammate,
     form=TeammateForm,
-    extra=3
+    extra=3,
+    fields=('Fullname', 'CMND_CCCD', 'Phone', 'School', 'MSSV')
 )
 
 

@@ -7,11 +7,11 @@
 	<h1 style="font-weight: bold;">Đã hết thời gian tạo đội thi!</h1>
 </div>	
 {% else %}
-<div class="container">
+<div class="profile-container">
 	<!-- Create Router Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center row">
-		  <div class="modal-content col-xxl-7 col-xl-7 col-lg-11 col-md-11 col-sm-11 col-11">
+		  <div class="modal-content col-xxl-7 col-xl-8 col-lg-11 col-md-11 col-sm-11 col-11">
 			<img id="modal-block-1" class="modal-block" src="../../static/register/images/layout/block.png"/>
 			<img id="modal-block-2" class="modal-block" src="../../static/register/images/layout/block.png"/>
 			<img id="modal-block-3" class="modal-block" src="../../static/register/images/layout/block.png"/>
@@ -26,7 +26,7 @@
 
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" />
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
@@ -45,15 +45,15 @@
 	</div>
 	<div class="info-container" style="margin-bottom: 300px;">
 		<div class="form-group">
-			<form id="registration_form" method="POST">
+			<form id="registration_form" class="row" method="POST">
 				{% csrf_token %}
-				<div class="general_info">
+				<div class="general_info col-xxl-8 col-xl-9">
 					<div class="info-box">
 						<div class="box-title-container">
 							<h2 class="box-title">Thông tin đội</h2>
 						</div>
 						<div class="box-info-container">
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper">
 								<div class="box-label-primary">Tên đội</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -69,13 +69,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="teammates_info">
+				<div class="teammates_info col-xxl-8 col-xl-9">
 					{{ tmf.management_form }}
 					{% for tmForm in tmf %}
-					<div class="info-box" style="margin-top: 70px;">
+					<div class="info-box teammate-info-box">
 						<div class="box-title-container">
 							{% if forloop.counter == 1 %}
-							<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+							<h2 class="box-title">Thành viên 1 (Đội Trưởng)</h2>
 							{% else %}
 								{% if forloop.counter == 4 %}
 								<h2 class="box-title">Người phụ trách</h2>
@@ -85,7 +85,7 @@
 							{% endif %}
 						</div>
 						<div class="box-info-container">
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Họ và tên</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -97,19 +97,33 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Fullname.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
-								<div class="box-label-secondary">MSSV/CCCD</div>
+							{% if team_type == 'University' %}
+							<div class="box-info-wrapper mb-4">
+								<div class="box-label-secondary">MSSV</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
 									<div class="box-value">
-										{{ tmForm.MSSV_CMND }}
+										{{ tmForm.MSSV }}
 									</div>
 								</div>
 								<i id="valid_team" class="fa-solid fa-circle-check"></i>
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-								<small class="box-value-error">{{ tmForm.MSSV_CMND.errors }}</small>
+								<small class="box-value-error">{{ tmForm.MSSV.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							{% endif %}
+							<div class="box-info-wrapper mb-4">
+								<div class="box-label-secondary">CMND/CCCD</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.CMND_CCCD }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.CMND_CCCD.errors }}</small>
+							</div>
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Số điện thoại</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -121,7 +135,7 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Phone.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Tên trường</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -133,16 +147,32 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.School.errors }}</small>
 							</div>
+							{% if forloop.counter == 4 %}
+							<div class="box-info-wrapper">
+								<div class="box-label-secondary">Chức vụ</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.JobTitle }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.JobTitle.errors }}</small>
+							</div>
+							{% endif %}
 						</div>
 					</div>
 					{% endfor %}
 				</div>
-				<div class="btn-container" id="profile-btn-container">
-					<div class="legal-container d-flex flex-row">
+				<div class="btn-container col-xxl-8 col-xl-9 row" id="profile-btn-container">
+					<div class="legal-container col-xl-8 col-lg-12 d-flex flex-row">
 						<input id="agree_check" onchange="document.getElementById('submit_btn').disabled = !this.checked;" type="checkbox" onclick="showRPassword()">
 						<p class="legal-label">Tôi đã đọc và đồng ý với <a target="_blank" href="https://drive.google.com/file/d/1MsaQpCsLPPy36R9VYJEh6hDS4v2pHHHB/view?usp=sharing" class="legal-link"><b>QUY ĐỊNH</b></a> của cuộc thi.</p>
 					</div>
-					<button disabled type="submit" id="submit_btn" class="register-btn">Đăng ký đội</button>
+					<div class="col-xl-8 col-lg-12 d-flex justify-content-center align-items-center">
+						<button disabled type="submit" id="submit_btn" class="register-btn">Đăng ký đội</button>
+					</div>
 				</div>
 			</form>
 		</div>
