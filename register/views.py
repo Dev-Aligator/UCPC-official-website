@@ -421,7 +421,7 @@ def password_reset_request(request):
 					email_template_name = "reset_password/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'localhost:8000',
+					'domain': os.environ.get("HOST"),
 					'site_name': 'Website',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					'token': default_token_generator.make_token(user),
