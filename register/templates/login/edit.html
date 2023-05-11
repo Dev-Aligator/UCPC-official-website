@@ -7,10 +7,10 @@
 	<h1 style="font-weight: bold;">Đã hết thời gian chỉnh sửa thông tin đội thi!</h1>
 </div>	
 {% else %}
-<div class="container">
+<div class="profile-container">
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" style="width: 100px; height: 100px;" />
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg"/>
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
@@ -29,15 +29,15 @@
 	</div>
 	<div class="info-container" style="margin-bottom: 300px;">
 		<div class="form-group">
-			<form id="registration_form" method="POST">
+			<form id="registration_form" class="row" method="POST">
 				{% csrf_token %}
-				<div class="general_info">
+				<div class="general_info col-xxl-8 col-xl-9">
 					<div class="info-box">
 						<div class="box-title-container">
 							<h2 class="box-title">Thông tin đội</h2>
 						</div>
 						<div class="box-info-container">
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper">
 								<div class="box-label-primary">Tên đội</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -53,13 +53,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="teammates_info">
+				<div class="teammates_info col-xxl-8 col-xl-9">
 					{{ tmf.management_form }}
 					{% for tmForm in tmf %}
-					<div class="info-box" style="margin-top: 70px;">
+					<div class="info-box teammate-info-box">
 						<div class="box-title-container">
 							{% if forloop.counter == 1 %}
-							<h2 class="box-title">Thành viên 1(Đội Trưởng)</h2>
+							<h2 class="box-title">Thành viên 1 (Đội Trưởng)</h2>
 							{% else %}
 								{% if forloop.counter == 4 %}
 								<h2 class="box-title">N	gười phụ trách</h2>
@@ -69,7 +69,7 @@
 							{% endif %}
 						</div>
 						<div class="box-info-container">
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Họ và tên</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -81,7 +81,7 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Fullname.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">MSSV/CCCD</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -93,7 +93,7 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.MSSV_CMND.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Số điện thoại</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -105,7 +105,7 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Phone.errors }}</small>
 							</div>
-							<div class="box-info-wrapper" style="margin-bottom: 40px;">
+							<div class="box-info-wrapper">
 								<div class="box-label-secondary">Tên trường</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -121,11 +121,11 @@
 					</div>
 					{% endfor %}
 				</div>
-				<div class="btn-container row" id="profile-btn-container">
-					<a class="col-xl-4 col-lg-12" href="{% url 'register:profile' %}">
+				<div class="btn-container col-xxl-8 col-xl-9 row" id="profile-btn-container">
+					<a class="col-xl-4 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:profile' %}">
 						<button type="button" class="exit-btn">Trở về</button>
 					</a>
-					<div class="col-xl-8 col-lg-12">
+					<div class="col-xl-8 col-lg-12 d-flex justify-content-center align-items-center">
 						<button type="submit" id="submit_btn" class="edit-btn">Cập nhật thông tin</button>
 					</div>
 				</div>

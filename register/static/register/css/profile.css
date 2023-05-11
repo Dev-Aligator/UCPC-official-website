@@ -3,6 +3,10 @@
     margin: 0;
     padding: 0;
 }
+.profile-container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
 .logo-title {
     font-family: 'Inter';
     font-style: normal;
@@ -13,18 +17,20 @@
     color: #FFFFFF;
 }
 .logo {
-    margin-right: 7px
+    width: 100px;
+    height: 100px;
+    margin-right: 0.5rem
 }
 .topbar {
-    margin-top: 55px;
-    margin-bottom: 45px;
+    margin-top: 5vh;
+    margin-bottom: 4vh;
 }
 .divider-container {
     position: relative;
 }
 .divider {
-    border: 2px solid #71C9CE;
-    width: 110%;
+    border: 1px solid #71C9CE;
+    width: 104%;
     position: absolute;
 }
 .title-container {
@@ -35,44 +41,44 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 6rem;
     line-height: 73px;
     color: #FFFFFF;
-}
-.fee-title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 44px;
-    color: #FFFFFF;
-    display: inline;
 }
 .fee-status {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 30px;
     line-height: 44px;
-    color: #CD1111;
+}
+.fee-price {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 44px;
 }
 .info-box {
     border: 2px solid #71C9CE;
     border-radius: 48px;
     box-sizing: border-box;
-    padding-top: 75px;
-    padding-left: 45px;
-    padding-right: 45px;
-    padding-bottom: 55px;
+    padding-top: 7rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 6rem;
     position: relative;
+}
+.teammate-info-box {
+    margin-top: 8rem;
 }
 .box-title-container {
     position: absolute;
     width: fit-content;
-    padding-left: 10px;
-    padding-right: 10px;
-    left: 34px;
-    top: -29px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    left: 3.5rem;
+    top: -3rem;
     background: #06283D;
 }
 .box-title {
@@ -80,7 +86,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 48px;
-    line-height: 58px;
+    line-height: 5.8rem;
     color: #FFFFFF;
 }
 .box-info-container {
@@ -108,15 +114,14 @@
     margin-bottom: 15px;
 }
 .box-value-wrapper {
-    height: 50px;
+    height: 5rem;
     background: #D9D9D9;
     border-radius: 32px;
 }
 .box-value-divider {
-    width: 32px;
-    margin-left: 55px;
-    margin-right: 10px;
-    border: 1px solid #000000;
+    width: 3.4rem;
+    margin-left: 5%;
+    border: 0.5px solid #000000;
     transform: rotate(90deg);
 }
 .box-value {
@@ -127,6 +132,7 @@
     line-height: 19px;
     color: #06283D;
     width: 85%;
+    position: relative;
 }
 .box-value-error {
     font-family: 'Inter';
@@ -154,26 +160,27 @@
     border: none;
     outline: none;
     background: #D9D9D9;
-    width: 100%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 350;
     font-size: 18px;
     line-height: 19px;
     color: #06283D;
+    width: 95%;
 }
 input.form-box-control:focus {
     border: none;
     outline: none;
 }
 #profile-btn-container {
-    margin-top: 150px;
+    margin-top: 13vh;
 }
 .exit-btn {
+    width: 100%;
+    height: 9vh;
     background: #06283D;
     border: 1px solid #71C9CE;
     border-radius: 32px;
-    padding: 27px 101px 27px 101px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -182,10 +189,11 @@ input.form-box-control:focus {
     color: #FFFFFF;
 }
 .register-btn {
+    width: 100%;
+    height: 9vh;
     background: #71C9CE;
     border: 1px solid #71C9CE;
     border-radius: 32px;
-    padding: 27px 190px 27px 190px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -194,10 +202,11 @@ input.form-box-control:focus {
     color: #FFFFFF;
 }
 .edit-btn {
+    width: 100%;
+    height: 9vh;
     background: #71C9CE;
     border: 1px solid #71C9CE;
     border-radius: 32px;
-    padding: 27px 190px 27px 190px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -205,31 +214,12 @@ input.form-box-control:focus {
     line-height: 44px;
     color: #FFFFFF;
 }
-
-@media (max-width: 1200px) {
-    .edit-btn {
-        margin-top: 40px
-    }
-}
-
-@media (max-width: 992px) {
-    .edit-btn {
-        padding: 27px 150px 27px 150px;
-    }
-}
-
-@media (max-width: 768px) {
-    .edit-btn {
-        padding: 27px 80px 27px 80px;
-    }
-}
-
 a {
     text-decoration: none !important;
     text-transform: none;
 }
 .legal-container {
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     margin-left: 20px
 }
 #agree_check {
@@ -249,13 +239,13 @@ a {
     margin-left: 10px;
 }
 .fee-qr {
-    margin-top: 95px
+    margin-top: 8vh
 }
 .fee-title {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 42px;
+    font-size: 4.2rem;
     line-height: 51px;
     color: #FFFFFF;
 }
@@ -294,11 +284,6 @@ a {
     line-height: 51px;
     color: #000000;
 }
-@media (max-width: 992px) {
-    .qr-container {
-        margin-top: 40px;
-    }
-}
 .message-container {
     margin-top: 40px;
     margin-right: 20px;
@@ -321,7 +306,7 @@ a {
     max-width: 100%;
 }
 .modal-content {
-    height: 48vh;
+    height: 65vh;
     background: #06283D;
     border-radius: 32px;
     position: relative;
@@ -358,11 +343,6 @@ a {
     bottom: 5%;
     right: 11%;
 }
-@media (max-width: 768px) {
-    #modal-block-1, #modal-block-2, #modal-block-3, #modal-block-4 {
-        display: none;
-    }
-}
 .option-block {
     background: #06283D;
     opacity: 0.6;
@@ -386,6 +366,7 @@ a {
     border-radius: 32px;
     color: #06283D;
     font-weight: 650;
+    opacity: 1;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -396,3 +377,138 @@ input:-webkit-autofill:focus {
     color: #06283D !important;
     appearance: none !important;
 }
+
+/* Responsive style */
+@media (max-width: 1200px) {
+    .edit-btn {
+        margin-top: 40px
+    }
+}
+
+@media (max-width: 992px) {
+    .qr-container {
+        margin-top: 40px;
+    }
+    .box-title {
+        font-size: 42px
+    }
+    .box-label-primary {
+        font-size: 30px;
+    }
+    .box-label-secondary {
+        font-size: 22px;
+    }
+    .info-box {
+        padding-top: 6rem;
+    }
+    .box-value {
+        font-size: 16px;
+    }
+    .box-value-wrapper {
+        height: 4rem;
+    }
+    .edit-btn, .exit-btn, .register-btn {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    #modal-block-1, #modal-block-2, #modal-block-3, #modal-block-4 {
+        display: none;
+    }
+    .box-title {
+        font-size: 34px
+    }
+    .box-label-primary {
+        font-size: 28px;
+    }
+    .box-label-secondary {
+        font-size: 20px;
+    }
+    .info-box {
+        padding-top: 5rem;
+    }
+    .box-value {
+        font-size: 16px;
+    }
+    .box-value-wrapper {
+        height: 4rem;
+    }
+    .edit-btn, .exit-btn, .register-btn {
+        font-size: 34px;
+    }
+    .legal-label {
+        font-size: 14px;
+    }
+    .box-value-hint {
+        font-size: 10px
+    }
+}
+
+@media (max-width: 576px) {
+    .title {
+        font-size: 5rem
+    }
+    .box-title {
+        font-size: 28px
+    }
+    .box-label-primary {
+        font-size: 26px;
+    }
+    .box-label-secondary {
+        font-size: 18px;
+    }
+    .info-box {
+        padding-top: 4rem;
+    }
+    .box-value {
+        font-size: 14px;
+    }
+    .box-value-wrapper {
+        height: 4rem;
+    }
+    .edit-btn, .exit-btn, .register-btn {
+        font-size: 28px;
+    }
+    .legal-label {
+        font-size: 12px;
+    }
+    .box-value-hint {
+        font-size: 10px
+    }
+}
+
+@media (max-width: 530px) {
+    .title {
+        font-size: 5rem;
+    }
+    .box-title {
+        font-size: 24px;
+    }
+    .box-label-primary {
+        font-size: 20px;
+    }
+    .box-label-secondary {
+        font-size: 16px;
+    }
+    .info-box {
+        padding-top: 3rem;
+    }
+    .box-value {
+        font-size: 12px;
+    }
+    .box-value-wrapper {
+        height: 4rem;
+    }
+    .edit-btn, .exit-btn, .register-btn {
+        font-size: 24px;
+    }
+    .legal-label {
+        font-size: 12px;
+    }
+    .box-value-hint {
+        font-size: 10px
+    }
+}
+
+

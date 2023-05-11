@@ -159,7 +159,6 @@ class view_profile(LoginRequiredMixin, View):
             ucpc_user = UcpcUser.objects.get(email=request.user.email)
             filtered_team = Team.objects.get(UcpcUser=ucpc_user)
             filtered_teammates = Teammate.objects.filter(Team=filtered_team)
-            print(filtered_teammates)
             ctx = {
                 'user_email': request.user.email,
                 'team': {

@@ -32,7 +32,7 @@ class TeamForm(forms.ModelForm):
 
 class TeammateForm(forms.ModelForm):
     Fullname = forms.CharField(required=True, max_length=30, label='Họ và tên', validators=[Validator.NameRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: Nguyễn Văn A', 'name': 'Fullname' }))
-    MSSV_CMND = forms.CharField(required=True, max_length=12, label = 'MSSV/CMND', validators=[Validator.MSSV_CMNDRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'MSSV có 8 chữ số hoặc CMND/CCCD có 9/12 chữ số. Ví dụ: 381932123'}))
+    MSSV_CMND = forms.CharField(required=True, max_length=30, label = 'MSSV/CMND', validators=[Validator.MSSVRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'MSSV có 8 chữ số hoặc CMND/CCCD có 9/12 chữ số. Ví dụ: 381932123'}))
     Phone = forms.CharField(required=True, max_length=11, label = 'Số điện thoại', validators=[Validator.PhoneRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'id': 'pos2', 'placeholder': 'Số điện thoại có 10 hoặc 11 chữ số. Ví dụ: 0912345678'}))
     School = forms.ChoiceField(required=True, label='Tên trường', choices=Choices.SCHOOL_CHOICES, widget=forms.Select(attrs={'class': 'form-box-control', 'list': 'schools', 'placeholder': 'Ví dụ: Đại học Công nghệ Thông tin - ĐHQG TP.HCM'}))
     

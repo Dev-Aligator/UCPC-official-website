@@ -60,7 +60,7 @@ class Teammate(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     Team = models.ForeignKey(Team, on_delete=models.CASCADE)
     Fullname = models.CharField(max_length=30, null=False, blank=False, validators=[Validator.NameRegex])
-    MSSV_CMND = models.CharField(max_length=12, null=False, blank=False, unique=True, validators=[Validator.MSSV_CMNDRegex])
+    MSSV_CMND = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[Validator.MSSVRegex])
     Phone = models.CharField(max_length=11, null=False, blank=False, unique=True, validators=[Validator.PhoneRegex])
     School = models.CharField(max_length=10, null=False, blank=False, choices=Choices.SCHOOL_CHOICES)
     Leader = models.BooleanField(null=False, blank=False, default=False)
