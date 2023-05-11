@@ -10,9 +10,9 @@ class TeamAdmin(ImportExportMixin, admin.ModelAdmin):
     search_fields = ['TeamName', 'ID']
 
 class TeammateAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('ID', 'Team' ,'Fullname', 'MSSV_CMND', 'Phone', 'School', 'Leader', 'Occupation')
+    list_display = ('ID', 'Team' ,'Fullname', 'MSSV', 'CMND_CCCD', 'Phone', 'School', 'Leader', 'Occupation', 'JobTitle')
     list_filter = ['Team', 'School', 'Occupation', 'Leader']
-    search_fields = ['Team', 'Fullname', 'Phone', 'School', 'MSSV_CMND']
+    search_fields = ['Team', 'Fullname', 'Phone', 'School', 'MSSV', 'CMND_CCCD', 'JobTitle']
     
 class PostAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('ID', 'Date', 'Title', 'Author', 'Thumbnail', 'Post')

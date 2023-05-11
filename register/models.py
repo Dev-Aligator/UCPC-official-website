@@ -60,11 +60,13 @@ class Teammate(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     Team = models.ForeignKey(Team, on_delete=models.CASCADE)
     Fullname = models.CharField(max_length=30, null=False, blank=False, validators=[Validator.NameRegex])
-    MSSV_CMND = models.CharField(max_length=30, null=False, blank=False, unique=True, validators=[Validator.MSSVRegex])
+    MSSV = models.CharField(max_length=30, null=True, blank=False, unique=True, default='22520000', validators=[Validator.MSSVRegex])
+    CMND_CCCD = models.CharField(max_length=30, null=False, blank=False, unique=True, default='000000000', validators=[Validator.CMND_CCCDRegex])
     Phone = models.CharField(max_length=11, null=False, blank=False, unique=True, validators=[Validator.PhoneRegex])
     School = models.CharField(max_length=10, null=False, blank=False, choices=Choices.SCHOOL_CHOICES)
     Leader = models.BooleanField(null=False, blank=False, default=False)
     Occupation = models.CharField(max_length=10, null=False, blank=False, choices=Choices.OCCUPATION_CHOICES, default=Choices.OCCUPATION_CHOICES[0][0])
+    JobTitle = models.CharField(max_length=30, default='Pupil/Student', validators=[Validator.JobTitleRegex])
     
     def __str__(self):
         return self.Fullname

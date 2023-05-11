@@ -97,17 +97,31 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Fullname.errors }}</small>
 							</div>
+							{% if team_type == 'University' %}
 							<div class="box-info-wrapper mb-4">
-								<div class="box-label-secondary">MSSV/CCCD</div>
+								<div class="box-label-secondary">MSSV</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
 									<div class="box-value">
-										{{ tmForm.MSSV_CMND }}
+										{{ tmForm.MSSV }}
 									</div>
 								</div>
 								<i id="valid_team" class="fa-solid fa-circle-check"></i>
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
-								<small class="box-value-error">{{ tmForm.MSSV_CMND.errors }}</small>
+								<small class="box-value-error">{{ tmForm.MSSV.errors }}</small>
+							</div>
+							{% endif %}
+							<div class="box-info-wrapper mb-4">
+								<div class="box-label-secondary">CMND/CCCD</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.CMND_CCCD }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.CMND_CCCD.errors }}</small>
 							</div>
 							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Số điện thoại</div>
@@ -121,7 +135,7 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.Phone.errors }}</small>
 							</div>
-							<div class="box-info-wrapper">
+							<div class="box-info-wrapper mb-4">
 								<div class="box-label-secondary">Tên trường</div>
 								<div class="box-value-wrapper d-flex align-items-center">
 									<div class="box-value-divider"></div>
@@ -133,6 +147,20 @@
 								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
 								<small class="box-value-error">{{ tmForm.School.errors }}</small>
 							</div>
+							{% if forloop.counter == 4 %}
+							<div class="box-info-wrapper">
+								<div class="box-label-secondary">Chức vụ</div>
+								<div class="box-value-wrapper d-flex align-items-center">
+									<div class="box-value-divider"></div>
+									<div class="box-value">
+										{{ tmForm.JobTitle }}
+									</div>
+								</div>
+								<i id="valid_team" class="fa-solid fa-circle-check"></i>
+								<i id="invalid_team" class="fa-solid fa-circle-exclamation"></i>
+								<small class="box-value-error">{{ tmForm.JobTitle.errors }}</small>
+							</div>
+							{% endif %}
 						</div>
 					</div>
 					{% endfor %}

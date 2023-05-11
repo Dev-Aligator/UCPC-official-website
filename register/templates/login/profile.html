@@ -29,7 +29,7 @@
 					<h2 class="box-title">Thông tin đội</h2>
 				</div>
 				<div class="box-info-container">
-					<div class="box-info-wrapper">
+					<div class="box-info-wrapper mb-5">
 						<div class="box-label-primary">Tên đội</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -88,12 +88,23 @@
 							</div>
 						</div>
 					</div>
+					{% if teammate.Occupation == 'ST' %}
 					<div class="box-info-wrapper mb-4">
-						<div class="box-label-secondary">MSSV/CCCD</div>
+						<div class="box-label-secondary">MSSV</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
 							<div class="box-value">
-								{{ teammate.MSSV_CMND }}
+								{{ teammate.MSSV }}
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					<div class="box-info-wrapper mb-4">
+						<div class="box-label-secondary">CMND/CCCD</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.CMND_CCCD }}
 							</div>
 						</div>
 					</div>
@@ -106,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="box-info-wrapper">
+					<div class="box-info-wrapper mb-4">
 						<div class="box-label-secondary">Tên trường</div>
 						<div class="box-value-wrapper d-flex align-items-center">
 							<div class="box-value-divider"></div>
@@ -115,6 +126,17 @@
 							</div>
 						</div>
 					</div>
+					{% if teammate.Occupation == 'TC' %} 
+					<div class="box-info-wrapper">
+						<div class="box-label-secondary">Chức vụ</div>
+						<div class="box-value-wrapper d-flex align-items-center">
+							<div class="box-value-divider"></div>
+							<div class="box-value">
+								{{ teammate.JobTitle }}
+							</div>
+						</div>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 			{% endfor %}
@@ -125,10 +147,10 @@
 			<div class="info-container col-lg-4 col-md-12">
 				<div class="status-container">
 					<div class="fee-title">Tình trạng lệ phí</div>
-					<div class="fee-status mt-5" style="color: #CD1111;">Chưa thanh toán</div>
+					<div class="fee-status mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1" style="color: #CD1111;">Chưa thanh toán</div>
 					<div class="fee-status" style="color: #CD1111;">90.000 VND/Team</div>
 				</div>
-				<div class="content-container mt-5">
+				<div class="content-container mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1">
 					<h3 class="fee-label">Xin vui lòng chuyển khoản với nội dung</h3>
 					<p class="fee-content">"Tên đội_DONG TIEN UCPC_2023"</p>
 				</div>
@@ -137,7 +159,7 @@
 			<div class="info-container col-12">
 				<div class="status-container">
 					<div class="fee-title">Tình trạng lệ phí</div>
-					<div class="fee-status mt-5" style="color: #2FEC42;">Đã thanh toán</div>
+					<div class="fee-status mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-4 mt-sm-3 mt-1" style="color: #2FEC42;">Đã thanh toán</div>
 				</div>
 			</div>
 			{% endif %}

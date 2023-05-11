@@ -50,7 +50,6 @@
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
-    line-height: 44px;
 }
 .fee-price {
     font-family: 'Inter';
@@ -140,11 +139,11 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-    color: #FFFFFF;
+    color: #CD1111;
 }
 .errorlist {
     margin-top: 6px;
-    margin-left: 71px;
+    margin-left: 7%;
 }
 .box-value-hint {
     font-family: 'Inter';
@@ -154,7 +153,7 @@
     line-height: 15px;
     color: #FFFFFF;
     margin-top: 6px;
-    margin-left: 71px;
+    margin-left: 7%;
 }
 .form-box-control {
     border: none;
@@ -177,7 +176,8 @@ input.form-box-control:focus {
 }
 .exit-btn {
     width: 100%;
-    height: 9vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background: #06283D;
     border: 1px solid #71C9CE;
     border-radius: 32px;
@@ -190,7 +190,8 @@ input.form-box-control:focus {
 }
 .register-btn {
     width: 100%;
-    height: 9vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background: #71C9CE;
     border: 1px solid #71C9CE;
     border-radius: 32px;
@@ -203,7 +204,8 @@ input.form-box-control:focus {
 }
 .edit-btn {
     width: 100%;
-    height: 9vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background: #71C9CE;
     border: 1px solid #71C9CE;
     border-radius: 32px;
@@ -245,7 +247,7 @@ a {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 4.2rem;
+    font-size: 4.8rem;
     line-height: 51px;
     color: #FFFFFF;
 }
@@ -285,12 +287,15 @@ a {
     color: #000000;
 }
 .message-container {
-    margin-top: 40px;
+    margin-top: 40px;   
     margin-right: 20px;
     border: 2px solid #71C9CE;
     border-radius: 32px;
     width: fit-content;
-    padding: 25px 30px 25px 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
 }
 .messages {
     font-family: 'Inter';
@@ -392,6 +397,12 @@ input:-webkit-autofill:focus {
     .box-title {
         font-size: 42px
     }
+    .fee-title {
+        font-size: 42px
+    }
+    .fee-status {
+        font-size: 26px
+    }
     .box-label-primary {
         font-size: 30px;
     }
@@ -409,6 +420,12 @@ input:-webkit-autofill:focus {
     }
     .edit-btn, .exit-btn, .register-btn {
         font-size: 36px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+    .messages {
+        padding-left: 3vw;
+        padding-right: 3vw;
     }
 }
 
@@ -418,6 +435,12 @@ input:-webkit-autofill:focus {
     }
     .box-title {
         font-size: 34px
+    }
+    .fee-title {
+        font-size: 34px
+    }
+    .fee-status {
+        font-size: 26px
     }
     .box-label-primary {
         font-size: 28px;
@@ -436,12 +459,18 @@ input:-webkit-autofill:focus {
     }
     .edit-btn, .exit-btn, .register-btn {
         font-size: 34px;
+        padding-top: 16px;
+        padding-bottom: 16px;
     }
     .legal-label {
         font-size: 14px;
     }
     .box-value-hint {
         font-size: 10px
+    }
+    .messages {
+        padding-left: 3.5vw;
+        padding-right: 3.5vw;
     }
 }
 
@@ -451,6 +480,15 @@ input:-webkit-autofill:focus {
     }
     .box-title {
         font-size: 28px
+    }
+    .fee-title {
+        font-size: 28px
+    }
+    .fee-status {
+        font-size: 18px
+    }
+    .fee-label, .fee-content {
+        font-size: 14px
     }
     .box-label-primary {
         font-size: 26px;
@@ -469,12 +507,21 @@ input:-webkit-autofill:focus {
     }
     .edit-btn, .exit-btn, .register-btn {
         font-size: 28px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
     .legal-label {
         font-size: 12px;
     }
     .box-value-hint {
         font-size: 10px
+    }
+    .messages {
+        font-size: 14px
+    }
+    .messages {
+        padding-left: 4vw;
+        padding-right: 4vw;
     }
 }
 
@@ -484,6 +531,15 @@ input:-webkit-autofill:focus {
     }
     .box-title {
         font-size: 24px;
+    }
+    .fee-title {
+        font-size: 24px
+    }
+    .fee-status {
+        font-size: 16px
+    }
+    .fee-label, .fee-content {
+        font-size: 14px
     }
     .box-label-primary {
         font-size: 20px;
@@ -502,12 +558,21 @@ input:-webkit-autofill:focus {
     }
     .edit-btn, .exit-btn, .register-btn {
         font-size: 24px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .legal-label {
         font-size: 12px;
     }
     .box-value-hint {
         font-size: 10px
+    }
+    .messages {
+        font-size: 14px
+    }
+    .messages {
+        padding-left: 4.5vw;
+        padding-right: 4.5vw;
     }
 }
 
