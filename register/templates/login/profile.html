@@ -164,23 +164,22 @@
 			</div>
 			{% endif %}
 			{% if team.FeePayment != 'CMPL' %}
-				<div class="qr-container col-lg-4 col-md-12 d-flex justify-content-center align-items-center">
-					<div class="qr-img-1 d-flex justify-content-center align-items-center">
-						<div class="qr-img-2 d-flex justify-content-center align-items-center">QR</div>
-					</div>
-				</div>
-				<div class="qr-container col-lg-4 col-md-12 d-flex justify-content-center align-items-center">
-					<div class="qr-img-1 d-flex justify-content-center align-items-center">
-						<div class="qr-img-2 d-flex justify-content-center align-items-center">QR</div>
-					</div>
-				</div>
+			<div class="qr-container col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+				<img class="qr-payment" src="../../static/register/images/payment/MOMO.png"/>	
+				<img class="qr-icon" src="../../static/register/images/payment/momo-icon.png"/>
+			</div>
+			<div class="qr-container col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+				<img class="qr-payment" src="../../static/register/images/payment/NH.png"/>
+				<img class="qr-icon" src="../../static/register/images/payment/circle-icon.png"/>
+				<img class="qr-icon" src="../../static/register/images/payment/bank-icon.png"/>
+			</div>
 			{% endif %}
 		</div>
 		<div class="btn-container col-xxl-8 col-xl-9 row" id="profile-btn-container">
 			<a class="col-xl-4 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:home' %}">
 				<button type="button" class="exit-btn">Trở về</button>
 			</a>
-			<a class="col-xl-8 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:edit' %}">
+			<a id="edit-link" class="col-xl-8 col-lg-12 d-flex justify-content-center align-items-center" href="{% url 'register:edit' %}">
 				<button type="button" class="edit-btn">Chỉnh sửa thông tin</button>
 			</a>
 		</div>

@@ -280,6 +280,8 @@ class edit_profile(LoginRequiredMixin, View):
         time_remaining = deadline - now
         
         if time_remaining.days > 0:
+            # get team type
+            type = request.GET.get('type')
             # Get Team and Teammate objects from db based on ucpc user's email
             ucpc_user = UcpcUser.objects.get(email = request.user.email)
             filtered_team = Team.objects.get(UcpcUser = ucpc_user)
@@ -299,7 +301,6 @@ class edit_profile(LoginRequiredMixin, View):
                     'JobTitle': teammate.JobTitle, 
                 } for teammate in filtered_teammates
             ]
-            type = "HighSchool" if len(tmf_initial) == 4 else "University"
             
             ctx = {
                 'tf': TeamForm(initial = tf_initial), 
