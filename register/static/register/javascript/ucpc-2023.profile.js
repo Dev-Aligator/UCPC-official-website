@@ -17,8 +17,14 @@ let urlParams =  new URLSearchParams(window.location.search)
 let selectedFlag0 = false, selectedFlag1 = false, selectedFlag2 = false, selectedFlag3 = false
 for (let i = 0; i < optionList.length; i++) {
     // hide unrelated options
-    if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('THPT')) optionList[i].style.display = 'none'
-    if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('DH')) optionList[i].style.display = 'none'
+    if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('THPT')) {
+        optionList[i].style.display = 'none'
+        optionList[i].setAttribute('disabled', true)
+    }
+    if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('DH')) {
+        optionList[i].style.display = 'none'
+        optionList[i].setAttribute('disabled', true)
+    }
     // select default option
     if (!selectedFlag0 && optionList[i].parentElement.id === 'id_teammate_set-0-School') {
         if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
@@ -61,3 +67,8 @@ for (let i = 0; i < optionList.length; i++) {
         }
     }
 };
+
+// Searchable auto-complete form
+$(document).ready(function() {
+    $('.school-select').select2();
+});
