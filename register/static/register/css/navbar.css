@@ -104,6 +104,7 @@
     padding: 0 16px;
     display: block;
     width: 100%;
+    text-decoration: none;
 }
 
 .form-login,
@@ -112,7 +113,7 @@
     justify-content: right;
     width: 45%;
     margin-top: 2px;
-    padding-right: 24px;
+    padding-right: 80px;
 }
 
 .Nav-btn:hover {

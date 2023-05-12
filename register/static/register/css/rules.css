@@ -34,7 +34,7 @@
     font-size: 2.6rem;
     font-weight: 700;
     color: var(--primary1-color);
-    width: 232px;
+    width: 250px;
     z-index: 10;
     border-right: 1px solid;
 }
@@ -52,7 +52,7 @@
 .rule-object__description,
 .rule-form__description,
 .rule-regulation__description {
-    padding-left: 56px;
+    padding-left: 46px;
     padding-bottom: 24px;
 }
 

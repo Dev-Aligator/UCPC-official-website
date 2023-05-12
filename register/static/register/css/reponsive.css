@@ -287,8 +287,17 @@
         margin: 8px 12px;
     }
 
+    .organizers-text {
+        font-size: 2rem;
+        padding: 0;
+    }
+
+    .organizers-logo img {
+        width: 40px;
+    }
+
     .sponsors-info {
-        padding: 8px 16px;
+        padding: 8px 8px;
     }
 
     .sponsors-logo {
@@ -322,44 +331,9 @@
 }
 
 /* Footer */
+
 @media (max-width: 767px) {
-    .footer-link img {
-        width: 50px;
-    }
-
-    .footer-text {
-        font-size: 1.4rem;
-    }
-
-    .footer-info__mobi {
-        display: flex;
-        align-items: baseline;
-        flex-direction: column;
-    }
-
-    .footer-info {
+    .footer-logo {
         display: none;
-    }
-}
-
-@media (max-width: 299px) {
-    .footer {
-        padding: 32px 0;
-    }
-
-    .footer-text {
-        font-size: 1.2rem;
-    }
-
-    .footer-contact p {
-        font-size: 1.6rem;
-    }
-
-    .footer-contact__icon {
-        font-size: 1.5rem;
-    }
-
-    .footer-logo img {
-        width: 40px;
     }
 }

@@ -9,6 +9,15 @@ p {
   padding: 0px;
 }
 
+a {
+  color: var(--primary3-color);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--primary1-color);
+}
+
 
 #introduction_slider {
   height: auto;
