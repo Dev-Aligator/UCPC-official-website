@@ -6,7 +6,7 @@ from .choices import Choices
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django_select2.forms import Select2Widget
+# from django_select2.forms import Select2Widget
 
 class userForm(UserCreationForm):
     email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element form-box-control','placeholder': '✉️ |  Email Address' }))
