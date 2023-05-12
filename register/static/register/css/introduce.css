@@ -29,6 +29,14 @@
     margin: 50px 16px;
 }
 
+.organizers-CS {
+    width: 100px !important;
+}
+
+.organizers-UCPC {
+    width: 70px !important;
+}
+
 .sponsors {
     min-width: 50%;
     display: none;
