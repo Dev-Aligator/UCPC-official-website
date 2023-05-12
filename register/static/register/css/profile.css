@@ -166,6 +166,7 @@
     line-height: 19px;
     color: #06283D;
     width: 95%;
+    height: 100%
 }
 input.form-box-control:focus {
     border: none;
