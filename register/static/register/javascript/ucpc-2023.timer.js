@@ -45,20 +45,20 @@ const countdownInterval =  setInterval(function() {
     minutes.innerHTML = m + "<br><span>Minutes</span>";
     seconds.innerHTML = s + "<br><span>Seconds</span>";
 
-    dd.style.strokeDashoffset = (440 * d) / 26;
+    dd.style.strokeDashoffset = -(440 * d) / 26;
 
-    hh.style.strokeDashoffset = (440 * h) / 24;
+    hh.style.strokeDashoffset = -(440 * h) / 24;
 
-    mm.style.strokeDashoffset = (440 * m) / 60;
+    mm.style.strokeDashoffset = -(440 * m) / 60;
 
-    ss.style.strokeDashoffset = (440 * s) / 60;
+    ss.style.strokeDashoffset = -(440 * s) / 60;
 
 
-    day_dot.style.transform = `rotate(${-d*(360/daysDiff)}deg)`;
+    day_dot.style.transform = `rotate(${d*(360/daysDiff)}deg)`;
 
-    hr_dot.style.transform = `rotate(${-h*15}deg)`;
+    hr_dot.style.transform = `rotate(${h*15}deg)`;
 
-    min_dot.style.transform = `rotate(${-m*6}deg)`;
+    min_dot.style.transform = `rotate(${m*6}deg)`;
 
-    sec_dot.style.transform = `rotate(${-s*6}deg)`;
+    sec_dot.style.transform = `rotate(${s*6}deg)`;
 }, 1000)
