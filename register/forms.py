@@ -6,6 +6,7 @@ from .choices import Choices
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django_select2.forms import Select2Widget
 
 class userForm(UserCreationForm):
     email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element form-box-control','placeholder': '✉️ |  Email Address' }))
@@ -17,7 +18,7 @@ class userForm(UserCreationForm):
 
 
 class TeamForm(forms.ModelForm):
-    TeamName = forms.CharField(required=True, max_length = 30, label = 'Tên đội', validators=[Validator.TeamRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'id': 'pos1', 'placeholder': 'Chữ cái đầu tiên trong tên đội phải viết hoa. Ví dụ: Team01' }))
+    TeamName = forms.CharField(required=True, max_length = 30, label = 'Tên đội', validators=[Validator.TeamRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'id': 'pos1', 'placeholder': 'Tên đội hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng' }))
     class Meta:
         model = Team
         fields = ['TeamName']
@@ -35,7 +36,7 @@ class TeammateForm(forms.ModelForm):
     MSSV = forms.CharField(required=False, max_length=30, label = 'MSSV', validators=[Validator.MSSVRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: 22520012'}))
     CMND_CCCD = forms.CharField(required=True, max_length=30, label = 'CMND/CCCD', validators=[Validator.CMND_CCCDRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'CMND/CCCD có 9 hoặc 12 chữ số. Ví dụ: 381932123'}))
     Phone = forms.CharField(required=True, max_length=11, label = 'Số điện thoại', validators=[Validator.PhoneRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'id': 'pos2', 'placeholder': 'Số điện thoại có 10 hoặc 11 chữ số. Ví dụ: 0912345678'}))
-    School = forms.ChoiceField(required=True, label='Tên trường', choices=Choices.SCHOOL_CHOICES, widget=forms.Select(attrs={'class': 'form-box-control', 'list': 'schools', 'placeholder': 'Ví dụ: Đại học Công nghệ Thông tin - ĐHQG TP.HCM'}))
+    School = forms.ChoiceField(required=True, label='Tên trường', choices=Choices.UNI_CHOICES + Choices.SCHOOL_CHOICES, widget=forms.Select(attrs={'class': 'form-box-control school-select', 'list': 'schools', 'placeholder': 'Ví dụ: Đại học Công nghệ Thông tin - ĐHQG TP.HCM'}))
     JobTitle = forms.CharField(required=False, max_length=30, label='Chức vụ', validators=[Validator.JobTitleRegex], widget = forms.TextInput(attrs={'class': 'form-box-control', 'placeholder': 'Ví dụ: Giáo viên chủ nhiệm'}))
     
     def __init__(self, *args, **kwargs):
