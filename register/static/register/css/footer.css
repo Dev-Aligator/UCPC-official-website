@@ -12,6 +12,10 @@
     position: absolute;
 }
 
+.footer-link img {
+    width: 70px;
+}
+
 .footer-link a {
     display: flex;
     align-items: center;
@@ -19,49 +23,46 @@
     text-decoration: none;
 }
 
-.footer-text {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-left: 12px;
-}
-
 .footer-link:hover {
     color: #333;
+}
+
+.footer-contact {
+    padding-left: 12px;
+}
+
+.footer-box {
+    display: flex;
+    align-items: center;
+}
+
+.footer-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.footer-school,
+.footer-line {
+    font-size: 1.2rem;
 }
 
 .footer-info {
     display: flex;
     align-items: center;
+    font-size: 1rem;
 }
 
-.footer-contact {
-    padding: 0 24px;
-    font-size: 2rem;
-    font-weight: 300;
+.footer-title {
+    font-weight: 700;
+    padding-right: 6px;
 }
 
-.footer-contact__info {
+.footer-social {
     display: flex;
-    align-items: center;
-    font-size: 1.6rem;
-    font-weight: 500;
 }
 
-.footer-contact__info a {
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 500;
-}
-
-.footer-contact__icon {
-    font-size: 2rem;
-    padding-right: 8px;
-    font-weight: bolder;
-    color: #fff;
-}
-
-.footer-info__mobi {
-    display: none; 
+.footer-conect {
+    padding-right: 6px;
 }
 
 .footer-logo img {

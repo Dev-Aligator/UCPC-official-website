@@ -1,6 +1,6 @@
 .information {
     display: flex;
-    min-height: 600px;
+    min-height: 500px;
     justify-content: space-between;
     align-items: center;
     position: relative;
@@ -32,7 +32,7 @@
 }
 
 .inf-img img {
-    width: 100%;
+    width: 80%;
 }
 
 .inf-img__absolute--XL {

@@ -23,6 +23,7 @@ body {
     padding: 0;
     background-color: var(--primary2-color);
     color: white;
+    overflow-x: hidden;
 }
 
 
