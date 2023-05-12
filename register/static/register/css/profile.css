@@ -288,7 +288,7 @@ a {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 4.8rem;
+    font-size: 4.4rem;
     line-height: 51px;
     color: #FFFFFF;
 }
@@ -429,7 +429,7 @@ input:-webkit-autofill:focus {
         font-size: 42px
     }
     .fee-title {
-        font-size: 42px
+        font-size: 40px
     }
     .fee-status {
         font-size: 26px
