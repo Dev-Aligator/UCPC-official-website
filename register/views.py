@@ -189,8 +189,8 @@ class create_profile(LoginRequiredMixin, View):
     # Display form to create user profile
     def get(self, request):
         # Check team is existed or not
-        ucpc_user = UcpcUser.objects.get(email = request.user.email)
-        filtered_team = Team.objects.get(UcpcUser = ucpc_user)
+        ucpc_user = UcpcUser.objects.filter(email = request.user.email).first()
+        filtered_team = Team.objects.filter(UcpcUser = ucpc_user).first() if ucpc_user else None
         if (filtered_team):
             messages.error(request, f'❌ Đội thi {filtered_team.TeamName} đã tồn tại!') 
             return redirect('register:profile') 
