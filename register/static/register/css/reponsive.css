@@ -337,3 +337,21 @@
         display: none;
     }
 }
+
+
+@media only screen and (max-width: 768px) {
+    .countdown-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .countdown-title {
+        font-size: 3.2rem;
+        padding-right: 0;
+    }
+    
+    .countdown-end {
+        font-size: 4.8rem;
+        padding-left: 0;
+    }
+}
