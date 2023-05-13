@@ -1,5 +1,15 @@
-const targetDate = new Date("May 25, 2023 00:00:00").getTime();
-const publicDate = new Date("April 29, 2023 00:00:00").getTime();
+const websiteInfo = document.getElementById("website-info");
+if (websiteInfo) {
+    publicDate = new Date(websiteInfo.getAttribute("data-public-date"));
+    targetDate = new Date(websiteInfo.getAttribute("data-deadline"));
+}
+else{
+    targetDate = new Date("May 25, 2023 00:00:00").getTime();
+    publicDate = new Date("April 29, 2023 00:00:00").getTime();
+}
+
+
+
 
 const timeDiff = targetDate - publicDate;
 const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -45,7 +55,7 @@ const countdownInterval =  setInterval(function() {
     minutes.innerHTML = m + "<br><span>Minutes</span>";
     seconds.innerHTML = s + "<br><span>Seconds</span>";
 
-    dd.style.strokeDashoffset = -(440 * d) / 26;
+    dd.style.strokeDashoffset = -(440 * d) / daysDiff;
 
     hh.style.strokeDashoffset = -(440 * h) / 24;
 

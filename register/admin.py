@@ -20,9 +20,13 @@ class PostAdmin(ImportExportMixin, admin.ModelAdmin):
     search_fields = ['Date', 'Title', 'Author']
 
 class WebsiteAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display=('ID', 'Title', 'Year', 'Deadline', 'Law', 'Award', 'Timeline', 'Organization', 'Sponsor', 'Social')
-    list_filter = ['Year', 'Title']
-    search_fields = ['Title', 'Year']
+    # list_display=('ID', 'Title', 'Year', 'Deadline', 'Law', 'Award', 'Timeline', 'Organization', 'Sponsor', 'Social')
+    # list_filter = ['Year', 'Title']
+    # search_fields = ['Title', 'Year']
+
+    list_display=('ID', 'PublicDate', 'Deadline')
+    list_filter = ['PublicDate', 'Deadline']
+    search_fields = ['PublicDate', 'Deadline']
 
 admin.site.register(get_user_model())
 admin.site.register(Team, TeamAdmin)

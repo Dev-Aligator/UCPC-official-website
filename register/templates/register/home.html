@@ -1,6 +1,6 @@
 {% extends 'register/main.html' %}
 {% load static %}
-
+{% load tz %}
 
 
 {% block main %}
@@ -159,12 +159,23 @@
 
 
 <!-- Thời Gian Đăng Ký -->
+{% if website %}
+    <div id="website-info" data-public-date="{{ website.PublicDate.isoformat }}" data-deadline="{{ website.Deadline.isoformat }}"></div>
+{% endif %}
+
 <div id="countdown">
     <div class="container countdown">
+        {% if website %}
+            <div class="countdown-info">
+                <div class="countdown-title">Thời hạn đăng ký</div>
+                <div class="countdown-end">Ngày {{ website.Deadline|timezone:'UTC'|date:'d/m/Y' }}</div>
+            </div>
+        {% else %}
         <div class="countdown-info">
             <div class="countdown-title">Thời hạn đăng ký</div>
-            <div class="countdown-end">Ngày 25/05/2022</div>
+            <div class="countdown-end">Ngày 04/06/2023</div>
         </div>
+        {% endif %}
 
         <div id="time">
             <div class="circle" style="--clr: #A6E3E9">

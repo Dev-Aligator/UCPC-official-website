@@ -85,15 +85,16 @@ class Post(models.Model):
     
 class Website(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    Title = models.CharField(max_length=30, null=False, blank=False)
-    Year = models.IntegerField(null=False, blank=False, validators=[Validator.YearRegex])
-    Deadline = models.DateTimeField(null=False, blank=False)
-    Law = models.JSONField(null=False, blank=False)
-    Award = models.JSONField(null=False, blank=False)
-    Timeline = models.JSONField(null=False, blank=False)
-    Organization = models.JSONField(null=False, blank=False)
-    Sponsor = models.JSONField(null=False, blank=False)
-    Social = models.JSONField(null=False, blank=False)
+    Title = models.CharField(default="UCPC", max_length=30, null=False, blank=False)
+    # Year = models.IntegerField(null=False, blank=False, validators=[Validator.YearRegex])
+    PublicDate = models.DateTimeField(null=True, blank=True)
+    Deadline = models.DateTimeField(null=True, blank=True)
+    # Law = models.JSONField(null=False, blank=False)
+    # Award = models.JSONField(null=False, blank=False)
+    # Timeline = models.JSONField(null=False, blank=False)
+    # Organization = models.JSONField(null=False, blank=False)
+    # Sponsor = models.JSONField(null=False, blank=False)
+    # Social = models.JSONField(null=False, blank=False)
     
     def __str__(self):
         return self.Title

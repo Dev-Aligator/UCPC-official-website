@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
-from register.models import Team, Teammate, UcpcUser
+from register.models import Team, Teammate, UcpcUser, Website
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .choices import Choices
 
@@ -17,7 +17,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import numpy as np
 from argon2 import PasswordHasher
-
+import pytz
 import os
 from django.contrib.auth.forms import PasswordResetForm
 from django.db.models.query_utils import Q
@@ -47,15 +47,24 @@ except:
 
 # Create your views here.
 def home(request):
-    return render(request, 'register/home.html')
+    try:
+        website = Website.objects.first()
+    except Website.DoesNotExist:
+        website = None
+    context = {'website': website}
+    return render(request, 'register/home.html', context)
 
 class register(View):
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('register:home') 
         else:
-            now = datetime.datetime.now()
-            deadline = datetime.datetime(2023, 5, 25)
+            now = datetime.datetime.now(pytz.timezone('UTC'))
+            try:
+                website = Website.objects.first()
+                deadline = website.Deadline
+            except:
+                deadline = datetime.datetime(2023, 6, 4)
             time_remaining = deadline - now
             if time_remaining.days < 0:
                 context = {'uf': userForm, 'isTimeOver': True}
@@ -84,62 +93,6 @@ class register(View):
                 ctx = {"uf":uf}
                 return render(request, 'register/register.html', ctx, status=422)
         
-
-# class register(View):
-#     def get(self, request):
-#         now = datetime.datetime.now()
-#         deadline = datetime.datetime(2023, 5, 25)
-#         time_remaining = deadline - now
-#         if time_remaining.days < 0:
-#             context = {'tf': teamForm, 'isTimeOver': True}
-#         else:
-#             context = {'tf': teamForm, 'isTimeOver': False}
-
-#         return render(request, 'register/register.html', context)
-    
-#     def post(self, request):
-#         if request.method == 'POST':
-#             tf = teamForm(request.POST)
-#             if tf.is_valid():
-#                 tf.save()
-
-#                 Username = request.POST['team']
-#                 Email = request.POST['email']
-#                 Password = request.POST['password']
-#                 user = User.objects.create_user(Email, Email, Password)
-#                 user.save()
-
-#                 data = np.array([[request.POST['team'],
-#                                   request.POST['email'],
-#                                   ph.hash(request.POST['password']), 
-#                                   request.POST['member1'],
-#                                   request.POST['mssv1'],
-#                                   request.POST['cmnd1'],
-#                                   request.POST['phone1'],
-#                                   request.POST['school1'],
-#                                   request.POST['member2'],
-#                                   request.POST['mssv2'],
-#                                   request.POST['cmnd2'],
-#                                   request.POST['phone2'],
-#                                   request.POST['school2'],
-#                                   request.POST['member3'],
-#                                   request.POST['mssv3'],
-#                                   request.POST['cmnd3'],
-#                                   request.POST['phone3'],
-#                                   request.POST['school3']]])
-#                 try:
-#                     idx = f'B{str(len(wks.get_all_values()) + 1)}'
-#                     wks.update(idx, data.tolist())
-#                 except:
-#                     pass
-
-#                 Team = tf.cleaned_data.get('team')
-#                 messages.success(request, '✔️ Tài khoản '+Team+' đã đăng ký thành công!')
-#                 return redirect('register:login')
-#             else:
-#                 ctx = {"tf":tf}
-#                 messages.error(request, '❌ Thông tin không hợp lệ!')
-#                 return render(request, 'register/register.html', ctx, status=422)
 
 class login(View):
     def get(self, request):
@@ -201,8 +154,12 @@ class create_profile(LoginRequiredMixin, View):
     # Display form to create user profile
     def get(self, request): 
         # Get deadline
-        now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25)
+        now = datetime.datetime.now(pytz.timezone('UTC'))
+        try:
+            website = Website.objects.first()
+            deadline = website.Deadline
+        except:
+            deadline = datetime.datetime(2023, 6, 4)
         time_remaining = deadline - now
         # Get types of form
         type = request.GET.get('type')
@@ -318,8 +275,12 @@ class edit_profile(LoginRequiredMixin, View):
     # Display user profile for editing
     def get(self, request):
         # get deadline 
-        now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 5, 25)
+        now = datetime.datetime.now(pytz.timezone('UTC'))
+        try:
+            website = Website.objects.first()
+            deadline = website.Deadline
+        except:
+            deadline = datetime.datetime(2023, 6, 4)
         time_remaining = deadline - now
         
         if time_remaining.days > 0:
