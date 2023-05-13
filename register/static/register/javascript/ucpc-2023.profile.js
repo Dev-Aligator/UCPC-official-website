@@ -9,11 +9,11 @@ let uni_option_block = document.getElementById('uni-option-block')
 let school_option_block = document.getElementById('school-option-block')
 
 if(uni_option_block) {
-    uni_option_block.addEventListener(e => window.location.replace(window.location.href + '?type=University'))
+    uni_option_block.addEventListener('click', e => window.location.replace(window.location.href + '?type=University'))
 }
 
 if(school_option_block) {
-    school_option_block.addEventListener(e => window.location.replace(window.location.href + '?type=HighSchool'))
+    school_option_block.addEventListener('click', e => window.location.replace(window.location.href + '?type=HighSchool'))
 }
 
 // add param team type to url in view profile page
