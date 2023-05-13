@@ -303,7 +303,7 @@ class edit_profile(LoginRequiredMixin, View):
                     'MSSV': teammate.MSSV,
                     'CMND_CCCD': teammate.CMND_CCCD,
                     'Phone': teammate.Phone,
-                    'School': teammate.get_School_display(),
+                    'School': teammate.School,
                     'JobTitle': teammate.JobTitle, 
                 } for teammate in filtered_teammates
             ]

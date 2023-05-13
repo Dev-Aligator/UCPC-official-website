@@ -38,44 +38,46 @@ for (let i = 0; i < optionList.length; i++) {
         optionList[i].setAttribute('disabled', true)
     }
     // select default option
-    if (!selectedFlag0 && optionList[i].parentElement.id === 'id_teammate_set-0-School') {
-        if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
-            optionList[i].selected = true
-            selectedFlag0 = true
+    if (window.location.pathname.includes('/profile/create/')) {
+        if (!selectedFlag0 && optionList[i].parentElement.id === 'id_teammate_set-0-School') {
+            if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
+                optionList[i].selected = true
+                selectedFlag0 = true
+            }
+            if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
+                optionList[i].selected = true
+                selectedFlag0 = true
+            }
         }
-        if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
-            optionList[i].selected = true
-            selectedFlag0 = true
+        if (!selectedFlag1 && optionList[i].parentElement.id === 'id_teammate_set-1-School') {
+            if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
+                optionList[i].selected = true
+                selectedFlag1 = true
+            }
+            if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
+                optionList[i].selected = true
+                selectedFlag1 = true
+            }
         }
-    }
-    if (!selectedFlag1 && optionList[i].parentElement.id === 'id_teammate_set-1-School') {
-        if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
-            optionList[i].selected = true
-            selectedFlag1 = true
+        if (!selectedFlag2 && optionList[i].parentElement.id === 'id_teammate_set-2-School') {
+            if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
+                optionList[i].selected = true
+                selectedFlag2 = true
+            }
+            if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
+                optionList[i].selected = true
+                selectedFlag2 = true
+            }
         }
-        if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
-            optionList[i].selected = true
-            selectedFlag1 = true
-        }
-    }
-    if (!selectedFlag2 && optionList[i].parentElement.id === 'id_teammate_set-2-School') {
-        if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
-            optionList[i].selected = true
-            selectedFlag2 = true
-        }
-        if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
-            optionList[i].selected = true
-            selectedFlag2 = true
-        }
-    }
-    if (!selectedFlag3 && optionList[i].parentElement.id === 'id_teammate_set-3-School') {
-        if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
-            optionList[i].selected = true
-            selectedFlag3 = true
-        }
-        if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
-            optionList[i].selected = true
-            selectedFlag3 = true
+        if (!selectedFlag3 && optionList[i].parentElement.id === 'id_teammate_set-3-School') {
+            if (urlParams.get('type') === 'University' && optionList[i].value.startsWith('DH')) {
+                optionList[i].selected = true
+                selectedFlag3 = true
+            }
+            if (urlParams.get('type') === 'HighSchool' && optionList[i].value.startsWith('THPT')) {
+                optionList[i].selected = true
+                selectedFlag3 = true
+            }
         }
     }
 }
