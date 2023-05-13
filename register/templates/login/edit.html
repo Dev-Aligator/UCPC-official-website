@@ -3,8 +3,19 @@
 
 {% block main %}
 {% if isTimeOver %}
-<div class="container" style="margin-top: 15px;">
-	<h1 style="font-weight: bold;">Đã hết thời gian chỉnh sửa thông tin đội thi!</h1>
+<div class="profile-container">
+	<a href="{% url 'register:home' %}">
+		<div class="topbar d-flex flex-row">
+			<img class="logo" src="../../static/register/images/introduction/logo3.jpg"/>
+			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
+		</div>	
+	</a>
+	<div class="divider-container d-flex align-items-center justify-content-center">
+		<div class="divider"></div>
+	</div>
+	<div class="message-container">
+		<p class="messages">❌ Đã hết thời gian chỉnh sửa thông tin đội thi!</p>
+	</div>
 </div>	
 {% else %}
 <div class="profile-container">

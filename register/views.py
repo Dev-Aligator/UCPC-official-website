@@ -153,7 +153,13 @@ class view_profile(LoginRequiredMixin, View):
         
 class create_profile(LoginRequiredMixin, View):
     # Display form to create user profile
-    def get(self, request): 
+    def get(self, request):
+        # Check team is existed or not
+        ucpc_user = UcpcUser.objects.get(email = request.user.email)
+        filtered_team = Team.objects.get(UcpcUser = ucpc_user)
+        if (filtered_team):
+            messages.error(request, f'❌ Đội thi {filtered_team.TeamName} đã tồn tại!') 
+            return redirect('register:profile') 
         # Get deadline
         now = datetime.datetime.now(pytz.timezone('UTC'))
         try:
