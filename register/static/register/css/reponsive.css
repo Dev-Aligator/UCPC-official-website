@@ -296,6 +296,15 @@
         width: 40px !important;
     }
 
+    .organizers-CS {
+        width: 55px !important;
+    }
+
+    .organizers-UCPC,
+    .organizers-HSV {
+        width: 35px !important;
+    }
+
     .sponsors-info {
         padding: 8px 8px;
     }
