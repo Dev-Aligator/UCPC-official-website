@@ -44,15 +44,15 @@
 <div class="form-container">
 <div class="login-card">
 	<div class="column">
-		<h1>Sign in</h1>
+		<h1>Đăng nhập</h1>
 		<form method="POST">
 			{% csrf_token %}
 			<div class="form-item">
-				<label for="email">Enter Email</label>
+				<label for="email">Địa chỉ Email</label>
 				<input type="text" id="email" name="email" class="form-element" required>
 			</div>
 			<div class="form-item">
-				<label for="password">Enter Password</label>
+				<label for="password">Mật khẩu</label>
 				<input type="password" id="password" name="password" class="form-element" required>
 			</div>
     			{% for message in messages %}
@@ -64,15 +64,15 @@
 
     			{% endfor %}
 			<div class="flex">
-				<button type="submit" class="btn btn-primary">Sign in</button>
-				<span>Forgot your Password? <a href="/password_reset">Reset password</a></span>
+				<button type="submit" class="btn btn-primary">Đăng nhập</button>
+				<span>Quên mật khẩu? <a href="/password_reset">Đặt lại mật khẩu</a></span>
 			</div>
 			<div class="separator">Or</div>
 
 			<div class="sign-in-with-google">
 				<a class="google-button" href="{% provider_login_url 'google' %}">
 					<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
-				  Sign in with Google
+				  Đăng nhập với Google
 				</a>
 			</div>
 

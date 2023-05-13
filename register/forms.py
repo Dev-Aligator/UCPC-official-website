@@ -9,9 +9,9 @@ from django.contrib.auth import get_user_model
 # from django_select2.forms import Select2Widget
 
 class userForm(UserCreationForm):
-    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element form-box-control','placeholder': '✉️ |  Email Address' }))
-    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[Validator.PwdRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': '🔒 | Password'}))
-    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': '🔒 | Re-enter password'}))
+    email = forms.EmailField(label= 'Email', widget = forms.TextInput(attrs={'class': 'form-element form-box-control','placeholder': '✉️ |  Địa chỉ email' }))
+    password1 = forms.CharField(max_length = 20, label = 'Mật khẩu', validators=[Validator.PwdRegex], widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos5', 'placeholder': '🔒 | Mật khẩu'}))
+    password2 = forms.CharField(max_length = 20, label = 'Xác nhận mật khẩu', widget = forms.PasswordInput(attrs={'class': 'form-element', 'id': 'pos6', 'placeholder': '🔒 | Nhập lại mật khẩu'}))
     class Meta:
         model = get_user_model()
         fields = ['email']

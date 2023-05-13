@@ -30,7 +30,7 @@
 <div class="form-container">
 	<div class="register-card">
 		<div class="column">
-			<h1>Sign up</h1>
+			<h1>Đăng kí</h1>
 			<form id=register-form method="POST">
 				{% csrf_token %}
 				<div class="form-item">
@@ -46,9 +46,9 @@
 					<small class="error">{{ uf.password1.errors }}</small>
 
 					<ul class="password-validation">
-						<li class="length-validation">Password contains at least 8 characters</li>
-						<li class="number-validation">Must contain number</li>
-						<li class="character-validation">At least one lowercase, one uppercase letter</li>
+						<li class="length-validation">Mật khẩu phải chứa ít nhất 8 kí tự</li>
+						<li class="number-validation">Mật khẩu phải chứa ít nhất 1 chữ số</li>
+						<li class="character-validation">Mật khẩu phải chứa ít nhất 1 chữ in thường và 1 chữ in hoa</li>
 					</ul>
 
 				</div>
@@ -66,13 +66,16 @@
 				</label>
 				<div id="error-message" style="color: #f44336; display: none;">You must accept the terms of service.</div> -->
 				<div class="flex">
-					<button type="submit" class="btn btn-primary">Create Account</button>
+					<button type="submit" class="btn btn-primary">Tạo tài khoản</button>
 				</div>
-				<p style="margin-top:3rem;margin-bottom:1.5rem">Other sign-up methods</p>
+
+				<div class="separator">Or</div>
+				
+				<p style="margin-top:3rem;margin-bottom:1.5rem">Phương thức đăng ký khác</p>
 				<div class="sign-in-with-google">
 					<a class="google-button" href="{% provider_login_url 'google' %}">
 						<img width=30 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
-					  Sign in with Google
+					  Đăng kí với Google
 					</a>
 				</div>
 			</form>

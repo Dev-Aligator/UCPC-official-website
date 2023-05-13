@@ -113,7 +113,9 @@
 body {
     background-color: var(--bg-oxford-blue-2);
     color: var(--text-shadow-blue);
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Inter', sans-serif; */
+    font-family: 'Roboto Serif', serif;
     line-height: var(--lineHeight-4);
     overflow-y: overlay;
     min-height: 100vh;
@@ -437,6 +439,28 @@ p {
    position: fixed !important;
    top: 0px !important;
 }
+
+.separator {
+    margin-top: 30px !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .25em;
+  }
 
 /* Responsive */
 
