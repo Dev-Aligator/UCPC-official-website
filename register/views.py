@@ -30,6 +30,7 @@ from django.http import HttpResponse
 
 ph = PasswordHasher()
 DIRNAME = os.path.dirname(__file__)
+timezone = pytz.timezone('UTC')
 try:
     scope = [
         'https://www.googleapis.com/auth/spreadsheets',
@@ -64,7 +65,7 @@ class register(View):
                 website = Website.objects.first()
                 deadline = website.Deadline
             except:
-                deadline = datetime.datetime(2023, 6, 4)
+                deadline = datetime.datetime(2023, 6, 4,tzinfo=timezone)
             time_remaining = deadline - now
             if time_remaining.days < 0:
                 context = {'uf': userForm, 'isTimeOver': True}
@@ -159,7 +160,7 @@ class create_profile(LoginRequiredMixin, View):
             website = Website.objects.first()
             deadline = website.Deadline
         except:
-            deadline = datetime.datetime(2023, 6, 4)
+            deadline = datetime.datetime(2023, 6, 4, tzinfo=timezone)
         time_remaining = deadline - now
         # Get types of form
         type = request.GET.get('type')
@@ -280,7 +281,7 @@ class edit_profile(LoginRequiredMixin, View):
             website = Website.objects.first()
             deadline = website.Deadline
         except:
-            deadline = datetime.datetime(2023, 6, 4)
+            deadline = datetime.datetime(2023, 6, 4, tzinfo=timezone)
         time_remaining = deadline - now
         
         if time_remaining.days > 0:
