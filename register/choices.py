@@ -6,7 +6,7 @@ class Choices:
     ]
     
     UNI_CHOICES = [
-        ('DH00001', 'Đại học Giáo dục – Đại học Quốc gia Hà Nội'), 
+        ('DH00001', 'Đại học Công nghệ Thông tin – ĐH Quốc gia TP.HCM'),
         ('DH00002', 'Đại học Khoa học Tự nhiên – Đại học Quốc gia Hà Nội'), 
         ('DH00003', 'Đại học Ngoại ngữ – Đại học Quốc gia Hà Nội'), 
         ('DH00004', 'Đại học Công nghệ – Đại học Quốc gia Hà Nội'), 
@@ -19,7 +19,7 @@ class Choices:
         ('DH00011', 'Đại học Khoa học Xã hội và Nhân văn – ĐHQG TP.HCM'), 
         ('DH00012', 'Đại học Quốc tế – ĐH Quốc gia TP.HCM'), 
         ('DH00013', 'Đại học Khoa học Tự nhiên – ĐHQG TP Hồ Chí Minh'), 
-        ('DH00014', 'Đại học Công nghệ Thông tin – ĐH Quốc gia TP.HCM'), 
+        ('DH00014', 'Đại học Giáo dục – Đại học Quốc gia Hà Nội'), 
         ('DH00015', 'Đại học Kinh tế – Luật (ĐH Quốc gia TP.HCM)'), 
         ('DH00016', 'Đại học Bách khoa – Đại học Đà Nẵng'), 
         ('DH00017', 'Đại học Công nghệ thông tin và Truyền thông Việt Hàn – Đại học Đà Nẵng'), 

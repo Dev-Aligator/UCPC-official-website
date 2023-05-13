@@ -28,7 +28,7 @@ class TeamForm(forms.ModelForm):
 
         # add custom error messages
         self.fields['TeamName'].error_messages.update({
-            'invalid': '⚠️ Tên đội không hợp lệ! (Tên đội hợp lệ có độ dài tối đa 30 ký tự)',
+            'invalid': '⚠️ Tên đội không hợp lệ! (Tên đội hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng)',
         })
 
 class TeammateForm(forms.ModelForm):
@@ -42,7 +42,7 @@ class TeammateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TeammateForm, self).__init__(*args, **kwargs)
         self.fields['Fullname'].error_messages.update({
-            'invalid': '⚠️ Tên không hợp lệ! (Tên đội hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng)',
+            'invalid': '⚠️ Tên thành viên không hợp lệ! (Tên thành viên hợp lệ không bao gồm ký tự đặc biệt và chữ số)',
         })
         self.fields['MSSV'].error_messages.update({
             'invalid': '⚠️ Mã số sinh viên không hợp lệ! (Mã số sinh viên hợp lệ không bao gồm ký tự đặc biệt và khoảng trắng)',

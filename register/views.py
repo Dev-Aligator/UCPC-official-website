@@ -172,7 +172,7 @@ class view_profile(LoginRequiredMixin, View):
                         'MSSV': teammate.MSSV,
                         'CMND_CCCD': teammate.CMND_CCCD,
                         'Phone': teammate.Phone,
-                        'School': teammate.School,
+                        'School': teammate.get_School_display(),
                         'Leader': teammate.Leader,
                         'Occupation': teammate.Occupation,
                         'JobTitle': teammate.JobTitle
@@ -269,7 +269,7 @@ class create_profile(LoginRequiredMixin, View):
                     'tmf': tmf,
                     'team_type': type
                 }
-                messages.error(request, '❌ Thông tin không hợp lệ!')
+                messages.error(request, f'❌ Thông tin không hợp lệ ({len(tf.errors.items()) + tmf.total_error_count()})!')
                 for err in tmf.non_form_errors():
                     if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')
                     if (err == 'Please correct the duplicate data for MSSV.'): messages.error(request, '❌ MSSV trùng lặp!')
@@ -303,7 +303,7 @@ class edit_profile(LoginRequiredMixin, View):
                     'MSSV': teammate.MSSV,
                     'CMND_CCCD': teammate.CMND_CCCD,
                     'Phone': teammate.Phone,
-                    'School': teammate.School,
+                    'School': teammate.get_School_display(),
                     'JobTitle': teammate.JobTitle, 
                 } for teammate in filtered_teammates
             ]
@@ -354,8 +354,7 @@ class edit_profile(LoginRequiredMixin, View):
                         'tmf': tmf,
                         'team_type': type
                     }
-                    print(tf.errors)
-                    messages.error(request, '❌ Thông tin không hợp lệ!')
+                    messages.error(request, f'❌ Thông tin không hợp lệ ({len(tf.errors.items()) + tmf.total_error_count()})!')
                     for err in tmf.non_form_errors():
                         if (err == 'Please correct the duplicate data for Phone.'): messages.error(request, '❌ Số điện thoại trùng lặp!')
                         if (err == 'Please correct the duplicate data for MSSV_CMND.'): messages.error(request, '❌ MSSV/CCCD trùng lặp!')
