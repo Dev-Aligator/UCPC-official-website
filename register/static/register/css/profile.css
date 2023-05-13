@@ -288,7 +288,7 @@ a {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 4.8rem;
+    font-size: 4.4rem;
     line-height: 51px;
     color: #FFFFFF;
 }
@@ -309,23 +309,13 @@ a {
     line-height: 22px;
     color: #71C9CE;
 }
-.qr-img-1 {
-    width: 311px;
-    height: 311px;
-    background: #71C9CE;
-    border-radius: 32px;
+.qr-payment {
+    width: 100%;
+    aspect-ratio: 1/1;
 }
-.qr-img-2 {
-    width: 236px;
-    height: 236px;
-    background: #D9D9D9;
-    border-radius: 32px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 42px;
-    line-height: 51px;
-    color: #000000;
+.qr-icon {
+    width: 20%;
+    position: absolute;
 }
 .message-container {
     margin-top: 40px;   
@@ -439,7 +429,7 @@ input:-webkit-autofill:focus {
         font-size: 42px
     }
     .fee-title {
-        font-size: 42px
+        font-size: 40px
     }
     .fee-status {
         font-size: 26px
