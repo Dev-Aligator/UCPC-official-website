@@ -25,8 +25,11 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives
 from django.http import HttpResponse
+from django.utils.html import strip_tags
+from email.mime.image import MIMEImage
+from pathlib import Path
 
 ph = PasswordHasher()
 DIRNAME = os.path.dirname(__file__)
@@ -243,14 +246,51 @@ class create_profile(LoginRequiredMixin, View):
 
                     # EMail 
                     subject = "[Notification] Successful Registration for UCPC"
-                    email_template_name = "login/remind_email.txt"
+                    email_template_name = "login/remind_email.html"
                     c = {
 					"email":request.user.email,
 					'Teamname': tf_data.get('TeamName'),
 					}
-                    email = render_to_string(email_template_name, c)
+                    html_email = render_to_string(email_template_name, c)
+                
+                    text_content = strip_tags(html_email)
+                    email = EmailMultiAlternatives(
+                        subject,
+                        text_content,
+                        os.environ.get("EMAIL_HOST_USER"),
+                        [request.user.email],
+                        # fail_silently=False
+                    )
+                    email.content_subtype = 'html'
+                    email.mixed_subtype = 'related'
+
                     try:
-                        send_mail(subject, email, os.environ.get("EMAIL_HOST_USER") , [request.user.email], fail_silently=False)
+                        bg_mail3 = os.path.join(DIRNAME, 'static/register/images/elements2023/bg_mail3.png')
+                        bg_mail_name = Path(bg_mail3).name
+                        block2 = os.path.join(DIRNAME, 'static/register/images/elements2023/block2@4x.png') 
+                        block2_name = Path(block2).name
+                        block4 = os.path.join(DIRNAME, 'static/register/images/elements2023/UCPC@4x.png') 
+                        block4_name = Path(block4).name
+
+                        email.attach_alternative(html_email, "text/html")
+                        with open(bg_mail3, mode='rb') as f:
+                            bg = MIMEImage(f.read())
+                            email.attach(bg)
+                            bg.add_header('Content-ID', f"<{bg_mail_name}>")
+
+                        with open(block2, mode='rb') as f:
+                            b2 = MIMEImage(f.read())
+                            email.attach(b2)
+                            b2.add_header('Content-ID', f"<{block2_name}>")
+
+                        with open(block4, mode='rb') as f:
+                            b4 = MIMEImage(f.read())
+                            email.attach(b4)
+                            b4.add_header('Content-ID', f"<{block4_name}>")
+
+
+                        email.send()
+                        # send_mail(subject, email, os.environ.get("EMAIL_HOST_USER") , [request.user.email], fail_silently=False)
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
                     messages.success(request, '✔️ Tài khoản ' + request.user.email + ' tạo đội thi thành công!')
