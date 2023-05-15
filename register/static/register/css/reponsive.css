@@ -273,6 +273,10 @@
 
 /* Introduce */
 @media (max-width: 1200px) and (min-width: 768px) {
+    .organizers-fourlogo {
+        width: 400px !important;
+    }
+
     .sponsors-logo {
         flex-direction: column;
     }
@@ -287,13 +291,17 @@
         margin: 8px 12px;
     }
 
+    .organizers-fourlogo {
+        width: 220px !important;
+    }
+
     .organizers-text {
         font-size: 2rem;
         padding: 0;
     }
 
     .organizers-logo img {
-        width: 40px !important;
+        width: 40px;
     }
 
     .organizers-CS {
