@@ -6,7 +6,7 @@
 <div class="profile-container">
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg"/>
+			<img class="logo" src="{% static 'register/images/introduction/logo3.jpg' %}"/>
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
@@ -23,10 +23,10 @@
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center row">
 		  <div class="modal-content col-xxl-7 col-xl-8 col-lg-11 col-md-11 col-sm-11 col-11">
-			<img id="modal-block-1" class="modal-block" src="../../static/register/images/layout/block.png"/>
-			<img id="modal-block-2" class="modal-block" src="../../static/register/images/layout/block.png"/>
-			<img id="modal-block-3" class="modal-block" src="../../static/register/images/layout/block.png"/>
-			<img id="modal-block-4" class="modal-block" src="../../static/register/images/layout/block.png"/>
+			<img id="modal-block-1" class="modal-block" src="{% static 'register/images/layout/block.png' %}"/>
+			<img id="modal-block-2" class="modal-block" src="{% static 'register/images/layout/block.png' %}"/>
+			<img id="modal-block-3" class="modal-block" src="{% static 'register/images/layout/block.png' %}"/>
+			<img id="modal-block-4" class="modal-block" src="{% static 'register/images/layout/block.png' %}"/>
 			<div class="modal-body d-flex flex-row align-items-center justify-content-center row">
 				<div id="uni-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5" style="margin-right: 44px;">Sinh viên Đại học</div>
 				<div id="school-option-block" class="option-block col-lg-4 col-md-5 col-sm-5 col-sm-5 col-5">Học sinh Trung học Phổ Thông</div>
@@ -37,7 +37,7 @@
 
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" />
+			<img class="logo" src="{% static 'register/images/introduction/logo3.jpg' %}" />
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
