@@ -45,7 +45,6 @@ try:
     client = gspread.authorize(creds)
     spreadsheet = client.open(_name)
     wks = spreadsheet.worksheet("List_teams")
-    wks.update_cell(1,1, "Updating data using gspread")
 except:
     pass
 
