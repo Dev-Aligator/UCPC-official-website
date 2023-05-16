@@ -225,7 +225,7 @@ class create_profile(LoginRequiredMixin, View):
                             JobTitle = tmf_data.get('JobTitle') if index == 3 else 'Student/Pupil'
                         )
                         new_teammate.save()
-                        googleSheetData.extend([tmf_data.get('Fullname'), tmf_data.get('MSSV_CMND'), tmf_data.get('Phone'), Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]])
+                        googleSheetData.extend([tmf_data.get('Fullname'), tmf_data.get('MSSV'), tmf_data.get('CMND_CCCD'), tmf_data.get('Phone'), Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]])
                         
                     
 
@@ -393,7 +393,7 @@ class edit_profile(LoginRequiredMixin, View):
     
                     for index, tm in enumerate(tmf):
                         tm_instance = tm.save(commit=False)
-                        googleSheetData.extend([tm.cleaned_data.get('Fullname'), tm.cleaned_data.get('MSSV_CMND'), tm.cleaned_data.get('Phone'), Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]])
+                        googleSheetData.extend([tm.cleaned_data.get('Fullname'), tm.cleaned_data.get('MSSV'), tm.cleaned_data.get('CMND_CCCD'), tm.cleaned_data.get('Phone'), Choices.OCCUPATION_CHOICES[2][0] if index == 3 else Choices.OCCUPATION_CHOICES[1][0] if type == 'HighSchool' else Choices.OCCUPATION_CHOICES[0][0]])
                         tm_instance.Team = tf_instance
                         tm_instance.save()
 
