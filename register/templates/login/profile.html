@@ -5,7 +5,7 @@
 <div class="profile-container">
 	<a href="{% url 'register:home' %}">
 		<div class="topbar d-flex flex-row">
-			<img class="logo" src="../../static/register/images/introduction/logo3.jpg" />
+			<img class="logo" src="{% static 'register/images/introduction/logo3.jpg' %}" />
 			<div class="logo-title d-flex flex-column" >UIT Collegiate Programming Contest</div>
 		</div>	
 	</a>
@@ -165,13 +165,13 @@
 			{% endif %}
 			{% if team.FeePayment != 'CMPL' %}
 			<div class="qr-container col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
-				<img class="qr-payment" src="../../static/register/images/payment/MOMO.png"/>	
-				<img class="qr-icon" src="../../static/register/images/payment/momo-icon.png"/>
+				<img class="qr-payment" src="{% static 'register/images/payment/MOMO.png' %}">	
+				<img class="qr-icon" src="{% static 'register/images/payment/momo-icon.png' %}"/>
 			</div>
 			<div class="qr-container col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
-				<img class="qr-payment" src="../../static/register/images/payment/NH.png"/>
-				<img class="qr-icon" src="../../static/register/images/payment/circle-icon.png"/>
-				<img class="qr-icon" src="../../static/register/images/payment/bank-icon.png"/>
+				<img class="qr-payment" src="{% static 'register/images/payment/NH.png' %}"/>
+				<img class="qr-icon" src="{% static 'register/images/payment/circle-icon.png' %}"/>
+				<img class="qr-icon" src="{% static 'register/images/payment/bank-icon.png' %}"/>
 			</div>
 			{% endif %}
 		</div>
