@@ -125,7 +125,7 @@ body{
     background-position: left bottom;
 
     overflow: auto;
-    white-space: nowrap;
+    white-space: normal;
   }
 
 
@@ -449,7 +449,7 @@ input[type='text'], input[type='password'] {
 @media (max-width: 992px){
     body{
         overflow-y: scroll;
-        white-space: nowrap;
+        white-space: normal;
     }
     .hero-banner {
         display: none;
