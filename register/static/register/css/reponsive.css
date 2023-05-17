@@ -17,10 +17,12 @@
 
     .Navbar-toggler {
         font-size: 42px;
-        display: flex;
-        justify-content: end;
-        margin-top: 20px;
-        padding-right: 20px;
+        display: block;
+        /* justify-content: end; */
+        margin-top: 8px;
+        /* padding-left: 297px; */
+        text-align: end;
+        padding-right: 28px;
     }
 
     .Navbar-Nav {
