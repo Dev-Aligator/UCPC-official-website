@@ -125,7 +125,7 @@ body {
     background-position: left bottom;
 
     overflow: auto;
-    white-space: nowrap;
+    white-space: normal;
   }
 
 
@@ -467,7 +467,7 @@ p {
 @media (max-width: 1300px){
     body{
         overflow-y: scroll;
-        white-space: nowrap;
+        white-space: normal;
     }
     .register-card {
         display: block;
@@ -496,6 +496,13 @@ p {
     p {
         text-align: center;
     } */
+}
+
+@media (max-height: 700px){
+  .form-container {
+    margin-top: 200px;
+  }
+
 }
 
 /* Style the error messages */
