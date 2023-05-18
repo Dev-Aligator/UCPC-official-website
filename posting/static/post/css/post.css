@@ -30,7 +30,7 @@
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
     --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
     --gradient-3: linear-gradient(0deg, #000d1a, transparent);
-  
+    --gradient-4: linear-gradient(#a6e3e9, #a6e3e9);
     /** Border colors */
     --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --border-prussian-blue: hsla(216, 33%, 20%, 1);
@@ -228,7 +228,7 @@
   .section-title { margin-block-end: 10px; }
   
   .headline .span {
-    background-image: var(--gradient-1);
+    background-image: var(--gradient-4);
     display: inline-block;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
