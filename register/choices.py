@@ -3322,6 +3322,8 @@ class Choices:
         ('THPT02648', 'TiH, THCS và THPT Chu Văn An - HCM'), 
         ('THPT02649', 'TH - THCS - THPT Ngôi Sao Nhỏ - HCM'), 
     ]
+
+    UNI_SCHOOL_CHOICES = UNI_CHOICES + SCHOOL_CHOICES
     
     OCCUPATION_CHOICES = [
         ('ST', 'Student'),
