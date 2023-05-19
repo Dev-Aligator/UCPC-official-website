@@ -224,7 +224,7 @@ class create_profile(LoginRequiredMixin, View):
                             JobTitle = tmf_data.get('JobTitle') if index == 3 else 'Student/Pupil'
                         )
                         new_teammate.save()
-                        googleSheetData.extend([tmf_data.get('Fullname'), tmf_data.get('MSSV'), tmf_data.get('CMND_CCCD'), tmf_data.get('Phone'), tmf_data.get('School')])
+                        googleSheetData.extend([tmf_data.get('Fullname'), tmf_data.get('MSSV'), tmf_data.get('CMND_CCCD'), tmf_data.get('Phone'), next(school[1] for school in Choices.UNI_SCHOOL_CHOICES if school[0] == tmf_data.get('School'))])
                         
                     
 
@@ -392,7 +392,7 @@ class edit_profile(LoginRequiredMixin, View):
     
                     for index, tm in enumerate(tmf):
                         tm_instance = tm.save(commit=False)
-                        googleSheetData.extend([tm.cleaned_data.get('Fullname'), tm.cleaned_data.get('MSSV'), tm.cleaned_data.get('CMND_CCCD'), tm.cleaned_data.get('Phone'), tm.cleaned_data.get('School')])
+                        googleSheetData.extend([tm.cleaned_data.get('Fullname'), tm.cleaned_data.get('MSSV'), tm.cleaned_data.get('CMND_CCCD'), tm.cleaned_data.get('Phone'), next(school[1] for school in Choices.UNI_SCHOOL_CHOICES if school[0] == tm.cleaned_data.get('School'))])
                         tm_instance.Team = tf_instance
                         tm_instance.save()
 
