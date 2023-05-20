@@ -20,14 +20,16 @@ from allauth.socialaccount import providers
 from importlib import import_module
 from django.contrib.auth import views as auth_views 
 from register import views
+from django.shortcuts import redirect
 admin.site.site_title = "UCPC Administration"
 admin.site.site_header = "Administration"
 admin.site.index_title = "UCPC "
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('register.urls')),
-    path('',include('posting.urls')),
+    path('', lambda request: redirect('info/')),
+    path('info/admin/', admin.site.urls),
+    path('info/',include('register.urls')),
+    path('info/',include('posting.urls')),
     # path('accounts/', include('allauth.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
 ]
