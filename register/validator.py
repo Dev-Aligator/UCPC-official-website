@@ -1,7 +1,7 @@
 from django.core.validators import RegexValidator
 
 class Validator:
-    TeamRegex = RegexValidator(r'^[a-zA-Z0-9\u00C0-\u1EF9]+$')
+    TeamRegex = RegexValidator(r'^[a-zA-Z0-9\u00C0-\u1EF9.]+$')
     NameRegex = RegexValidator(r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s\W|_]+$')
     NumberRegex = RegexValidator(r'^([0-9]{10}|[0-9]{11})$')
     AgeRegex = RegexValidator(r'^(1[6-9]|2[0-3])$')
