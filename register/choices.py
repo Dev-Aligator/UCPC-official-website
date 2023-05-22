@@ -668,7 +668,9 @@ class Choices:
         ('DH00698', 'Trường Cao đẳng Kinh tế – Tài chính Vĩnh Long'), 
         ('DH00699', 'Trường Cao đẳng Sư phạm Vĩnh Long'), 
         ('DH00700', 'Trường Cao đẳng nghề số 9 – Bộ Quốc phòng'), 
-        ('DH00701', 'Trường Cao đẳng nghề Vĩnh Long')
+        ('DH00701', 'Trường Cao đẳng nghề Vĩnh Long'),
+        ('DH00702', 'Đại học Arizona State'),
+        ('DH00703', 'Đại học Quản lý và Công nghệ TP.HCM')
     ]
     
     SCHOOL_CHOICES = [
