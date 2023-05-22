@@ -37,6 +37,7 @@ urlpatterns = [
 if settings.SOCIALACCOUNT_ENABLED:
     urlpatterns += [path("social/", include("allauth.socialaccount.urls"))]
 
+
 # Provider urlpatterns, as separate attribute (for reusability).
 provider_urlpatterns = []
 for provider in providers.registry.get_list():
