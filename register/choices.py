@@ -761,7 +761,7 @@ class Choices:
         ('THPT00085', 'Trường THPT Vân Nội - Hà Nội'), 
         ('THPT00086', 'Trường THPT An Dương Vương - Hà Nội'), 
         ('THPT00087', 'Trường THPT Hoàng Long - Hà Nội'), 
-        ('THPT00088', 'Trường THPT Lê Hồng Phong - Hà Nội'), 
+        ('THPT00088', 'Trường THPT Chuyên Lê Hồng Phong - Hà Nội'), 
         ('THPT00089', 'Trường THPT Ngô Quyền-Đông Anh - Hà Nội'), 
         ('THPT00090', 'Trường THPT Ngô Tất Tố - Hà Nội'), 
         ('THPT00091', 'Trường THPT Phạm Ngũ Lão - Hà Nội'), 
@@ -865,7 +865,7 @@ class Choices:
         ('THPT00189', 'Trường THPT Trần Thánh Tông - Hà Nội'), 
         ('THPT00190', 'Trường THPT Bùi Thị Xuân - HCM'), 
         ('THPT00191', 'Trường THPT Tenlơman - HCM'), 
-        ('THPT00192', 'Trường THPT Trần Đại Nghĩa - HCM'), 
+        ('THPT00192', 'Trường THPT Chuyên Trần Đại Nghĩa - HCM'), 
         ('THPT00193', 'Trường THPT Lương Thế Vinh - HCM'), 
         ('THPT00194', 'Trường THPT Châu Á Thái Bình Dương - HCM'), 
         ('THPT00195', 'Trường THPT Giồng Ông Tố - HCM'), 
@@ -2537,7 +2537,7 @@ class Choices:
         ('THPT01861', 'Trường THPT Đồng Phú - Bình Phước'), 
         ('THPT01862', 'Trường THPT Chơn Thành - Bình Phước'), 
         ('THPT01863', 'Trường THPT Chu Văn An - Bình Phước'), 
-        ('THPT01864', 'Trường THPT Bình Long - Bình Phước'), 
+        ('THPT01864', 'Trường THPT Chuyên Bình Long - Bình Phước'), 
         ('THPT01865', 'Trường THPT Nguyễn Huệ - Bình Phước'), 
         ('THPT01866', 'Trường THPT Lộc Ninh - Bình Phước'), 
         ('THPT01867', 'Trường THPT Lộc Thái - Bình Phước'), 
@@ -3323,6 +3323,7 @@ class Choices:
         ('THPT02647', 'THCS - THPT Phan Châu Trinh - HCM'), 
         ('THPT02648', 'TiH, THCS và THPT Chu Văn An - HCM'), 
         ('THPT02649', 'TH - THCS - THPT Ngôi Sao Nhỏ - HCM'), 
+        ('THPT02650', 'Trường Phổ thông Năng khiếu ĐH Quốc gia TP.HCM'), 
     ]
     
     OCCUPATION_CHOICES = [
