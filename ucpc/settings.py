@@ -140,11 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 # https://www.geeksforgeeks.org/how-to-load-and-use-static-files-in-django/
 
-# STATIC_URL = os.environ.get('STATIC_URL', '/static/')
-# STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'staticfiles'))
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
+STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'staticfiles'))
 
-STATIC_URL = os.environ.get('STATIC_URL', '/register/static/')
-STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'register/static/'))
+# STATIC_URL = os.environ.get('STATIC_URL', '/register/static/')
+# STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'register/static/'))
 
 # MEDIA_URL = '/static/media/'
 # MEDIA_ROOT = '/vol/web/media'
