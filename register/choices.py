@@ -3324,6 +3324,7 @@ class Choices:
         ('THPT02648', 'TiH, THCS và THPT Chu Văn An - HCM'), 
         ('THPT02649', 'TH - THCS - THPT Ngôi Sao Nhỏ - HCM'), 
         ('THPT02650', 'Trường Phổ thông Năng khiếu ĐH Quốc gia TP.HCM'), 
+        ('THPT02651', 'Trường THCS & THPT Nguyễn Khuyến - HCM'), 
     ]
     
     OCCUPATION_CHOICES = [
