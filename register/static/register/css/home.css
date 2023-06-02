@@ -54,7 +54,7 @@ a:hover {
 
 /* introduce */
 #introduce {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 
