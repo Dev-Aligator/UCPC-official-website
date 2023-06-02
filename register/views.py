@@ -321,12 +321,8 @@ class edit_profile(LoginRequiredMixin, View):
     # Display user profile for editing
     def get(self, request):
         # get deadline 
-        now = datetime.datetime.now(pytz.timezone('UTC'))
-        try:
-            website = Website.objects.first()
-            deadline = website.Deadline
-        except:
-            deadline = datetime.datetime(2023, 6, 4, tzinfo=timezone)
+        now = datetime.datetime.now()
+        deadline = datetime.datetime(2023, 6, 5)
         time_remaining = deadline - now
         
         if time_remaining.days > 0:
