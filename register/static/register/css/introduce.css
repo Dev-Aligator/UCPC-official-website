@@ -58,11 +58,12 @@
 
 .sponsors-info {
     border-left: 1px solid var(--primary3-color);
-    padding: 40px 32px;
+    padding: 40px 320x 16px;
     min-height: 464px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .sponsors-type {
@@ -82,6 +83,14 @@
     flex-direction: column;
 }
 
+.sponsors-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 38px;
+    padding-bottom: 18px;
+}
+
 .sponsors-logo__box img {
     width: 150px;
     margin: 8px 8px;
@@ -97,7 +106,7 @@
 }
 
 .VNG {
-    width: 120px;
+    width: 150px;
 }
 
 .introduce-img__absolute--XXXL {
@@ -153,4 +162,8 @@
 .introduce-img__absolute--S img {
     width: 10%;
     opacity: var(--opacity);
+}
+
+.introduce-bg {
+    width: 100%;
 }
