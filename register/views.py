@@ -322,7 +322,7 @@ class edit_profile(LoginRequiredMixin, View):
     def get(self, request):
         # get deadline 
         now = datetime.datetime.now()
-        deadline = datetime.datetime(2023, 6, 5)
+        deadline = datetime.datetime(2023, 6, 7)
         time_remaining = deadline - now
         
         if time_remaining.days > 0:
