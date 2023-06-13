@@ -6,7 +6,7 @@
 
 <!-- Banner -->
 
-<center><a href="https://github.com/Dev-Aligator/UCPC-official-website" title="UCPC-Official-website"><img src="/home/aligator/UCPC_WebRegistration/register/static/register/images/layout2023/background.png" width="960" height="540"></a></center>
+<center><a href="https://github.com/Dev-Aligator/UCPC-official-website" title="UCPC-Official-website"><img src="register/static/register/images/layout2023/background.png" width="960" height="540"></a></center>
 <!-- style="max-width=100%;" -->
 <!-- Status -->
 
