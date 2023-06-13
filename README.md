@@ -15,7 +15,7 @@
 
 [![](https://img.shields.io/website?style=for-the-badge&url=https://ucpc.uit.edu.vn/info/)](https://ucpc.uit.edu.vn/info/)
 
-**UCPC-official-website** is the official **registration** website for UCPC 2023 - the twelve season of the UIT Collegiate Programming Contest. Built with Django, it enables contestants to register and participate in the contest, and organizers to manage the evenot and publish results. This repositry contains all code and resources needed to run the website
+**UCPC-official-website** is the official **registration** website for UCPC 2023 - the twelfth season of the UIT Collegiate Programming Contest. Built with Django, it enables contestants to register and participate in the contest, and organizers to manage the evenot and publish results. This repositry contains all code and resources needed to run the website
 
 
 ### Tech Stack
